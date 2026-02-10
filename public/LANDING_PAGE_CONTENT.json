@@ -1,0 +1,142 @@
+{
+  "hero": {
+    "heading": "Digital Building Blocks of ",
+    "subheading": "Computational Gastronomy APIs",
+    "typewriterWordsList": [
+      "Food",
+      2000,
+      "Recipe",
+      2000,
+      "Flavor",
+      2000,
+      "Nutrition",
+      2000,
+      "Health",
+      2000,
+      "Sustainability",
+      2000
+    ],
+    "button": "Explore APIs"
+  },
+  "explore": {
+    "heading": "Explore Computational Gastronomy APIs",
+    "subheading": "Extensive APIs for traditional recipes, nutrition profiles, flavor molecules of natural ingredients, health associations, and carbon footprints."
+  },
+  "pricing": {
+    "heading": "Subscription Plans",
+    "subheadings": [
+      "Discover the perfect plan for your API needs. Whether it's for exploration, flexibility, or unlimited access, the available plans cover it all."
+    ],
+    "plans": [
+      {
+        "title": "Starter Plan",
+        "subtext": "Trial For Everyone",
+        "titleGradientColors": [
+          "bg-blue-500"
+        ],
+        "features": [
+          "200 complimentary tokens",
+          "Rate Limiting : 25 req/min",
+          "Limited usage per month",
+          "Basic support",
+          "Not intended for commercial use"
+        ]
+      },
+      {
+        "title": "Developer Plus",
+        "subtext": "For Researchers and Developers",
+        "titleGradientColors": [
+          "from-blue-500",
+          "via-purple-600",
+          "to-red-600"
+        ],
+        "price": 0.05,
+        "features": [
+          "Pay-as-you-go tokens",
+          "Limited usage per month",
+          "Rate Limiting : 50 req/min",
+          "Analytics and usage insights upto 2 weeks",
+          "Dedicated support via email and phone",
+          "Not permitted for commercial redistribution or production use"
+        ]
+      },
+      {
+        "title": "Enterprise Suit",
+        "titleGradientColors": [
+          "from-pink-500",
+          "via-red-500",
+          "to-yellow-600"
+        ],
+        "subtext": "For Businesses and Enterprises",
+        "features": [
+          "Pay-as-you-go tokens with custom high volume plans",
+          "No Rate Limiting",
+          "Analytics and usage insights upto 4 weeks",
+          "Custom usage limits based on requirements",
+          "Dedicated support via email, phone and video conference", 
+          "Custom feature development and onboarding assistance"
+        ]
+      }
+    ]
+  },
+  "faq": [
+    {
+      "question": "What is the Foodoscope API Dashboard?",
+      "answer": "Foodoscope API dashboard is a platform that enables leveraging Computational Gastronomy API resources. The APIs include data points for traditional recipes, nutrition profiles, flavor molecules of natural ingredients, health associations, and carbon footprints."
+    },
+    {
+      "question": "What APIs are available on the Foodoscope API dashboard, and how can I access them?",
+      "answer": "Foodoscope API dashboard offers a range of APIs that users can subscribe to, depending on their needs. The APIs include data points for traditional recipes, nutrition profiles, flavor molecules of natural ingredients, health associations, and carbon footprints. A list of available APIs is visible in the section above. The users can view the details of each API on the user dashboard."
+    },
+    {
+      "question": "What is the trial plan?",
+      "answer": "The Trial Plan provides 1,000 complimentary tokens, valued at $___, to explore the Foodoscope API Dashboard. Post the trial period, the user can upgrade to a premium subscription."
+    },
+    {
+      "question": "What are the available subscription plans?",
+      "answer": "We offer two subscription plans: Token-Based and Time-Based. The Token-Based plan is priced at $___ per token. The Time-Based is priced at $___ per month, and an annual plan is charged at $___."
+    },
+    {
+      "question": "How can I buy more tokens?",
+      "answer": "To buy more tokens, simply login to your account and navigate to the user dashboard. Select the number of tokens you want to purchase and click on the 'Request Tokens' button. Once you have completed the payment for the requested tokens, your account will be credited with the additional tokens after the payment is confirmed."
+    },
+    {
+      "question": "How do I check my remaining token balance on the Foodoscope API dashboard?",
+      "answer": "To check your remaining token balance, simply log in to your user dashboard. You will find the information about the remaining tokens highlighted on the dashboard."
+    },
+    {
+      "question": "How do I reset my password for the Foodoscope API dashboard?",
+      "answer": "To reset your password, simply click the 'Forgot Password' button on the login page. You will be asked to provide your email address, and shortly afterwards, you will receive an email containing a verification link. Follow the link to reset your password and regain access to your account."
+    },
+    {
+      "question": "Is there an educational plan available on the Foodoscope API dashboard?",
+      "answer": "You may use the trial plan with 1,000 complimentary tokens worth $___ for educational purposes."
+    },
+    {
+      "question": "How can I contact the Foodoscope API dashboard team for support?",
+      "answer": "You can reach out to the Foodoscope API dashboard team by submitting a support request through the Contact section on the dashboard. Fill out the feedback form, and our team will get back to you as soon as possible."
+    },
+    {
+      "question": "How can I inquire about pricing information?",
+      "answer": "Send an enquiry to bagler+api@iiitd.ac.in"
+    }
+  ],
+  "contact": {
+    "heading": "Contact Us",
+    "subheading": "We would love to hear what you have to say about us! Reach out to us through this contact form.",
+    "address": "Foodoscope Technologies Pvt. Ltd., 1A,2,3,6,7A, 2nd Floor, Indure House, Savitri Cinema Complex, Greater Kailash 2, New Delhi 110048",
+    "form": {
+      "key": "mdorlboj",
+      "heading": "What can we help you with?",
+      "button": "Get in Touch"
+    }
+  },
+  "footer": {
+    "message": "© 2025 Foodoscope Technologies Pvt. Ltd."
+  },
+  "infoBar": {
+    "show": false,
+    "heading": "This is an info bar",
+    "message": "More info about this info alert goes here. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content."
+  }
+}

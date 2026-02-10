@@ -1,0 +1,8 @@
+{
+  "pricePerToken": 10,
+  "paymentMessage": "Please make payment of the corresponding amount to the given bank account",
+  "paymentAccountDetails": {
+    "UPI": "example@example",
+    "Account Holder Name": "Example"
+  }
+}
