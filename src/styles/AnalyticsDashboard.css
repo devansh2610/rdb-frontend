@@ -1,0 +1,664 @@
+/* AnalyticsDashboard.css */
+
+/* Base styles and animations */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --transition-cubic: cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-color-light: 220 3% 15%;
+  --shadow-color-dark: 220 40% 2%;
+  --shadow-strength-light: 1%;
+  --shadow-strength-dark: 25%;
+
+  --tooltip-cursor-light: rgba(0, 0, 0, 0.1);
+  --tooltip-cursor-dark: rgba(255, 255, 255, 0.1);
+}
+
+.dark {
+  --tooltip-cursor-light: var(--tooltip-cursor-dark);
+}
+
+.animate-pop-in {
+  animation: popIn 0.5s var(--transition-cubic) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s var(--transition-cubic) forwards;
+}
+
+.animate-scale {
+  transition: transform 0.3s var(--transition-cubic);
+}
+
+.animate-scale:hover {
+  transform: scale(1.02);
+}
+
+.animate-spin {
+  animation: spin 1.5s linear infinite;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Global styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Enhanced Card Styles */
+.bg-white, .dark .bg-gray-800 {
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s var(--transition-cubic);
+}
+
+.bg-white {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  box-shadow: 
+    0 1px 2px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 5%)),
+    0 4px 6px -1px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 9%)),
+    0 12px 24px -8px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 12%));
+}
+
+.dark .bg-gray-800 {
+  background-color: rgba(31, 41, 55, 0.85) !important;
+  box-shadow:
+    0 1px 2px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 5%)),
+    0 4px 6px -1px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 9%)),
+    0 12px 24px -8px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 12%));
+}
+
+.bg-white:hover, .dark .bg-gray-800:hover {
+  box-shadow: 
+    0 4px 8px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 8%)),
+    0 8px 16px -2px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 12%)),
+    0 20px 40px -8px hsl(var(--shadow-color-light) / calc(var(--shadow-strength-light) + 16%));
+}
+
+.dark .bg-gray-800:hover {
+  box-shadow:
+    0 4px 8px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 8%)),
+    0 8px 16px -2px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 12%)),
+    0 20px 40px -8px hsl(var(--shadow-color-dark) / calc(var(--shadow-strength-dark) + 16%));
+}
+
+/* Button Styles */
+.analytics-dashboard button {
+  transition: all 0.2s var(--transition-cubic);
+  position: relative;
+  overflow: hidden;
+}
+
+.analytics-dashboard button::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.4s, opacity 0.8s;
+}
+
+.analytics-dashboard button:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+/* Chart Styles */
+.recharts-wrapper {
+  margin: 0 auto;
+}
+
+.recharts-surface {
+  overflow: visible;
+}
+
+.recharts-default-tooltip {
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+  backdrop-filter: blur(10px) !important;
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border: 1px solid rgba(229, 231, 235, 0.5) !important;
+  padding: 12px !important;
+}
+
+.dark .recharts-default-tooltip {
+  background-color: rgba(30, 41, 59, 0.85) !important;
+  border: 1px solid rgba(55, 65, 81, 0.5) !important;
+}
+
+.recharts-tooltip-label {
+  font-weight: 600 !important;
+  margin-bottom: 4px !important;
+  color: #1f2937 !important;
+}
+
+.dark .recharts-tooltip-label {
+  color: #f3f4f6 !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  font-size: 12px !important;
+  fill: #6b7280 !important;
+}
+
+.dark .recharts-cartesian-axis-tick-value {
+  fill: #9ca3af !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #e5e7eb !important;
+  stroke-opacity: 0.3 !important;
+}
+
+.dark .recharts-cartesian-grid-horizontal line,
+.dark .recharts-cartesian-grid-vertical line {
+  stroke: #4b5563 !important;
+  stroke-opacity: 0.3 !important;
+}
+
+.recharts-pie-label-line {
+  stroke: #9ca3af !important;
+}
+
+.recharts-sector:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s var(--transition-cubic);
+}
+
+/* Background gradients */
+.bg-gradient-light {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(240, 249, 255, 0.85) 100%);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.85) 100%);
+}
+
+/* Dashboard bg effects */
+.bg-dashboard {
+  position: relative;
+  background-size: 100% 100%;
+  background-position: 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+}
+
+/* Theme specific colors with gradients */
+.theme-default-bg {
+  background: linear-gradient(135deg, #dbeafe 0%, #ede9fe 50%, #f0fdfa 100%);
+}
+
+.theme-ocean-bg {
+  background: linear-gradient(135deg, #cffafe 0%, #e0f2fe 50%, #dbeafe 100%);
+}
+
+.theme-sunset-bg {
+  background: linear-gradient(135deg, #ffedd5 0%, #fee2e2 50%, #fce7f3 100%);
+}
+
+.theme-forest-bg {
+  background: linear-gradient(135deg, #d1fae5 0%, #ecfccb 50%, #f0fdf4 100%);
+}
+
+.dark .theme-default-bg {
+  background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 50%, #134e4a 100%);
+}
+
+.dark .theme-ocean-bg {
+  background: linear-gradient(135deg, #155e75 0%, #1e40af 50%, #1e3a8a 100%);
+}
+
+.dark .theme-sunset-bg {
+  background: linear-gradient(135deg, #7c2d12 0%, #881337 50%, #9d174d 100%);
+}
+
+.dark .theme-forest-bg {
+  background: linear-gradient(135deg, #14532d 0%, #3f6212 50%, #166534 100%);
+}
+
+/* Dashboard Container */
+.dashboard-container {
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.dark .dashboard-container {
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.2),
+    0 2px 4px -1px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+/* Metric Card Enhancements */
+.metric-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.metric-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  z-index: 0;
+}
+
+.dark .metric-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.02) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.metric-card .icon-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: rgba(var(--color-primary-rgb), 0.1);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+
+.metric-card:hover .icon-container {
+  transform: scale(1.05);
+}
+
+.metric-card .value {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 1;
+}
+
+.metric-card .trend {
+  display: inline-flex;
+  align-items: center;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  position: relative;
+  z-index: 1;
+}
+
+.trend.positive {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: rgb(16, 185, 129);
+}
+
+.trend.negative {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: rgb(239, 68, 68);
+}
+
+.dark .trend.positive {
+  background-color: rgba(16, 185, 129, 0.2);
+  color: rgb(52, 211, 153);
+}
+
+.dark .trend.negative {
+  background-color: rgba(239, 68, 68, 0.2);
+  color: rgb(248, 113, 113);
+}
+
+.metric-card .indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: var(--indicator-color);
+}
+
+/* Date picker styling */
+.react-datepicker {
+  font-family: 'Inter', -apple-system, system-ui, sans-serif !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+  border: none !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+}
+
+.react-datepicker__header {
+  background-color: rgba(249, 250, 251, 0.8) !important;
+  border-bottom: 1px solid rgba(229, 231, 235, 0.5) !important;
+  padding-top: 16px !important;
+  border-top-left-radius: 12px !important;
+  border-top-right-radius: 12px !important;
+}
+
+.dark .react-datepicker__header {
+  background-color: rgba(31, 41, 55, 0.8) !important;
+  border-bottom: 1px solid rgba(75, 85, 99, 0.5) !important;
+}
+
+.react-datepicker__day {
+  margin: 8px 5px !important;
+  border-radius: 6px !important;
+  transition: all 0.2s var(--transition-cubic) !important;
+}
+
+.react-datepicker__day:hover {
+  background-color: rgba(219, 234, 254, 0.8) !important;
+  border-radius: 6px !important;
+}
+
+.dark .react-datepicker__day:hover {
+  background-color: rgba(55, 65, 81, 0.8) !important;
+}
+
+.react-datepicker__day--selected {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  background-color: rgba(59, 130, 246, 0.5) !important;
+}
+
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range {
+  background-color: rgba(59, 130, 246, 0.8) !important;
+  color: white !important;
+}
+
+.react-datepicker__current-month {
+  font-weight: 600 !important;
+  padding-bottom: 8px !important;
+}
+
+.dark .react-datepicker__current-month {
+  color: #f3f4f6 !important;
+}
+
+.react-datepicker__navigation {
+  top: 16px !important;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.7);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(107, 114, 128, 0.7);
+}
+
+/* Loading state animations */
+.loading-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.6) 25%, rgba(226, 232, 240, 0.3) 37%, rgba(226, 232, 240, 0.6) 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.dark .loading-skeleton {
+  background: linear-gradient(90deg, rgba(71, 85, 105, 0.6) 25%, rgba(71, 85, 105, 0.3) 37%, rgba(71, 85, 105, 0.6) 63%);
+  background-size: 400% 100%;
+}
+
+/* Input Fields */
+input, select {
+  transition: all 0.3s ease !important;
+}
+
+input:focus, select:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3) !important;
+}
+
+.dark input:focus, .dark select:focus {
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Responsive layout adjustments */
+@media (max-width: 640px) {
+  .metric-card {
+    padding: 16px;
+  }
+  
+  .metric-card .value {
+    font-size: 24px;
+  }
+  
+  .dashboard-container {
+    padding: 16px;
+  }
+}
+
+/* Add these styles to your CSS file */
+@keyframes smoothPulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+}
+
+@keyframes smoothPing {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.3);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes outerPing {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.4);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    opacity: 0.7;
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.9;
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 0.7;
+    filter: blur(3px);
+  }
+}
+
+.live-indicator {
+  transform-origin: center;
+  transform-box: fill-box;
+  filter: drop-shadow(0 0 2px rgba(255, 59, 48, 0.6));
+}
+
+.live-pulse {
+  animation: smoothPulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.live-ping {
+  animation: smoothPing 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.live-ping-outer {
+  animation: outerPing 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+  animation-delay: 0.5s;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.glow-effect {
+  animation: glowPulse 3s ease-in-out infinite;
+  filter: blur(3px);
+}
+
+.active-glow {
+  filter: blur(4px);
+  opacity: 0.8;
+}
+
+/* Add custom hover background for API charts */
+.api-chart-container .recharts-layer.recharts-bar-rectangles:hover rect {
+  filter: brightness(0.9);
+}
+
+.api-chart-container .recharts-bar-rectangle:hover {
+  fill-opacity: 0.9;
+  transition: all 0.3s;
+  background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+/* Custom hover background for ReCharts grid areas */
+.api-chart-container .recharts-rectangle.recharts-tooltip-cursor {
+  fill: rgba(0, 0, 0, 0.7) !important;
+  opacity: 0.4 !important;
+}
+
+/* Blob animation for background effects */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
