@@ -1,0 +1,1157 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "CocktailDB API Endpoint Playground",
+    "description": "Comprehensive cocktail recipe database with nutritional information, ingredients, and filtering capabilities",
+    "contact": {
+      "email": "example@example.co.in"
+    }
+  },
+  "host": "api.foodoscope.com/cocktaildb",
+  "basePath": "/cocktailRecipe-search",
+  "tags": [
+    {
+      "name": "Filter APIs",
+      "description": "Endpoints for filtering cocktails by various criteria"
+    },
+    {
+      "name": "Search APIs",
+      "description": "Endpoints for searching cocktails by name, ID, and ingredients"
+    },
+    {
+      "name": "Metadata APIs",
+      "description": "Endpoints for retrieving metadata and nutritional information"
+    },
+    {
+      "name": "Ingredient APIs",
+      "description": "Endpoints for ingredient search and substitutes"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/rating": {
+      "get": {
+        "alias": "Cocktails By Rating",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by rating",
+        "description": "This endpoint retrieves a list of cocktail recipes based on a rating threshold.",
+        "operationId": "getCocktailRecipeByRating",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "threshold",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "description": "Minimum rating threshold",
+            "default": "4.5",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "4.0",
+              "4.5",
+              "5.0"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "payload": {
+                  "type": "array"
+                },
+                "Total_count": {
+                  "type": "integer"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/votes": {
+      "get": {
+        "alias": "Cocktails By Votes",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by votes",
+        "description": "This endpoint retrieves a list of cocktails whose votes are greater than or equal to the provided votes threshold.",
+        "operationId": "getCocktailRecipeByVotes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "threshold",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Minimum number of votes required",
+            "default": "50",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "10",
+              "25",
+              "50",
+              "100",
+              "200"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/prepTime": {
+      "get": {
+        "alias": "Cocktails By Prep Time",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by preparation time",
+        "description": "This endpoint retrieves a list of cocktails with preparation time greater than or equal to the provided threshold.",
+        "operationId": "getCocktailRecipeByPrepTime",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "threshold",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Maximum prep time in minutes",
+            "default": "100",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "15",
+              "30",
+              "60",
+              "100",
+              "120"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/cookTime": {
+      "get": {
+        "alias": "Cocktails By Cook Time",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by cook time",
+        "description": "This endpoint retrieves a list of cocktail recipes with a cook time less than the specified maximum.",
+        "operationId": "getCocktailRecipeByCookTime",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "max",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Maximum cook time in minutes",
+            "default": "10",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "5",
+              "10",
+              "15",
+              "20",
+              "30"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/totalTime": {
+      "get": {
+        "alias": "Cocktails By Total Time",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by total time",
+        "description": "This endpoint retrieves cocktail recipes based on the total preparation and cooking time.",
+        "operationId": "getCocktailRecipeByTotalTime",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "max",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Maximum total time in minutes",
+            "default": "10",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "5",
+              "10",
+              "15",
+              "20",
+              "30",
+              "45",
+              "60"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/Servings": {
+      "get": {
+        "alias": "Cocktails By Serving Count",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by number of servings",
+        "description": "This endpoint retrieves cocktail recipes that match the specified serving count.",
+        "operationId": "getCocktailRecipeByServing",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "min",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Minimum servings",
+            "default": "3",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "1",
+              "2",
+              "3",
+              "4",
+              "6",
+              "8"
+            ]
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": true,
+            "type": "integer",
+            "description": "Maximum servings",
+            "default": "4",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "2",
+              "4",
+              "6",
+              "8",
+              "10",
+              "12"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/Cooking_Action": {
+      "post": {
+        "alias": "Cocktails By Cooking Action",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail recipes by cooking action",
+        "description": "This endpoint retrieves cocktails based on their cooking action.",
+        "operationId": "getCocktailRecipeByCookingAction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "cooking_action": {
+                  "type": "string",
+                  "description": "The cooking action to filter by",
+                  "default": "serve",
+                  "enum": [
+                    "serve",
+                    "mix",
+                    "shake",
+                    "stir",
+                    "blend",
+                    "muddle",
+                    "layer",
+                    "garnish"
+                  ]
+                },
+                "page": {
+                  "type": "integer",
+                  "description": "Page number",
+                  "default": 1
+                },
+                "page_size": {
+                  "type": "integer",
+                  "description": "Number of results per page",
+                  "default": 2
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/categories": {
+      "get": {
+        "alias": "Cocktails By Category",
+        "tags": [
+          "Search APIs"
+        ],
+        "summary": "Get cocktail recipes by category",
+        "description": "This endpoint retrieves cocktail recipes based on the specified categories.",
+        "operationId": "getCocktailRecipeByCategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Category name",
+            "default": "apple",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "apple",
+              "vodka",
+              "rum",
+              "gin",
+              "whiskey",
+              "tequila",
+              "champagne",
+              "wine",
+              "beer",
+              "mocktail"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/Name": {
+      "get": {
+        "alias": "Cocktails By Name",
+        "tags": [
+          "Search APIs"
+        ],
+        "summary": "Get cocktail recipes by name",
+        "description": "This endpoint retrieves a list of cocktail recipes matching the specified recipe name.",
+        "operationId": "getCocktailRecipeByName",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "recipeName",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Name of the cocktail recipe",
+            "default": "Whisky Contardo",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Whisky Contardo",
+              "Margarita",
+              "Mojito",
+              "Martini",
+              "Cosmopolitan",
+              "Old Fashioned",
+              "Manhattan"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/CocktailId/{id}": {
+      "get": {
+        "alias": "Cocktails By ID",
+        "tags": [
+          "Search APIs"
+        ],
+        "summary": "Get cocktail recipe by ID",
+        "description": "This endpoint retrieves information about a cocktail recipe based on the provided cocktail ID.",
+        "operationId": "getCocktailRecipeById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Cocktail ID",
+            "default": "100003",
+            "x-enum-values": [
+              "100003",
+              "100004",
+              "100005",
+              "100006",
+              "100007"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/MinMax": {
+      "get": {
+        "alias": "Cocktails By Min/Max Nutrition Value",
+        "tags": [
+          "Nutrition APIs"
+        ],
+        "summary": "Get cocktail recipes by min/max nutrition value",
+        "description": "This endpoint retrieves cocktail recipes based on the specified field range and pagination parameters.",
+        "operationId": "getCocktailRecipeByMinAndMaxValueOfNutrition",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "min",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "description": "Minimum value",
+            "default": "5",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "0",
+              "5",
+              "10",
+              "15",
+              "20",
+              "50"
+            ]
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "required": true,
+            "type": "number",
+            "description": "Maximum value",
+            "default": "20",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "10",
+              "20",
+              "50",
+              "100",
+              "200",
+              "500"
+            ]
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Field name (e.g., Carbohydrates, Calories)",
+            "default": "Carbohydrates",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Carbohydrates",
+              "Calories",
+              "Protein",
+              "Fat",
+              "Sugar",
+              "Sodium",
+              "Fiber",
+              "Cholesterol"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/metadata": {
+      "get": {
+        "alias": "Get Metadata",
+        "tags": [
+          "Metadata APIs"
+        ],
+        "summary": "Get metadata",
+        "description": "This endpoint retrieves metadata such as available categories, preparation time statistics, ratings, and page sizes.",
+        "operationId": "getMetadata",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/AllIngredients": {
+      "get": {
+        "alias": "Get All Ingredients",
+        "tags": [
+          "Ingredient APIs"
+        ],
+        "summary": "Get all ingredients",
+        "description": "This endpoint retrieves all ingredients available in the database.",
+        "operationId": "getAllIngredients",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/getNutritonsOfCocktail": {
+      "get": {
+        "alias": "Nutritional Information of Cocktail",
+        "tags": [
+          "Nutrition APIs"
+        ],
+        "summary": "Get nutritional information of cocktail",
+        "description": "This endpoint returns the nutritional information of a cocktail.",
+        "operationId": "getNutritionalInformationOfCocktail",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Cocktail_Title",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Title of the cocktail",
+            "default": "Madras Cocktail",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Madras Cocktail",
+              "Margarita",
+              "Mojito",
+              "Pina Colada",
+              "Bloody Mary",
+              "Daiquiri"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/ingredientSearch": {
+      "get": {
+        "alias": "Search Ingredients By Generic Name",
+        "tags": [
+          "Ingredient APIs"
+        ],
+        "summary": "Search ingredients by partial query",
+        "description": "This endpoint retrieves a list of ingredients with the same generic name as the specified ingredient.",
+        "operationId": "IngredientSearch",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Search query",
+            "default": "vodka",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "vodka",
+              "rum",
+              "gin",
+              "tequila",
+              "whiskey",
+              "lime",
+              "lemon",
+              "mint",
+              "sugar"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/ingredientSubstitutes": {
+      "get": {
+        "alias": "Get Ingredient Substitutes",
+        "tags": [
+          "Ingredient APIs"
+        ],
+        "summary": "Get ingredient substitutes",
+        "description": "Get substitute ingredients based on Generic_Name. Returns ingredients with the same generic category as potential substitutes.",
+        "operationId": "IngredientsSubstitutes",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ingredient",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Ingredient name",
+            "default": "vodka",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "vodka",
+              "rum",
+              "gin",
+              "tequila",
+              "whiskey",
+              "lime juice",
+              "lemon juice",
+              "simple syrup",
+              "club soda"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/ingredients": {
+      "post": {
+        "alias": "Cocktails By Ingredients",
+        "tags": [
+          "Ingredient APIs"
+        ],
+        "summary": "Get cocktail recipes by ingredients",
+        "description": "This endpoint retrieves cocktail recipes based on ingredients.",
+        "operationId": "getCocktailRecipeByIngredients",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ingredients": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "description": "List of ingredients",
+                  "default": [
+                    "Chartreuse"
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "10"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/imageID/{imageId}": {
+      "get": {
+        "alias": "Cocktails By Image ID",
+        "tags": [
+          "Search APIs"
+        ],
+        "summary": "Get cocktail recipe by image ID",
+        "description": "This endpoint retrieves a cocktail recipe by image ID.",
+        "operationId": "getCocktailRecipeByImageId",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "imageId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Image ID",
+            "default": "allrecipes_3",
+            "x-enum-values": [
+              "allrecipes_3",
+              "allrecipes_4",
+              "allrecipes_5",
+              "allrecipes_10",
+              "allrecipes_15"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/diet": {
+      "get": {
+        "alias": "Cocktails By Dietary Preferance",
+        "tags": [
+          "Filter APIs"
+        ],
+        "summary": "Get cocktail by diet",
+        "description": "This endpoint retrieves cocktail recipes based on dietary information, such as vegan preferences.",
+        "operationId": "getCocktailByDiet",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "diet",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "Diet type",
+            "default": "Vegan",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Vegan",
+              "Vegetarian",
+              "Gluten-Free",
+              "Dairy-Free",
+              "Low-Calorie",
+              "Keto",
+              "Paleo"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Page number",
+            "default": "1",
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page_size",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "description": "Number of results per page",
+            "default": "2",
+            "collectionFormat": "single"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "API Key required for authentication"
+    }
+  }
+}

@@ -1,0 +1,2096 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe DB API Endpoint Playground",
+    "description": "Comprehensive API documentation for accessing 118,000+ recipes, nutritional data, and meal planning features.",
+    "contact": {
+      "name": "RecipeDB Team",
+      "email": "ganesh.bagler+foodoscope@gmail.com"
+    }
+  },
+  "host": "api.foodoscope.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "GET Method",
+      "description": "118,000+ recipes from across the globe"
+    },
+    {
+      "name": "POST Method",
+      "description": "Create meal plans based on user preferences"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "recipe2-api/recipe/recipesinfo": {
+      "get": {
+        "alias": "Recipe Info",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Retrieves a comprehensive list of all available recipes in the database.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe/recipeofday": {
+      "get": {
+        "alias": "Recipe of Day",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Returns a single, randomly selected recipe to be featured as the 'Recipe of the Day'.",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe/recipe-day/with-ingredients-categories": {
+      "get": {
+        "alias": "Recipe With Ingredients Categories",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Generates a 'Recipe of the Day' while excluding specific ingredients or food categories.",
+        "parameters": [
+          {
+            "name": "excludeIngredients",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select ingredients to exclude.",
+            "x-enum-values": [
+              "water",
+              "cinnamon",
+              "breadcrumb",
+              "flour tortilla",
+              "lemon juice",
+              "lime juice",
+              "white wine",
+              "red wine",
+              "flour",
+              "purpose flour",
+              "soy sauce",
+              "Tomato sauce",
+              "butter",
+              "milk",
+              "vegetable broth",
+              "cream mushroom soup",
+              "sesame oil",
+              "avocado",
+              "steak",
+              "salmon fillet",
+              "broccoli",
+              "artichoke heart",
+              "lemon",
+              "orange juice",
+              "mushroom",
+              "button mushroom",
+              "garlic clove",
+              "garlic",
+              "vanilla",
+              "black bean",
+              "cornstarch",
+              "corn",
+              "egg",
+              "beef",
+              "almond",
+              "walnut",
+              "bay leaf",
+              "black olive",
+              "olive oil",
+              "vegetable oil",
+              "shallot",
+              "shrimp",
+              "black pepper",
+              "pepper",
+              "onion",
+              "tomato"
+            ]
+          },
+          {
+            "name": "excludeCategories",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select categories to exclude.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-nutri/nutritioninfo": {
+      "get": {
+        "alias": "Recipe Nutrition Info",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Provides macronutrient details (calories, fat, protein, carbohydrates) for recipes.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-micronutri/micronutritioninfo": {
+      "get": {
+        "alias": "Recipe Micro Nutrition Info",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Provides detailed micronutrient data (vitamins, minerals, cholesterol) for recipes.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipes/range": {
+      "get": {
+        "alias": "Recipe Range",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Filters recipes based on preparation, cooking and total time ranges.",
+        "parameters": [
+          {
+            "name": "min",
+            "in": "query",
+            "type": "number",
+            "description": "Filter by time value range (in minutes) for the selected field."
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "type": "number",
+            "description": "Filter by time value range (in minutes) for the selected field."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "description": "Filter by page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "description": "Number of recipes to be shown per page."
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "type": "string",
+            "x-enum-values": [
+              "total_time",
+              "prep_time",
+              "cook_time"
+            ],
+            "description": "The time field (in minutes) to filter on."
+          }
+        ],
+        "x-enum-values": [
+          {
+            "min": 0,
+            "max": 259260,
+            "avg": 149.88391646324925,
+            "stdDev": 2095.090345325534,
+            "field": "total_time"
+          },
+          {
+            "min": 0,
+            "max": 720,
+            "avg": 2.488795731707317,
+            "stdDev": 9.919125530692655,
+            "field": "prep_time"
+          },
+          {
+            "min": 0,
+            "max": 1200,
+            "avg": 5.7250870165394945,
+            "stdDev": 32.31218318835683,
+            "field": "cook_time"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipes_cuisine/cuisine/{region}": {
+      "get": {
+        "alias": "Recipe By Cuisine",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Filters recipes belonging to a specific culinary region or sub-region.",
+        "x-statistics": [
+          {
+            "field": "total_time",
+            "min": 0,
+            "max": 259260,
+            "avg": 149.88391646324925,
+            "stdDev": 2095.090345325534
+          }
+        ],
+        "parameters": [
+          {
+            "name": "region",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ],
+            "description": "Filter by cuisine region."
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "type": "string",
+            "x-enum-values": [
+              "total_time"
+            ],
+            "description": "Time field (in minutes) to filter on."
+          },
+          {
+            "name": "min",
+            "in": "query",
+            "type": "number",
+            "description": "Filter by time range (in minutes)."
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "type": "number"
+          },
+          {
+            "name": "continent",
+            "in": "query",
+            "type": "string",
+            "x-enum-values": [
+              "African",
+              "Asian",
+              "Australasian",
+              "European",
+              "Latin American",
+              "North American"
+            ],
+            "description": "Filter by continent."
+          },
+          {
+            "name": "subRegion",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "single",
+            "x-enum-values": [
+              "Angolan",
+              "Argentine",
+              "Australian",
+              "Austrian",
+              "Bangladeshi",
+              "Belgian",
+              "Brazilian",
+              "Cambodian",
+              "Canadian",
+              "Chilean",
+              "Chinese",
+              "Colombian",
+              "Costa Rican",
+              "Cuban",
+              "Czech",
+              "Danish",
+              "Dutch",
+              "Ecuadorean",
+              "Egyptian",
+              "English",
+              "Ethiopian",
+              "Filipino",
+              "Finnish",
+              "French",
+              "German",
+              "Greek",
+              "Guatemalan",
+              "Honduran",
+              "Hungarian",
+              "Icelandic",
+              "Indian",
+              "Indonesian",
+              "Iraqi",
+              "Irish",
+              "Israeli",
+              "Italian",
+              "Jamaican",
+              "Japanese",
+              "Korean",
+              "Laotian",
+              "Lebanese",
+              "Libyan",
+              "Malaysian",
+              "Mexican",
+              "Mongolian",
+              "Moroccan",
+              "Namibian",
+              "Nepalese",
+              "New Zealander",
+              "Nigerian",
+              "Norwegian",
+              "Pakistani",
+              "Palestinian",
+              "Peruvian",
+              "Polish",
+              "Portuguese",
+              "Puerto Rican",
+              "Rest Caribbean",
+              "Rest Eastern European",
+              "Rest Middle Eastern",
+              "Russian",
+              "Saudi Arabian",
+              "Scottish",
+              "Somalian",
+              "Spanish",
+              "Sudanese",
+              "Swedish",
+              "Swiss",
+              "Thai",
+              "Turkish",
+              "UK",
+              "US",
+              "Venezuelan",
+              "Vietnamese",
+              "Welsh"
+            ],
+            "description": "Filter by sub-region."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "default": 1,
+            "description": "Filter by page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-bytitle/recipeByTitle": {
+      "get": {
+        "description": "Searches for recipes by title with partial matching support.",
+        "alias": "Recipe By Title",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "collectionFormat": "single",
+            "description": "Select title category of the recipe.",
+            "x-enum-values": [
+              "Baklava",
+              "Shepherd's Pie",
+              "Tabbouleh",
+              "Saffron Rice",
+              "Cucumber Salad",
+              "Rice Pudding",
+              "Couscous Salad",
+              "Beef Stroganoff",
+              "Lentil Soup",
+              "Tomato Rice",
+              "Mexican Rice",
+              "Chicken Curry",
+              "Potato Soup",
+              "Fried Rice",
+              "Wiener Schnitzel",
+              "Pita Bread",
+              "Creme Brulee",
+              "Chicken Fried Rice",
+              "Potato Pancakes",
+              "Mango Salsa",
+              "Coconut Rice",
+              "Arroz Con Pollo",
+              "Falafel",
+              "Hummus",
+              "Mushroom Risotto",
+              "Vegetable Biryani",
+              "Tabouli",
+              "Moroccan Chicken",
+              "Chicken Biryani",
+              "Beef Rendang"
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipes-calories/calories": {
+      "get": {
+        "alias": "Recipe By Calories",
+        "tags": [
+          "GET Method"
+        ],
+        "description": "Filters recipes within a specific minimum and maximum calorie range.",
+        "x-statistics": {
+          "min": 0,
+          "max": 612854.6,
+          "mean": 473.77048601407483,
+          "avg": 473.77048601407483,
+          "stdDev": 2177.807815939577,
+          "field": "Calories"
+        },
+        "parameters": [
+          {
+            "name": "minCalories",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by calories range.",
+            "x-statistics": {
+              "min": 0,
+              "max": 612854.6,
+              "mean": 473.77048601407483,
+              "avg": 473.77048601407483,
+              "stdDev": 2177.807815939577,
+              "field": "Calories"
+            }
+          },
+          {
+            "name": "maxCalories",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by calories range.",
+            "x-statistics": {
+              "min": 0,
+              "max": 612854.6,
+              "mean": 473.77048601407483,
+              "avg": 473.77048601407483,
+              "stdDev": 2177.807815939577,
+              "field": "Calories"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe/region-diet/region-diet": {
+      "get": {
+        "description": "Combines regional cuisine filtering with dietary preferences (e.g., Italian + Vegan).",
+        "alias": "Recipe By Region Diet",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "region",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "collectionFormat": "single",
+            "description": "Filter by region of the recipe.",
+            "x-enum-values": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ]
+          },
+          {
+            "name": "diet",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "collectionFormat": "single",
+            "description": "Filter by dietary restriction.",
+            "x-enum-values": [
+              "vegan",
+              "pescetarian",
+              "ovo_vegetarian",
+              "lacto_vegetarian",
+              "ovo_lacto_vegetarian"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-diet/recipe-diet": {
+      "get": {
+        "description": "Filters recipes according to specific dietary restrictions like Vegan or Vegetarian.",
+        "alias": "Recipe By Recipe Diet",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "diet",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "collectionFormat": "single",
+            "description": "Filter by dietary restriction.",
+            "x-enum-values": [
+              "vegan",
+              "pescetarian",
+              "ovo_vegetarian",
+              "lacto_vegetarian",
+              "ovo_lacto_vegetarian"
+            ]
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-carbo/recipes-by-carbs": {
+      "get": {
+        "description": "Filters recipes based on their carbohydrate content range.",
+        "alias": "Recipe By Carbs",
+        "tags": [
+          "GET Method"
+        ],
+        "x-statistics": {
+          "min": 0,
+          "max": 252062.68,
+          "mean": 835.972819519989,
+          "stdDev": 6758.1080145060205,
+          "field": "Carbohydrates (g)"
+        },
+        "parameters": [
+          {
+            "name": "minCarbs",
+            "in": "query",
+            "type": "string",
+            "description": "Range for Carbohydrates (g)"
+          },
+          {
+            "name": "maxCarbs",
+            "in": "query",
+            "type": "string",
+            "description": "Range for Carbohydrates (g)"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",       
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/instructions/{recipe_id}": {
+      "get": {
+        "description": "Fetches step-by-step cooking instructions for a specific recipe.",
+        "alias": "Recipe Instructions",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "recipe_id",
+            "in": "path",
+            "required": true,
+            "description": "Enter recipe_id of the recipe to fetch cooking instructions for.",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/mealplan/meal-plan": {
+      "post": {
+        "alias": "Recipe Meal Plan",
+        "tags": [
+          "POST Method"
+        ],
+        "description": "Generates a personalized meal plan for a specified duration based on diet and calories.",
+        "requestBody": {
+          "description": "",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "diet_type": {
+                    "type": "string",
+                    "example": "any",
+                    "x-enum-values": [
+                      "vegan",
+                      "pescetarian",
+                      "ovo_vegetarian",
+                      "lacto_vegetarian",
+                      "ovo_lacto_vegetarian"
+                    ],
+                    "description": "Desired diet type"
+                  },
+                  "calories_per_day": {
+                    "type": "object",
+                    "example": {},
+                    "x-statistics": {
+                      "min": 0,
+                      "max": 612854.6,
+                      "mean": 473.77048601407483,
+                      "stdDev": 2177.807815939577,
+                      "field": "Calories per day"
+                    },
+                    "properties": {
+                      "min": {
+                        "type": "number"
+                      },
+                      "max": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "min",
+                      "max"
+                    ],
+                    "description": "Daily calorie range"
+                  },
+                  "days": {
+                    "type": "integer",
+                    "example": 7,
+                    "description": "Number of days for the meal plan"
+                  },
+                  "exclude_ingredients": {
+                    "type": "array",
+                    "collectionFormat": "multi",
+                    "items": {
+                      "type": "string"
+                    },
+                    "x-enum-values": [
+                      "water",
+                      "cinnamon",
+                      "breadcrumb",
+                      "flour tortilla",
+                      "lemon juice",
+                      "lime juice",
+                      "white wine",
+                      "red wine",
+                      "flour",
+                      "purpose flour",
+                      "soy sauce",
+                      "Tomato sauce",
+                      "butter",
+                      "milk",
+                      "vegetable broth",
+                      "cream mushroom soup",
+                      "sesame oil",
+                      "avocado",
+                      "steak",
+                      "salmon fillet",
+                      "broccoli",
+                      "artichoke heart",
+                      "lemon",
+                      "orange juice",
+                      "mushroom",
+                      "button mushroom",
+                      "garlic clove",
+                      "garlic",
+                      "vanilla",
+                      "black bean",
+                      "cornstarch",
+                      "corn",
+                      "egg",
+                      "beef",
+                      "almond",
+                      "walnut",
+                      "bay leaf",
+                      "black olive",
+                      "olive oil",
+                      "vegetable oil",
+                      "shallot",
+                      "shrimp",
+                      "black pepper",
+                      "pepper",
+                      "onion",
+                      "tomato"
+                    ],
+                    "description": "Ingredients to exclude from the meal plan"
+                  }
+                },
+                "required": [
+                  "diet_type",
+                  "calories_per_day",
+                  "days"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/ingredients/flavor/{flavor}": {
+      "get": {
+        "description": "Filters recipes based on primary flavor profiles or ingredient categories.",
+        "alias": "Recipe By Ingredients Flavor",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "flavor",
+            "in": "path",
+            "required": true,
+            "collectionFormat": "single",
+            "description": "Filter by flavor category.",
+            "x-enum-values": [
+              "Beverage",
+              "Vegetable-Bulb",
+              "Nuts and Seeds",
+              "Condiment",
+              "Dairy",
+              "cereal",
+              "Cereal",
+              "Alcoholic Beverages",
+              "Sauce",
+              "Plant",
+              "Condiment-Sauce",
+              "fruit",
+              "egg",
+              "Bakery",
+              "MISC-Oil",
+              "Legume-Flour",
+              "Vegetable-Leaf",
+              "Vegetable-Root",
+              "Vegetable-Gourd",
+              "Herb",
+              "dairy",
+              "Seafood",
+              "plant",
+              "meat",
+              "herbs",
+              "Dish-Meat",
+              "Herbs and Spices",
+              "None"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Enter the page number.",
+            "default": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/byutensils/utensils": {
+      "get": {
+        "description": "Finds recipes that require specific kitchen utensils or equipment.",
+        "alias": "Recipe By Utensils",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "utensils",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "collectionFormat": "multi",
+            "description": "Filter by utensils.",
+            "x-enum-values": [
+              "basin",
+              "basket",
+              "beater",
+              "blade",
+              "blender",
+              "board",
+              "boiler",
+              "bottle",
+              "bowl",
+              "box",
+              "casserole",
+              "container",
+              "cooker",
+              "corer",
+              "crock",
+              "crockpot",
+              "cup",
+              "cutter",
+              "disc",
+              "dish",
+              "foil",
+              "fork",
+              "fryer",
+              "frying-pan",
+              "frypan",
+              "grinder",
+              "jar",
+              "jug",
+              "kettle",
+              "knife"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Enter the page number.",
+            "default": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipes-method/{method}": {
+      "get": {
+        "description": "Filters recipes by specific cooking methods (e.g., Frying, Baking).",
+        "alias": "Recipe By Recipes Method",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "method",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Filter by cooking method.",
+            "x-enum-values": [
+              "absorbed",
+              "add",
+              "arrange",
+              "assemble",
+              "bake",
+              "barbecue",
+              "baste",
+              "beat",
+              "blanch",
+              "blend",
+              "blitz",
+              "blot",
+              "boil",
+              "braise",
+              "break",
+              "broil",
+              "brush",
+              "bubble",
+              "bubbling",
+              "burn",
+              "butter",
+              "caramelize",
+              "caramelized",
+              "carve",
+              "char",
+              "charred",
+              "check",
+              "chill",
+              "chop",
+              "clean",
+              "coat",
+              "combine",
+              "condense",
+              "cook",
+              "cool",
+              "cover",
+              "cream",
+              "crimp",
+              "crockpot",
+              "crumble",
+              "crush",
+              "curdle",
+              "cut",
+              "dash",
+              "decorate",
+              "deflate",
+              "defrost",
+              "deglaze",
+              "devein",
+              "dice",
+              "dip",
+              "dissolve",
+              "distribute",
+              "divide",
+              "dollop",
+              "drain",
+              "dredge",
+              "dress",
+              "dress",
+              "drip",
+              "dripping",
+              "drizzle",
+              "drop",
+              "dry",
+              "dump",
+              "dust",
+              "evaporate",
+              "evaporated",
+              "fill",
+              "flake",
+              "flatten",
+              "flip",
+              "flour",
+              "foam",
+              "foil",
+              "fold",
+              "freezing",
+              "frost",
+              "fry",
+              "garnish",
+              "glaze",
+              "grate",
+              "grease",
+              "griddle",
+              "grind",
+              "heat",
+              "hold",
+              "ice",
+              "immerse",
+              "insert",
+              "invert",
+              "knead",
+              "ladle",
+              "marinate",
+              "mash",
+              "measure",
+              "melt",
+              "mince",
+              "mix",
+              "moist",
+              "moisten",
+              "mound",
+              "muddle",
+              "open",
+              "overcook",
+              "overmix",
+              "pan-fry",
+              "parboil",
+              "pat",
+              "peel",
+              "pierce",
+              "place",
+              "poach",
+              "pour",
+              "preheat",
+              "press",
+              "puree",
+              "reduce",
+              "refrigerate",
+              "reheat",
+              "remove",
+              "rest",
+              "rinse",
+              "rise",
+              "roast",
+              "roll",
+              "rotate",
+              "rub",
+              "saute",
+              "scald",
+              "scoop",
+              "scramble",
+              "scrape",
+              "scrub",
+              "seal",
+              "sear",
+              "season",
+              "serve",
+              "set",
+              "shake",
+              "shape",
+              "shred",
+              "sift",
+              "simmer",
+              "sit",
+              "sizzle",
+              "skim",
+              "slice",
+              "smoke",
+              "smooth",
+              "soak",
+              "soften",
+              "sort",
+              "split",
+              "sprinkle",
+              "sprout",
+              "stack",
+              "steam",
+              "stew",
+              "stir",
+              "stir-fry",
+              "store",
+              "strain",
+              "stretch",
+              "stuff",
+              "submerge",
+              "sweat",
+              "sweeten",
+              "swirl",
+              "taste",
+              "thaw",
+              "thicken",
+              "thread",
+              "tilt",
+              "toast",
+              "toss",
+              "transfer",
+              "trim",
+              "turn",
+              "uncover",
+              "unfold",
+              "unwrap",
+              "warm",
+              "wash",
+              "whip",
+              "whisk",
+              "wrap",
+              "yield",
+              "zest"
+            ],
+            "collectionFormat": "single"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "default": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/byenergy/energy": {
+      "get": {
+        "description": "Filters recipes by energy content (kcal), often used for energy density analysis.",
+        "alias": "Recipe By Energy",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "minEnergy",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by energy range (in kcal)."
+          },
+          {
+            "name": "maxEnergy",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by energy range (in kcal)."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "description": "Enter the page number.",
+            "default": 1
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page.",
+            "default": 10
+          }
+        ],
+        "x-statistics": {
+          "min": 0,
+          "max": 3440456.64,
+          "mean": 9697.01,
+          "avg": 9697.01,
+          "stdDev": 61226.59,
+          "field": "Energy (kcal)"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipebyingredient/by-ingredients-categories-title": {
+      "get": {
+        "description": "Advanced search allowing simultaneous filtering by ingredients, categories, and title.",
+        "alias": "Recipe By Ingredients Categories Title",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "includeIngredients",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select one or more ingredients to include.",
+            "x-enum-values": [
+              "water",
+              "cinnamon",
+              "breadcrumb",
+              "flour tortilla",
+              "lemon juice",
+              "lime juice",
+              "white wine",
+              "red wine",
+              "flour",
+              "purpose flour",
+              "soy sauce",
+              "Tomato sauce",
+              "butter",
+              "milk",
+              "vegetable broth",
+              "cream mushroom soup",
+              "sesame oil",
+              "avocado",
+              "steak",
+              "salmon fillet",
+              "broccoli",
+              "artichoke heart",
+              "lemon",
+              "orange juice",
+              "mushroom",
+              "button mushroom",
+              "garlic clove",
+              "garlic",
+              "vanilla",
+              "black bean",
+              "cornstarch",
+              "corn",
+              "egg",
+              "beef",
+              "almond",
+              "walnut",
+              "bay leaf",
+              "black olive",
+              "olive oil",
+              "vegetable oil",
+              "shallot",
+              "shrimp",
+              "black pepper",
+              "pepper",
+              "onion",
+              "tomato"
+            ]
+          },
+          {
+            "name": "excludeIngredients",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select one or more ingredients to exclude.",
+            "x-enum-values": [
+              "water",
+              "cinnamon",
+              "breadcrumb",
+              "flour tortilla",
+              "lemon juice",
+              "lime juice",
+              "white wine",
+              "red wine",
+              "flour",
+              "purpose flour",
+              "soy sauce",
+              "Tomato sauce",
+              "butter",
+              "milk",
+              "vegetable broth",
+              "cream mushroom soup",
+              "sesame oil",
+              "avocado",
+              "steak",
+              "salmon fillet",
+              "broccoli",
+              "artichoke heart",
+              "lemon",
+              "orange juice",
+              "mushroom",
+              "button mushroom",
+              "garlic clove",
+              "garlic",
+              "vanilla",
+              "black bean",
+              "cornstarch",
+              "corn",
+              "egg",
+              "beef",
+              "almond",
+              "walnut",
+              "bay leaf",
+              "black olive",
+              "olive oil",
+              "vegetable oil",
+              "shallot",
+              "shrimp",
+              "black pepper",
+              "pepper",
+              "onion",
+              "tomato"
+            ]
+          },
+          {
+            "name": "includeCategories",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select one or more categories to include.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
+          },
+          {
+            "name": "excludeCategories",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select one or more categories to exclude.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
+          },
+          {
+            "name": "title",
+            "in": "query",
+            "type": "string",
+            "description": "Select title category of the recipe.",
+            "x-enum-values": [
+              "Baklava",
+              "Shepherd's Pie",
+              "Tabbouleh",
+              "Saffron Rice",
+              "Cucumber Salad",
+              "Rice Pudding",
+              "Couscous Salad",
+              "Beef Stroganoff",
+              "Lentil Soup",
+              "Tomato Rice",
+              "Mexican Rice",
+              "Chicken Curry",
+              "Potato Soup",
+              "Fried Rice",
+              "Wiener Schnitzel",
+              "Pita Bread",
+              "Creme Brulee",
+              "Chicken Fried Rice",
+              "Potato Pancakes",
+              "Mango Salsa",
+              "Coconut Rice",
+              "Arroz Con Pollo",
+              "Falafel",
+              "Hummus",
+              "Mushroom Risotto",
+              "Vegetable Biryani",
+              "Tabouli",
+              "Moroccan Chicken",
+              "Chicken Biryani",
+              "Beef Rendang"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "integer",
+            "default": 1,
+            "description": "Enter the page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "integer",
+            "default": 10,
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/category/": {
+      "get": {
+        "description": "Filters recipes based on inclusion or exclusion of specific food categories in DietRx.",
+        "alias": "Recipe By Category",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "includeDietrxCategories",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select DietRx categories to include.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
+          },
+          {
+            "name": "excludeDietrxCategories",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Select DietRx categories to exclude.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "default": 1,
+            "description": "Enter the page number."
+
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "default": 10,
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/search-recipe/{id}": {
+      "get": {
+        "description": "Retrieves the complete details of a single recipe by its ID.",
+        "alias": "Recipe By Id",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "Enter recipe_id to be fetched."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/protein/protein-range": {
+      "get": {
+        "description": "Filters recipes based on their protein content range.",
+        "alias": "Recipe By Protein Range",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "min",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by Protein content range (g)."
+          },
+          {
+            "name": "max",
+            "in": "query",
+            "type": "string",
+            "description": "Filter by Protein content range (g)."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Enter the page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "required": true,
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "x-statistics": {
+          "min": 0,
+          "max": 178134.3738,
+          "avg": 509.47426125052334,
+          "stdDev": 4077.4740351631253,
+          "field": "Protein (g)"
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "recipe2-api/recipe-Day-category/": {
+      "get": {
+        "description": "Selects a 'Recipe of the Day' that falls within a specific food category.",
+        "alias": "Recipe By Recipe Day Category",
+        "tags": [
+          "GET Method"
+        ],
+        "parameters": [
+          {
+            "name": "excludeDietrxCategories",
+            "in": "query",
+            "type": "string",
+            "description": "Select DietRx Categories to exclude."
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string",
+            "default": 1,
+            "description": "Enter the page number."
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string",
+            "description": "Number of recipes to be shown per page."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "To access the API, provide a valid JWT token in the 'Authorization' header. The 'Bearer' prefix is automatically added, so you only need to enter the token itself. The token is generated by the API.\n\nExample value: <API_KEY>"
+    }
+  }
+}

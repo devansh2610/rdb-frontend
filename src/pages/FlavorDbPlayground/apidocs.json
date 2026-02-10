@@ -1,0 +1,1974 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"title": "Flavor DB API Endpoint Playground",
+		"description": "118,000+ flavors from across the globe",
+		"contact": {
+			"email": "example@example.co.in"
+		}
+	},
+	"host": "flavordb-api.foodoscope.com",
+	"basePath": "/",
+	"tags": [
+		{
+			"name": "entity",
+			"description": "Information about entities"
+		},
+		{
+			"name": "molecule",
+			"description": "Information about molecules"
+		},
+		{
+			"name": "receptor",
+			"description": "Information about receptors"
+		}
+	],
+	"schemes": [
+		"https"
+	],
+	"paths": {
+		"/entity/getentitybyid/{id}": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Gets an entity by ID",
+				"description": "This API endpoint retrieves a specific entity by its unique ID from the database. The response includes details about the entity in JSON format.",
+				"operationId": "getEntityById",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "Unique identifier for the entity",
+						"x-example": "15683"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid ID supplied"
+					},
+					"404": {
+						"description": "Entity not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/entity/getentities": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Gets all entities",
+				"description": "This endpoint retrieves all entities from the database, returned as a list in JSON format.",
+				"operationId": "getEntities",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/entity/getentitiesbynaturalsource/{naturalSource}": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Gets entities by natural source",
+				"description": "This API retrieves entities based on their natural source. The results are returned in JSON format.",
+				"operationId": "getEntitiesByNaturalSource",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "naturalSource",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "Natural source of the entities",
+						"x-example": "Coffee"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"404": {
+						"description": "No entities found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/entity/entityautocomplete": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Entity autocomplete",
+				"description": "Provides autocomplete suggestions for entity names based on a partial input. Results are in JSON format.",
+				"operationId": "entityAutocomplete",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "input",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Partial input for entity search",
+						"x-example": "vanil"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid input"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/molecule/molecules": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Gets all molecules",
+				"description": "Retrieves all molecules available in the database, returned as a JSON list.",
+				"operationId": "getMolecules",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/molecule/molecule/{pubChemId}": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Gets a molecule by PubChem ID",
+				"description": "Retrieves a specific molecule by its PubChem ID. The response includes detailed information in JSON format.",
+				"operationId": "getMoleculeByPubChemId",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "pubChemId",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "PubChem ID of the molecule",
+						"x-example": "1183"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid PubChem ID supplied"
+					},
+					"404": {
+						"description": "Molecule not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/molecule/getmoleculebyname/{name}": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Gets a molecule by name",
+				"description": "Retrieves a molecule by its name. The response includes molecule details in JSON format.",
+				"operationId": "getMoleculeByName",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "name",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "Name of the molecule",
+						"x-example": "Vanillin"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"404": {
+						"description": "Molecule not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/molecule/getmolecule": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Detailed molecule search",
+				"description": "Performs a detailed search for a molecule based on various parameters and returns the result in JSON format.",
+				"operationId": "getMolecule",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "searchQuery",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Search query for finding molecules",
+						"x-example": "citrus"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid search query"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/molecule/moleculeautocomplete": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Molecule autocomplete",
+				"description": "Provides autocomplete suggestions for molecule names based on a partial input. Results are in JSON format.",
+				"operationId": "moleculeAutocomplete",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "input",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Partial input for molecule search",
+						"x-example": "limo"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid input"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/moleculeOfTheDay": {
+			"get": {
+				"tags": [
+					"molecule"
+				],
+				"summary": "Gets the molecule of the day",
+				"description": "Retrieves the molecule of the day, including detailed information in JSON format.",
+				"operationId": "getMoleculeOfTheDay",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"404": {
+						"description": "Molecule of the day not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/receptors": {
+			"get": {
+				"tags": [
+					"receptor"
+				],
+				"summary": "Gets all receptors",
+				"description": "Retrieves all receptors available in the database, returned as a JSON list.",
+				"operationId": "getReceptors",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"404": {
+						"description": "No receptors found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/receptors/{receptor_id}": {
+			"get": {
+				"tags": [
+					"receptor"
+				],
+				"summary": "Gets a receptor by ID",
+				"description": "Retrieves a specific receptor by its unique ID. The response includes detailed information in JSON format.",
+				"operationId": "getReceptorById",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "receptor_id",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "Unique identifier for the receptor",
+						"x-example": "OR1A1"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid receptor ID supplied"
+					},
+					"404": {
+						"description": "Receptor not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/receptors/{receptor_name}": {
+			"get": {
+				"tags": [
+					"receptor"
+				],
+				"summary": "Gets a receptor by name",
+				"description": "Retrieves a specific receptor by its name. The response includes detailed information in JSON format.",
+				"operationId": "getReceptorByName",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "receptor_name",
+						"in": "path",
+						"required": true,
+						"type": "string",
+						"description": "Name of the receptor",
+						"x-example": "Olfactory receptor 1A1"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"404": {
+						"description": "Receptor not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/entities/by-name-and-category": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Gets entities by name and category",
+				"description": "Retrieves entities based on their alias and category using query parameters. The results are returned in JSON format.",
+				"operationId": "getEntitiesByNameAndCategory",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "entity_alias",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Alias of the entity"
+					},
+					{
+						"name": "category",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Category of the entity"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid entity alias or category"
+					},
+					"404": {
+						"description": "No entities found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/entities/by-natural-source": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Gets entities by natural source (Query Parameter)",
+				"description": "Retrieves entities based on their natural source using a query parameter. The results are returned in JSON format.",
+				"operationId": "getEntitiesByNaturalSourceQuery",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "natural_source_name",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "Natural source of the entities"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation"
+					},
+					"400": {
+						"description": "Invalid natural source name"
+					},
+					"404": {
+						"description": "No entities found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/entities/by-alias-readable": {
+			"get": {
+				"tags": [
+					"entity"
+				],
+				"summary": "Get entity by readable alias",
+				"description": "Fetches an entity based on its readable alias using a query parameter. The response is returned in JSON format.",
+				"operationId": "getEntityByReadableAlias",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "entity_alias_readable",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The readable alias of the entity to fetch"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entity successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid readable alias provided"
+					},
+					"404": {
+						"description": "Entity not found"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-aromaticRings": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get entities by aromatic rings",
+				"description": "Fetches entities that match the specified number of aromatic rings.",
+				"operationId": "getEntitiesByAromaticRings",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "aromatic_rings",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The number of aromatic rings to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entities successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for aromatic rings"
+					},
+					"404": {
+						"description": "No entities found with the specified number of aromatic rings"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-aromaticBonds": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get entities by aromatic bonds",
+				"description": "Fetches entities that match the specified number of aromatic bonds.",
+				"operationId": "getEntitiesByAromaticBonds",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "aromatic_bonds",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The number of aromatic bonds to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entities successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for aromatic bonds"
+					},
+					"404": {
+						"description": "No entities found with the specified number of aromatic bonds"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-numRings": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get entities by number of rings",
+				"description": "Fetches entities that match the specified number of rings.",
+				"operationId": "getEntitiesByNumRings",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "num_rings",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The number of rings to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entities successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for number of rings"
+					},
+					"404": {
+						"description": "No entities found with the specified number of rings"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-rotatableBonds": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get entities by number of rotatable bonds",
+				"description": "Fetches entities that match the specified number of rotatable bonds.",
+				"operationId": "getEntitiesByNumRotatableBonds",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "rotatable_bonds",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The number of rotatable bonds to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entities successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for number of rotatable bonds"
+					},
+					"404": {
+						"description": "No entities found with the specified number of rotatable bonds"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-surfaceArea": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get entities by surface area",
+				"description": "Fetches entities that match the specified surface area.",
+				"operationId": "getEntitiesBySurfaceArea",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "surface_area",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"format": "double",
+						"description": "The surface area to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Entities successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for surface area"
+					},
+					"404": {
+						"description": "No entities found with the specified surface area"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-alogp": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get Properties by AlogP",
+				"description": "Fetches entities that match the specified AlogP value.",
+				"operationId": "getPropertiesByAlogP",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "alogp",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "The AlogP value to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for AlogP"
+					},
+					"404": {
+						"description": "No properties found with the specified AlogP value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-numberOfAtoms": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get Properties by Number of Atoms",
+				"description": "Fetches entities that match the specified number of atoms.",
+				"operationId": "getPropertiesByNumberOfAtoms",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "number_of_atoms",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The number of atoms to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for number of atoms"
+					},
+					"404": {
+						"description": "No properties found with the specified number of atoms"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/more_properties/by-energy": {
+			"get": {
+				"tags": [
+					"more_properties"
+				],
+				"summary": "Get Properties by Energy",
+				"description": "Fetches entities that match the specified energy value.",
+				"operationId": "getPropertiesByEnergy",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "energy",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "The energy value to filter entities by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for energy"
+					},
+					"404": {
+						"description": "No properties found with the specified energy value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-coe": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by COE number",
+				"description": "Fetches properties that match the specified COE number.",
+				"operationId": "getPropertiesByCoe",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "coe_no",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The COE number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for COE number"
+					},
+					"404": {
+						"description": "No properties found with the specified COE number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-fema": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by FEMA number",
+				"description": "Fetches properties that match the specified FEMA number.",
+				"operationId": "getPropertiesByFema",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "fema_no",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"format": "double",
+						"description": "The FEMA number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for FEMA number"
+					},
+					"404": {
+						"description": "No properties found with the specified FEMA number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-flNo": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by FL number",
+				"description": "Fetches properties that match the specified FL number.",
+				"operationId": "getPropertiesByFlNo",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "fl_no",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The FL number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for FL number"
+					},
+					"404": {
+						"description": "No properties found with the specified FL number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-nas": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by NAS number",
+				"description": "Fetches properties that match the specified NAS number.",
+				"operationId": "getPropertiesByNas",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "nas_no",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The NAS number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for NAS number"
+					},
+					"404": {
+						"description": "No properties found with the specified NAS number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-einecs": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by EINECS number",
+				"description": "Fetches properties that match the specified EINECS number.",
+				"operationId": "getPropertiesByEinecs",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "einecs_no",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The EINECS number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for EINECS number"
+					},
+					"404": {
+						"description": "No properties found with the specified EINECS number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-jecfa": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by JECFA number",
+				"description": "Fetches properties that match the specified JECFA number.",
+				"operationId": "getPropertiesByJecfa",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "jecfa_no",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The JECFA number to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for JECFA number"
+					},
+					"404": {
+						"description": "No properties found with the specified JECFA number"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/taste-threshold": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Taste Threshold",
+				"description": "Fetches properties that match the specified taste threshold value.",
+				"operationId": "getPropertiesByTasteThreshold",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "values",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The taste threshold value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for taste threshold value"
+					},
+					"404": {
+						"description": "No properties found with the specified taste threshold value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/synthesis": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Synthesis",
+				"description": "Fetches properties that match the specified synthesis value.",
+				"operationId": "getPropertiesBySynthesis",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "values",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The synthesis value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for synthesis value"
+					},
+					"404": {
+						"description": "No properties found with the specified synthesis value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/food-category": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Food Category",
+				"description": "Fetches properties that match the specified food category value.",
+				"operationId": "getPropertiesByFoodCategory",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "values",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The food category value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for food category value"
+					},
+					"404": {
+						"description": "No properties found with the specified food category value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-tradeAssociationGuidelines": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Trade Association Guidelines",
+				"description": "Fetches properties that match the specified trade association guideline.",
+				"operationId": "getPropertiesByTradeAssociationGuidelines",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "guideline",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The trade association guideline to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for trade association guideline"
+					},
+					"404": {
+						"description": "No properties found with the specified trade association guideline"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-naturalOccurrence": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Natural Occurrence",
+				"description": "Fetches properties that match the specified natural occurrence value.",
+				"operationId": "getPropertiesByNaturalOccurrence",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "occurrence",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The natural occurrence value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for natural occurrence value"
+					},
+					"404": {
+						"description": "No properties found with the specified natural occurrence value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-aromaThresholdValues": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Aroma Threshold Values",
+				"description": "Fetches properties that match the specified aroma threshold value.",
+				"operationId": "getPropertiesByAromaThresholdValues",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "threshold",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The aroma threshold value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for aroma threshold value"
+					},
+					"404": {
+						"description": "No properties found with the specified aroma threshold value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-description": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by Description",
+				"description": "Fetches properties that match the specified description.",
+				"operationId": "getPropertiesByDescription",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "desc",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The description to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for description"
+					},
+					"404": {
+						"description": "No properties found with the specified description"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-iofi-categorisation": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by IOFI Categorisation",
+				"description": "Fetches properties that match the specified IOFI categorisation value.",
+				"operationId": "getPropertiesByIofiCategorisation",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "category",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The IOFI categorisation value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for IOFI categorisation value"
+					},
+					"404": {
+						"description": "No properties found with the specified IOFI categorisation value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/properties/by-coe-approval": {
+			"get": {
+				"tags": [
+					"fnproperty"
+				],
+				"summary": "Get properties by CoE Approval",
+				"description": "Fetches properties that match the specified CoE approval value.",
+				"operationId": "getPropertiesByCoeApproval",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "coe_approval",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The CoE approval value to filter properties by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Properties successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for CoE approval value"
+					},
+					"404": {
+						"description": "No properties found with the specified CoE approval value"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-commonName": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Common Name",
+				"description": "Fetches molecule data that matches the specified common name.",
+				"operationId": "getMoleculesByCommonName",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "common_name",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The common name of the molecule to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for common name"
+					},
+					"404": {
+						"description": "No molecules found with the specified common name"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-functionalGroups": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Functional Groups",
+				"description": "Fetches molecules that match the specified functional groups.",
+				"operationId": "getMoleculesByFunctionalGroups",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "functional_groups",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The functional group to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for functional group"
+					},
+					"404": {
+						"description": "No molecules found with the specified functional group"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-flavorProfile": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Flavor Profile",
+				"description": "Fetches molecules that match the specified flavor profile.",
+				"operationId": "getMoleculesByFlavorProfile",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "flavor_profile",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The flavor profile to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for flavor profile"
+					},
+					"404": {
+						"description": "No molecules found with the specified flavor profile"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-femaFlavorProfile": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by FEMA Flavor Profile",
+				"description": "Fetches molecules that match the specified FEMA flavor profile.",
+				"operationId": "getMoleculesByFemaFlavorProfile",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "fema_flavor_profile",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The FEMA flavor profile to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for FEMA flavor profile"
+					},
+					"404": {
+						"description": "No molecules found with the specified FEMA flavor profile"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-pubchemId": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by PubChem ID",
+				"description": "Fetches molecules based on the specified PubChem ID.",
+				"operationId": "getMoleculesByPubChemId",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "pubchem_id",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The PubChem ID to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for PubChem ID"
+					},
+					"404": {
+						"description": "No molecules found with the specified PubChem ID"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-monoisotopicMass": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Monoisotopic Mass",
+				"description": "Fetches molecules that match the specified monoisotopic mass.",
+				"operationId": "getMoleculesByMonoisotopicMass",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "monoisotopic_mass",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"format": "double",
+						"description": "The monoisotopic mass to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for monoisotopic mass"
+					},
+					"404": {
+						"description": "No molecules found with the specified monoisotopic mass"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-topologicalPolarSurfaceArea": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Topological Polar Surface Area",
+				"description": "Fetches molecules that match the specified topological polar surface area.",
+				"operationId": "getMoleculesByTopologicalPolarSurfaceArea",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "topological_polar_surface_area",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"format": "double",
+						"description": "The topological polar surface area to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for topological polar surface area"
+					},
+					"404": {
+						"description": "No molecules found with the specified topological polar surface area"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/by-heavyAtomCount": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Fetch Molecules by Heavy Atom Count",
+				"description": "Fetches molecules that match the specified heavy atom count.",
+				"operationId": "getMoleculesByHeavyAtomCount",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "heavy_atom_count",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The heavy atom count to filter by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for heavy atom count"
+					},
+					"404": {
+						"description": "No molecules found with the specified heavy atom count"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/filter-by-weight-from": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Filter Molecules by Weight From",
+				"description": "Fetches molecules with a weight greater than or equal to the specified value.",
+				"operationId": "filterMoleculesByWeightFrom",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "from",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "The minimum weight to filter molecules by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for weight"
+					},
+					"404": {
+						"description": "No molecules found with the specified weight range"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/filter-by-weight-range": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Filter Molecules by Weight Range",
+				"description": "Fetches molecules within the specified weight range.",
+				"operationId": "filterMoleculesByWeightRange",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "from",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "The minimum weight to filter molecules by"
+					},
+					{
+						"name": "to",
+						"in": "query",
+						"required": true,
+						"type": "number",
+						"description": "The maximum weight to filter molecules by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for weight range"
+					},
+					"404": {
+						"description": "No molecules found with the specified weight range"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/filter-by-hbd-count": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Filter Molecules by HBD Count",
+				"description": "Fetches molecules that match the specified HBD count.",
+				"operationId": "filterMoleculesByHBDCount",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "hbdCount",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The HBD count to filter molecules by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for HBD count"
+					},
+					"404": {
+						"description": "No molecules found with the specified HBD count"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/filter-by-hba-count": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Filter Molecules by HBA Count",
+				"description": "Fetches molecules that match the specified HBA count.",
+				"operationId": "filterMoleculesByHBACount",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "hbaCount",
+						"in": "query",
+						"required": true,
+						"type": "integer",
+						"description": "The HBA count to filter molecules by"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for HBA count"
+					},
+					"404": {
+						"description": "No molecules found with the specified HBA count"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		},
+		"/flavordb/molecules_data/filter-by-type": {
+			"get": {
+				"tags": [
+					"molecules_data"
+				],
+				"summary": "Filter Molecules by Type",
+				"description": "Fetches molecules of the specified type.",
+				"operationId": "filterMoleculesByType",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"name": "type",
+						"in": "query",
+						"required": true,
+						"type": "string",
+						"description": "The type of molecules to filter by (e.g., 'amine')"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Molecule data successfully retrieved"
+					},
+					"400": {
+						"description": "Invalid input for molecule type"
+					},
+					"404": {
+						"description": "No molecules found with the specified type"
+					}
+				},
+				"security": [
+					{
+						"Authorization": []
+					}
+				]
+			}
+		}
+	},
+	"securityDefinitions": {
+		"Authorization": {
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header",
+			"description": "For accessing the API, a valid JWT token must be passed in all queries in the 'Authorization' header. The token must be prefixed by the word 'Bearer' followed by a space. The token is generated by the API. Here is an example of how the Authorization header should appear: Bearer <API_KEY>"
+		}
+	}
+}

@@ -1,0 +1,3067 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Recipe DB API Endpoint Playground",
+    "description": "Description",
+    "contact": {
+			"email": "example@example.co.in"
+		}
+  },
+  "host": "api.foodoscope.com",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "recipe",
+      "description": "118,000+ recipes from across the globe"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/recipe/recipeOftheDay": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe of the Day",
+        "description": "This API endpoint makes an HTTP GET request to retrieve the recipe of the day from the Foodoscope database. The response will be in JSON format with a 200 status code. The response will include various details about the recipe such as its ID, title, nutritional information, cooking and preparation time, servings, URL, region, continent, source etc.",
+        "operationId": "getRecipeoftheDay",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "_id": "6405721fa13d0d2d35890d72",
+                  "Recipe_id": "2619",
+                  "Calories": "498.0",
+                  "cook_time": "60",
+                  "prep_time": "20",
+                  "servings": "8",
+                  "Recipe_title": "Koshary",
+                  "total_time": "80",
+                  "url": "http://allrecipes.com/recipe/214832/koshary/",
+                  "Region": "Middle Eastern",
+                  "Sub_region": "Egyptian",
+                  "Continent": "African",
+                  "Source": "AllRecipes",
+                  "img_url": "https://images.media-allrecipes.com/userphotos/250x250/568661.jpg",
+                  "Carbohydrate, by difference (g)": "244.3117",
+                  "Energy (kcal)": "1814.1703",
+                  "Protein (g)": "87.4819",
+                  "Total lipid (fat) (g)": "58.2962",
+                  "Utensils": "container||pot||pot||saucepan||pot||pot||platter",
+                  "Processes": "combine||store||boil||cook||drain||set||combine||cover||drain||cover||boil||cook||boil||drain||heat||heat||cook||stir||add||heat||simmer||melt||heat||add||fry||stirring||boil||season||heat||cover||cook||mix||spread||serve",
+                  "vegan": "0.0",
+                  "pescetarian": "0.0",
+                  "ovo_vegetarian": "0.0",
+                  "lacto_vegetarian": "0.0",
+                  "ovo_lacto_vegetarian": "0.0"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "example": {
+          "curl": {
+            "request": "curl -X GET https://api.foodoscope.com/recipe/recipeOftheDay -H 'Authorization: Bearer <your_access_token>'"
+          }
+        }
+      }
+    },
+    "/recipe/{recipeId}": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by ID",
+        "description": "This API endpoint makes an HTTP GET request to retrieve details of a specific recipe identified by the recipe ID. The response will have a status code of 200 and a JSON payload containing various details of the recipe, including its ID, nutritional information, cooking and preparation times, servings, title, URL, region, sub-region, continent, source, image URL, utensils etc.",
+        "operationId": "getRecipeById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "recipeId",
+            "in": "path",
+            "description": "ID of recipe to return",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "Recipe_id": "3245",
+                  "Calories": "409.0",
+                  "cook_time": "35",
+                  "prep_time": "25",
+                  "servings": "4",
+                  "Recipe_title": "Thai Chicken Curry with Pineapple",
+                  "total_time": "60",
+                  "url": "http://allrecipes.com/recipe/143296/thai-chicken-curry-with-pineapple/",
+                  "Region": "Thai",
+                  "Sub_region": "Thai",
+                  "Continent": "Asian",
+                  "Source": "AllRecipes",
+                  "img_url": "https://images.media-allrecipes.com/userphotos/250x250/358345.jpg",
+                  "Carbohydrate, by difference (g)": "91.6578",
+                  "Energy (kcal)": "9100.3562",
+                  "Protein (g)": "193.4381",
+                  "Total lipid (fat) (g)": "891.2644",
+                  "Utensils": "saucepan||saucepan||saucepan||tablespoon",
+                  "Processes": "cook||stir||pour||mix||stir||place||boil||heat||simmer||whisk||stir||mix||cook",
+                  "vegan": "0.0",
+                  "pescetarian": "0.0",
+                  "ovo_vegetarian": "0.0",
+                  "lacto_vegetarian": "0.0",
+                  "ovo_lacto_vegetarian": "0.0",
+                  "ingredients": [
+                    {
+                      "ingredient": "cornstarch",
+                      "quantity": "1",
+                      "unit": "tablespoon",
+                      "ndb_id": "20027",
+                      "Carbohydrate, by difference (g)": "7.3016",
+                      "Energy (kcal)": "30.48",
+                      "Protein (g)": "0.0208",
+                      "Total lipid (fat) (g)": "0.004"
+                    },
+                    {
+                      "ingredient": "fish sauce",
+                      "quantity": "2",
+                      "unit": "tablespoons",
+                      "ndb_id": "6179",
+                      "Carbohydrate, by difference (g)": "1.3104",
+                      "Energy (kcal)": "12.6",
+                      "Protein (g)": "1.8216",
+                      "Total lipid (fat) (g)": "0.0036"
+                    },
+                    {
+                      "ingredient": "green bell pepper",
+                      "state": "chopped",
+                      "quantity": "1/2",
+                      "unit": "cup",
+                      "ndb_id": "11980",
+                      "Carbohydrate, by difference (g)": "3.197",
+                      "Energy (kcal)": "14.595",
+                      "Protein (g)": "0.5004",
+                      "Total lipid (fat) (g)": "0.1876"
+                    },
+                    {
+                      "ingredient": "carrot",
+                      "state": "chopped",
+                      "quantity": "1/2",
+                      "unit": "cup",
+                      "ndb_id": "11124",
+                      "Carbohydrate, by difference (g)": "6.1312",
+                      "Energy (kcal)": "26.24",
+                      "Protein (g)": "0.5952",
+                      "Total lipid (fat) (g)": "0.1536"
+                    },
+                    {
+                      "ingredient": "pineapple",
+                      "state": "chopped",
+                      "quantity": "3/4",
+                      "unit": "cup",
+                      "ndb_id": "9266",
+                      "Carbohydrate, by difference (g)": "16.236",
+                      "Energy (kcal)": "61.875",
+                      "Protein (g)": "0.6682",
+                      "Total lipid (fat) (g)": "0.1485"
+                    },
+                    {
+                      "ingredient": "curry powder",
+                      "quantity": "2",
+                      "unit": "teaspoons",
+                      "ndb_id": "2015",
+                      "Carbohydrate, by difference (g)": "2.2332",
+                      "Energy (kcal)": "13.0",
+                      "Protein (g)": "0.5716",
+                      "Total lipid (fat) (g)": "0.5604"
+                    },
+                    {
+                      "ingredient": "curry paste",
+                      "quantity": "1",
+                      "unit": "teaspoon",
+                      "ndb_id": "93600"
+                    },
+                    {
+                      "ingredient": "brown sugar",
+                      "quantity": "1",
+                      "unit": "tablespoon",
+                      "ndb_id": "19334",
+                      "Carbohydrate, by difference (g)": "8.8281",
+                      "Energy (kcal)": "34.2",
+                      "Protein (g)": "0.0108",
+                      "Total lipid (fat) (g)": "0.0"
+                    },
+                    {
+                      "ingredient": "coconut milk",
+                      "quantity": "1",
+                      "unit": "can",
+                      "ndb_id": "12117",
+                      "Carbohydrate, by difference (g)": "19.934",
+                      "Energy (kcal)": "827.5862",
+                      "Protein (g)": "8.2399",
+                      "Total lipid (fat) (g)": "85.7811"
+                    },
+                    {
+                      "ingredient": "chicken stock",
+                      "quantity": "1",
+                      "unit": "cup",
+                      "ndb_id": "6172",
+                      "Carbohydrate, by difference (g)": "8.472000000000001",
+                      "Energy (kcal)": "86.4",
+                      "Protein (g)": "6.047999999999999",
+                      "Total lipid (fat) (g)": "2.88"
+                    },
+                    {
+                      "ingredient": "chicken thigh",
+                      "state": "cut",
+                      "quantity": "4",
+                      "ndb_id": "5674",
+                      "Carbohydrate, by difference (g)": "14.3148",
+                      "Energy (kcal)": "7972.8",
+                      "Protein (g)": "173.5896",
+                      "Total lipid (fat) (g)": "801.4476"
+                    },
+                    {
+                      "ingredient": "pea",
+                      "quantity": "1/2",
+                      "unit": "cup",
+                      "ndb_id": "11300",
+                      "Carbohydrate, by difference (g)": "3.6995",
+                      "Energy (kcal)": "20.58",
+                      "Protein (g)": "1.3719999999999999",
+                      "Total lipid (fat) (g)": "0.098"
+                    }
+                  ],
+                  "instructions": [
+                    "Cook and stir the curry powder and curry paste in a saucepan over medium low heat until fragrant, about 2 minutes.",
+                    "Pour the coconut milk into the saucepan and mix well.",
+                    "Stir in the fish sauce, brown sugar, and 1 cup chicken stock.",
+                    "Place the chicken thighs, peas, peppers, and carrots into the saucepan with the curry sauce.",
+                    "Bring the mixture to a boil over medium high heat, then reduce the heat to low.",
+                    "Simmer until the chicken is cooked though, about 25 minutes.",
+                    "Whisk together 1 tablespoon of cornstarch with 2 tablespoons of cold chicken stock.",
+                    "Stir cornstarch mixture into the curry.",
+                    "Mix the pineapple into the curry and cook until the sauce thickens, about 5 minutes."
+                  ],
+                  "nutritions": {
+                    "Adjusted Protein (g)": "0.0",
+                    "Alanine (g)": "12.5116",
+                    "Alcohol, ethyl (g)": "0.0",
+                    "Arginine (g)": "13.9183",
+                    "Ash (g)": "22.669",
+                    "Aspartic acid (g)": "14.2715",
+                    "Beta-sitosterol (mg)": "0.0",
+                    "Betaine (mg)": "151.9368",
+                    "Caffeine (mg)": "0.0",
+                    "Calcium, Ca (mg)": "300.8987",
+                    "Campesterol (mg)": "0.0",
+                    "Carbohydrate, by difference (g)": "91.6578",
+                    "Carotene, alpha (g)": "2246.84",
+                    "Carotene, beta (g)": "5654.8525",
+                    "Cholesterol (mg)": "1909.8",
+                    "Choline, total (mg)": "593.9839",
+                    "Copper, Cu (mg)": "2.0531",
+                    "Cryptoxanthin, beta (g)": "18.12",
+                    "Cystine (g)": "1.7158",
+                    "Dihydrophylloquinone (g)": "0.0",
+                    "Energy (kJ)": "38040.8468",
+                    "Energy (kcal)": "9100.3562",
+                    "Fatty acids, total monounsaturated (g)": "349.2729",
+                    "Fatty acids, total polyunsaturated (g)": "165.9446",
+                    "Fatty acids, total polyunsaturated 15:0 (g)": "0.4892",
+                    "Fatty acids, total polyunsaturated 16:1 c (g)": "48.1992",
+                    "Fatty acids, total polyunsaturated 16:1 t (g)": "0.3262",
+                    "Fatty acids, total polyunsaturated 17:0 (g)": "0.9241",
+                    "Fatty acids, total polyunsaturated 17:1 (g)": "0.7067",
+                    "Fatty acids, total polyunsaturated 18:1 c (g)": "286.7182",
+                    "Fatty acids, total polyunsaturated 18:1 t (g)": "2.5912",
+                    "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "1.0147",
+                    "Fatty acids, total polyunsaturated 18:2 i (g)": "0.0",
+                    "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "147.9498",
+                    "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "1.2322",
+                    "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                    "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.7978",
+                    "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.9241",
+                    "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "1.3046",
+                    "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0906",
+                    "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                    "Fatty acids, total polyunsaturated 24:0 (g)": "0.0725",
+                    "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0181",
+                    "Fatty acids, total saturated (g)": "296.2657",
+                    "Fatty acids, total saturated 10:0 (g)": "4.8659",
+                    "Fatty acids, total saturated 12:0 (g)": "38.4351",
+                    "Fatty acids, total saturated 14:0 (g)": "19.6587",
+                    "Fatty acids, total saturated 14:1 (g)": "1.6489",
+                    "Fatty acids, total saturated 16:0 (g)": "180.2864",
+                    "Fatty acids, total saturated 16:1 undifferentiated (g)": "48.7424",
+                    "Fatty acids, total saturated 18:0 (g)": "43.9292",
+                    "Fatty acids, total saturated 18:1 undifferentiated (g)": "294.1637",
+                    "Fatty acids, total saturated 18:2 undifferentiated (g)": "151.9605",
+                    "Fatty acids, total saturated 18:3 undifferentiated (g)": "8.0561",
+                    "Fatty acids, total saturated 18:4 (g)": "0.1631",
+                    "Fatty acids, total saturated 20:0 (g)": "0.5255",
+                    "Fatty acids, total saturated 20:1 (g)": "3.8878",
+                    "Fatty acids, total saturated 20:4 undifferentiated (g)": "2.41",
+                    "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.1272",
+                    "Fatty acids, total saturated 22:0 (g)": "0.453",
+                    "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0912",
+                    "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.2537",
+                    "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.1275",
+                    "Fatty acids, total saturated 4:0 (g)": "0.0186",
+                    "Fatty acids, total saturated 6:0 (g)": "0.4909",
+                    "Fatty acids, total saturated 8:0 (g)": "6.0639",
+                    "Fatty acids, total trans (g)": "4.1495",
+                    "Fatty acids, total trans-monoenoic (g)": "2.9173",
+                    "Fatty acids, total trans-polyenoic (g)": "1.2322",
+                    "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0032",
+                    "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0",
+                    "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.0",
+                    "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "7.2038",
+                    "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                    "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.0544",
+                    "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "1.2503",
+                    "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                    "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                    "Fatty acids, total trans-polyenoic 22:4 (g)": "0.5436",
+                    "Fiber, total dietary (g)": "16.096",
+                    "Fluoride, F (g)": "2.048",
+                    "Folate, DFE (g)": "219.0462",
+                    "Folate, food (g)": "219.0462",
+                    "Folate, total (g)": "219.0462",
+                    "Folic acid (g)": "0.0",
+                    "Fructose (g)": "3.107",
+                    "Galactose (g)": "0.0084",
+                    "Glucose (dextrose) (g)": "2.6856",
+                    "Glutamic acid (g)": "23.1642",
+                    "Glycine (g)": "22.8579",
+                    "Histidine (g)": "3.8285",
+                    "Hydroxyproline (g)": "0.0",
+                    "Iron, Fe (mg)": "16.7502",
+                    "Isoleucine (g)": "5.428",
+                    "Lactose (g)": "0.0",
+                    "Leucine (g)": "10.4507",
+                    "Lutein + zeaxanthin (g)": "2395.2",
+                    "Lycopene (g)": "0.64",
+                    "Lysine (g)": "10.5397",
+                    "Magnesium, Mg (mg)": "399.0134",
+                    "Maltose (g)": "0.0",
+                    "Manganese, Mn (mg)": "5.3339",
+                    "Menaquinone-4 (g)": "0.0",
+                    "Methionine (g)": "3.1375",
+                    "Niacin (mg)": "55.9647",
+                    "Pantothenic acid (mg)": "12.6731",
+                    "Phenylalanine (g)": "5.8389",
+                    "Phosphorus, P (mg)": "2230.5351",
+                    "Phytosterols (mg)": "11.0232",
+                    "Potassium, K (mg)": "4033.5193",
+                    "Proline (g)": "13.7108",
+                    "Protein (g)": "193.4381",
+                    "Retinol (g)": "1072.92",
+                    "Riboflavin (mg)": "0.949",
+                    "Selenium, Se (g)": "216.5601",
+                    "Serine (g)": "6.9063",
+                    "Sodium, Na (mg)": "4476.2455",
+                    "Starch (g)": "0.9152",
+                    "Stigmasterol (mg)": "0.0",
+                    "Sucrose (g)": "18.2454",
+                    "Sugars, total (g)": "43.1456",
+                    "Theobromine (mg)": "0.0",
+                    "Thiamin (mg)": "1.1342",
+                    "Threonine (g)": "6.0342",
+                    "Tocopherol, beta (mg)": "0.0064",
+                    "Tocopherol, delta (mg)": "0.0",
+                    "Tocopherol, gamma (mg)": "2.4016",
+                    "Tocotrienol, alpha (mg)": "0.756",
+                    "Tocotrienol, beta (mg)": "0.0",
+                    "Tocotrienol, delta (mg)": "0.0",
+                    "Tocotrienol, gamma (mg)": "0.7248",
+                    "Total lipid (fat) (g)": "891.2644",
+                    "Tryptophan (g)": "0.9874",
+                    "Tyrosine (g)": "4.4773",
+                    "Valine (g)": "6.9386",
+                    "Vitamin A, IU (IU)": "14947.615",
+                    "Vitamin A, RAE (g)": "1641.7025",
+                    "Vitamin B-12 (g)": "11.9508",
+                    "Vitamin B-12, added (g)": "0.0",
+                    "Vitamin B-6 (mg)": "2.9062",
+                    "Vitamin C, total ascorbic acid (mg)": "126.8605",
+                    "Vitamin D (D2 + D3) (g)": "3.624",
+                    "Vitamin D (IU)": "108.72",
+                    "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                    "Vitamin D3 (cholecalciferol) (g)": "3.624",
+                    "Vitamin E (alpha-tocopherol) (mg)": "7.152",
+                    "Vitamin E, added (mg)": "0.0",
+                    "Vitamin K (phylloquinone) (g)": "33.644",
+                    "Water (g)": "1576.2584",
+                    "Zinc, Zn (mg)": "15.2893"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "example": {
+          "request": {
+            "url": "https://api.foodoscope.com/recipe/123",
+            "method": "GET",
+            "headers": {
+              "Authorization": "Bearer <your_access_token>"
+            }
+          }
+        }
+      }
+    },
+    "/recipe-search/regions": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Region",
+        "description": "This API endpoint makes an HTTP GET request to retrieve recipes based on the specified region. The request includes a searchText parameter for filtering recipes by region, and a pageSize parameter to limit the number of results per page. The response contains a success message, a payload object with recipe data, and various nutritional information for each recipe. The recipe data includes details such as index, ID, cook time, prep time, title, URL, servings, source, image URL etc.",
+        "operationId": "getRecipeByRegion",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Name of the Region",
+            "enum": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland ",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ],
+            "type": "string",
+            "default": "Australian"
+          },
+          {
+            "name": "subRegion",
+            "in": "query",
+            "description": "Name of the Subregion/Country",
+            "enum": [
+              "Angolan",
+              "Argentine",
+              "Australian",
+              "Austrian",
+              "Bangladeshi",
+              "Belgian",
+              "Brazilian",
+              "Cambodian",
+              "Canadian",
+              "Chilean",
+              "Chinese",
+              "Colombian",
+              "Costa Rican",
+              "Cuban",
+              "Czech",
+              "Danish",
+              "Dutch",
+              "Ecuadorean",
+              "Egyptian",
+              "English",
+              "Ethiopian",
+              "Filipino",
+              "Finnish",
+              "French",
+              "German",
+              "Greek",
+              "Guatemalan",
+              "Honduran",
+              "Hungarian",
+              "Icelandic",
+              "Indian",
+              "Indonesian",
+              "Iraqi",
+              "Irish",
+              "Israeli",
+              "Italian",
+              "Jamaican",
+              "Japanese",
+              "Korean",
+              "Laotian",
+              "Lebanese",
+              "Libyan",
+              "Malaysian",
+              "Mexican",
+              "Mongolian",
+              "Moroccan",
+              "Namibian",
+              "Nepalese",
+              "New Zealander",
+              "Nigerian",
+              "Norwegian",
+              "Pakistani",
+              "Palestinian",
+              "Peruvian",
+              "Polish",
+              "Portuguese",
+              "Puerto Rican",
+              "Rest Caribbean",
+              "Rest Eastern European",
+              "Rest Middle Eastern",
+              "Russian",
+              "Saudi Arabian",
+              "Scottish",
+              "Somalian",
+              "Spanish",
+              "Sudanese",
+              "Swedish",
+              "Swiss",
+              "Thai",
+              "Turkish",
+              "UK",
+              "US",
+              "Venezuelan",
+              "Vietnamese",
+              "Welsh"
+            ],
+            "required": false,
+            "type": "string",
+            "default": "Angolan"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Regions fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_index": "47",
+                      "Recipe_id": "2657",
+                      "cook_time": "105",
+                      "prep_time": "20",
+                      "Recipe_title": "Moroccan Lentil Soup",
+                      "url": "http://allrecipes.com/recipe/12960/moroccan-lentil-soup/",
+                      "servings": "6",
+                      "Source": "AllRecipes",
+                      "img_url": "https://images.media-allrecipes.com/userphotos/560x315/262727.jpg",
+                      "Adjusted Protein (g)": "0.0",
+                      "Alanine (g)": "4.8695",
+                      "Alcohol, ethyl (g)": "0.0",
+                      "Arginine (g)": "10.0146",
+                      "Ash (g)": "19.0293",
+                      "Aspartic acid (g)": "13.3856",
+                      "Beta-sitosterol (mg)": "90.24",
+                      "Betaine (mg)": "0.9246",
+                      "Caffeine (mg)": "0.0",
+                      "Calcium, Ca (mg)": "578.1778",
+                      "Campesterol (mg)": "11.52",
+                      "Carbohydrate, by difference (g)": "362.4176",
+                      "Carotene, alpha (g)": "2450.9022",
+                      "Carotene, beta (g)": "6837.2885",
+                      "Cholesterol (mg)": "0.0",
+                      "Choline, total (mg)": "343.8475",
+                      "Copper, Cu (mg)": "4.9219",
+                      "Cryptoxanthin, beta (g)": "56.268",
+                      "Cystine (g)": "1.5581",
+                      "Dihydrophylloquinone (g)": "0.0432",
+                      "Energy (kJ)": "9087.3915",
+                      "Energy (kcal)": "2173.7627",
+                      "Fatty acids, total monounsaturated (g)": "15.2823",
+                      "Fatty acids, total polyunsaturated (g)": "12.3013",
+                      "Fatty acids, total polyunsaturated 15:0 (g)": "0.0058",
+                      "Fatty acids, total polyunsaturated 16:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 16:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 17:0 (g)": "0.0107",
+                      "Fatty acids, total polyunsaturated 17:1 (g)": "0.0172",
+                      "Fatty acids, total polyunsaturated 18:1 c (g)": "0.0064",
+                      "Fatty acids, total polyunsaturated 18:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 i (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:0 (g)": "0.023",
+                      "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0",
+                      "Fatty acids, total saturated (g)": "4.7596",
+                      "Fatty acids, total saturated 10:0 (g)": "0.0306",
+                      "Fatty acids, total saturated 12:0 (g)": "0.0055",
+                      "Fatty acids, total saturated 14:0 (g)": "0.0488",
+                      "Fatty acids, total saturated 14:1 (g)": "0.0006",
+                      "Fatty acids, total saturated 16:0 (g)": "3.8529",
+                      "Fatty acids, total saturated 16:1 undifferentiated (g)": "0.215",
+                      "Fatty acids, total saturated 18:0 (g)": "0.6501",
+                      "Fatty acids, total saturated 18:1 undifferentiated (g)": "14.9853",
+                      "Fatty acids, total saturated 18:2 undifferentiated (g)": "11.3736",
+                      "Fatty acids, total saturated 18:3 undifferentiated (g)": "0.9258",
+                      "Fatty acids, total saturated 18:4 (g)": "0.0",
+                      "Fatty acids, total saturated 20:0 (g)": "0.0828",
+                      "Fatty acids, total saturated 20:1 (g)": "0.0653",
+                      "Fatty acids, total saturated 20:4 undifferentiated (g)": "0.0",
+                      "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.0",
+                      "Fatty acids, total saturated 22:0 (g)": "0.0443",
+                      "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0007",
+                      "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.0",
+                      "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.0",
+                      "Fatty acids, total saturated 4:0 (g)": "0.0",
+                      "Fatty acids, total saturated 6:0 (g)": "0.0005",
+                      "Fatty acids, total saturated 8:0 (g)": "0.0",
+                      "Fatty acids, total trans (g)": "0.0",
+                      "Fatty acids, total trans-monoenoic (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "0.004",
+                      "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 22:4 (g)": "0.0",
+                      "Fiber, total dietary (g)": "69.6132",
+                      "Fluoride, F (g)": "12.7259",
+                      "Folate, DFE (g)": "2187.9661",
+                      "Folate, food (g)": "2187.9661",
+                      "Folate, total (g)": "2187.9661",
+                      "Folic acid (g)": "0.0",
+                      "Fructose (g)": "7.7592",
+                      "Galactose (g)": "0.2458",
+                      "Glucose (dextrose) (g)": "9.698",
+                      "Glutamic acid (g)": "20.3607",
+                      "Glycine (g)": "4.7006",
+                      "Histidine (g)": "3.1632",
+                      "Hydroxyproline (g)": "0.0",
+                      "Iron, Fe (mg)": "30.4005",
+                      "Isoleucine (g)": "4.8785",
+                      "Lactose (g)": "0.0",
+                      "Leucine (g)": "8.1111",
+                      "Lutein + zeaxanthin (g)": "718.3996",
+                      "Lycopene (g)": "5748.4211",
+                      "Lysine (g)": "7.7537",
+                      "Magnesium, Mg (mg)": "465.8423",
+                      "Maltose (g)": "0.0",
+                      "Manganese, Mn (mg)": "69.5845",
+                      "Menaquinone-4 (g)": "0.0",
+                      "Methionine (g)": "1.2579",
+                      "Niacin (mg)": "10.3546",
+                      "Pantothenic acid (mg)": "6.3655",
+                      "Phenylalanine (g)": "5.8749",
+                      "Phosphorus, P (mg)": "1526.4559",
+                      "Phytosterols (mg)": "210.2772",
+                      "Potassium, K (mg)": "4886.6388",
+                      "Proline (g)": "4.6739",
+                      "Protein (g)": "114.877",
+                      "Retinol (g)": "0.0",
+                      "Riboflavin (mg)": "1.0608",
+                      "Selenium, Se (g)": "3.8562",
+                      "Serine (g)": "5.5003",
+                      "Sodium, Na (mg)": "226.7234",
+                      "Starch (g)": "92.3456",
+                      "Stigmasterol (mg)": "7.68",
+                      "Sucrose (g)": "5.5096",
+                      "Sugars, total (g)": "55.4751",
+                      "Theobromine (mg)": "0.0",
+                      "Thiamin (mg)": "2.7205",
+                      "Threonine (g)": "4.2897",
+                      "Tocopherol, beta (mg)": "0.0435",
+                      "Tocopherol, delta (mg)": "0.0",
+                      "Tocopherol, gamma (mg)": "0.4343",
+                      "Tocotrienol, alpha (mg)": "0.1617",
+                      "Tocotrienol, beta (mg)": "0.0",
+                      "Tocotrienol, delta (mg)": "0.0",
+                      "Tocotrienol, gamma (mg)": "0.0",
+                      "Total lipid (fat) (g)": "37.4801",
+                      "Tryptophan (g)": "1.105",
+                      "Tyrosine (g)": "2.9332",
+                      "Valine (g)": "5.1608",
+                      "Vitamin A, IU (IU)": "13486.9742",
+                      "Vitamin A, RAE (g)": "673.5256",
+                      "Vitamin B-12 (g)": "0.0",
+                      "Vitamin B-12, added (g)": "0.0",
+                      "Vitamin B-6 (mg)": "3.1853",
+                      "Vitamin C, total ascorbic acid (mg)": "78.1667",
+                      "Vitamin D (D2 + D3) (g)": "0.0",
+                      "Vitamin D (IU)": "0.0",
+                      "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                      "Vitamin D3 (cholecalciferol) (g)": "0.0",
+                      "Vitamin E (alpha-tocopherol) (mg)": "6.5334",
+                      "Vitamin E, added (mg)": "0.0",
+                      "Vitamin K (phylloquinone) (g)": "78.1815",
+                      "Water (g)": "2064.8541",
+                      "Zinc, Zn (mg)": "16.7628",
+                      "Utensils": "pot||processor||pot",
+                      "Processes": "add||boil||simmer||puree||stir",
+                      "Calories": "329.0",
+                      "total_time": "125",
+                      "Continent": "African",
+                      "Region": "Northern Africa",
+                      "Sub_region": "Moroccan",
+                      "id": "643e64c5f71e838f002de5c7"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/sub-regions": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Subregion/Country",
+        "description": "This API endpoint makes an HTTP GET request to retrieve recipes based on the specified sub-region. The request includes a searchText parameter for filtering recipes by subregion, and a pageSize parameter to limit the number of results per page. The response contains a success message, a payload object with recipe data, and various nutritional information for each recipe. The recipe data includes details such as index, ID, cook time, prep time, title, URL, servings, source, image URL etc.",
+        "operationId": "getRecipeByCountry",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Name of the Subregion/Country",
+            "enum": [
+              "Angolan",
+              "Argentine",
+              "Australian",
+              "Austrian",
+              "Bangladeshi",
+              "Belgian",
+              "Brazilian",
+              "Cambodian",
+              "Canadian",
+              "Chilean",
+              "Chinese",
+              "Colombian",
+              "Costa Rican",
+              "Cuban",
+              "Czech",
+              "Danish",
+              "Dutch",
+              "Ecuadorean",
+              "Egyptian",
+              "English",
+              "Ethiopian",
+              "Filipino",
+              "Finnish",
+              "French",
+              "German",
+              "Greek",
+              "Guatemalan",
+              "Honduran",
+              "Hungarian",
+              "Icelandic",
+              "Indian",
+              "Indonesian",
+              "Iraqi",
+              "Irish",
+              "Israeli",
+              "Italian",
+              "Jamaican",
+              "Japanese",
+              "Korean",
+              "Laotian",
+              "Lebanese",
+              "Libyan",
+              "Malaysian",
+              "Mexican",
+              "Mongolian",
+              "Moroccan",
+              "Namibian",
+              "Nepalese",
+              "New Zealander",
+              "Nigerian",
+              "Norwegian",
+              "Pakistani",
+              "Palestinian",
+              "Peruvian",
+              "Polish",
+              "Portuguese",
+              "Puerto Rican",
+              "Rest Caribbean",
+              "Rest Eastern European",
+              "Rest Middle Eastern",
+              "Russian",
+              "Saudi Arabian",
+              "Scottish",
+              "Somalian",
+              "Spanish",
+              "Sudanese",
+              "Swedish",
+              "Swiss",
+              "Thai",
+              "Turkish",
+              "UK",
+              "US",
+              "Venezuelan",
+              "Vietnamese",
+              "Welsh"
+            ],
+            "type": "string",
+            "required": true,
+            "default": "Angolan"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Name of the Region",
+            "enum": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland ",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ],
+            "required": false,
+            "type": "string",
+            "default": "Australian"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Sub-regions fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_index": "6004",
+                      "Recipe_id": "8614",
+                      "cook_time": "25",
+                      "prep_time": "60",
+                      "Recipe_title": "Sugared Danish Butter Cookies with Pecan Halves",
+                      "url": "http://allrecipes.com/recipe/212867/sugared-danish-butter-cookies-with-pecan-halves/",
+                      "servings": "176",
+                      "Source": "AllRecipes",
+                      "img_url": "https://images.media-allrecipes.com/userphotos/560x315/1078025.jpg",
+                      "Adjusted Protein (g)": "0.0",
+                      "Alanine (g)": "0.4662",
+                      "Alcohol, ethyl (g)": "2.8896",
+                      "Arginine (g)": "0.5156",
+                      "Ash (g)": "1.1726",
+                      "Aspartic acid (g)": "0.8824",
+                      "Beta-sitosterol (mg)": "13.62",
+                      "Betaine (mg)": "0.15",
+                      "Caffeine (mg)": "0.0",
+                      "Calcium, Ca (mg)": "118.6815",
+                      "Campesterol (mg)": "0.0",
+                      "Carbohydrate, by difference (g)": "305.3174",
+                      "Carotene, alpha (g)": "0.0",
+                      "Carotene, beta (g)": "537.99",
+                      "Cholesterol (mg)": "918.725",
+                      "Choline, total (mg)": "210.914",
+                      "Copper, Cu (mg)": "0.1175",
+                      "Cryptoxanthin, beta (g)": "4.5",
+                      "Cystine (g)": "0.1632",
+                      "Dihydrophylloquinone (g)": "0.05",
+                      "Energy (kJ)": "15550.0025",
+                      "Energy (kcal)": "3718.0645",
+                      "Fatty acids, total monounsaturated (g)": "81.609",
+                      "Fatty acids, total polyunsaturated (g)": "11.2048",
+                      "Fatty acids, total polyunsaturated 15:0 (g)": "0.004",
+                      "Fatty acids, total polyunsaturated 16:1 c (g)": "3.3712",
+                      "Fatty acids, total polyunsaturated 16:1 t (g)": "0.0015",
+                      "Fatty acids, total polyunsaturated 17:0 (g)": "1.9178",
+                      "Fatty acids, total polyunsaturated 17:1 (g)": "0.006",
+                      "Fatty acids, total polyunsaturated 18:1 c (g)": "59.5041",
+                      "Fatty acids, total polyunsaturated 18:1 t (g)": "10.1652",
+                      "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "0.9151",
+                      "Fatty acids, total polyunsaturated 18:2 i (g)": "1.0079",
+                      "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "8.1407",
+                      "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "0.006",
+                      "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.006",
+                      "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.009",
+                      "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "0.0115",
+                      "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:0 (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0",
+                      "Fatty acids, total saturated (g)": "173.5414",
+                      "Fatty acids, total saturated 10:0 (g)": "8.6142",
+                      "Fatty acids, total saturated 12:0 (g)": "8.8087",
+                      "Fatty acids, total saturated 14:0 (g)": "25.3361",
+                      "Fatty acids, total saturated 14:1 (g)": "0.0035",
+                      "Fatty acids, total saturated 16:0 (g)": "74.9942",
+                      "Fatty acids, total saturated 16:1 undifferentiated (g)": "6.2976",
+                      "Fatty acids, total saturated 18:0 (g)": "34.4522",
+                      "Fatty acids, total saturated 18:1 undifferentiated (g)": "71.1682",
+                      "Fatty acids, total saturated 18:2 undifferentiated (g)": "7.009",
+                      "Fatty acids, total saturated 18:3 undifferentiated (g)": "4.042",
+                      "Fatty acids, total saturated 18:4 (g)": "0.0",
+                      "Fatty acids, total saturated 20:0 (g)": "0.4714",
+                      "Fatty acids, total saturated 20:1 (g)": "0.354",
+                      "Fatty acids, total saturated 20:4 undifferentiated (g)": "0.094",
+                      "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.0",
+                      "Fatty acids, total saturated 22:0 (g)": "0.002",
+                      "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0",
+                      "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.0035",
+                      "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.029",
+                      "Fatty acids, total saturated 4:0 (g)": "10.9865",
+                      "Fatty acids, total saturated 6:0 (g)": "6.8338",
+                      "Fatty acids, total saturated 8:0 (g)": "4.054",
+                      "Fatty acids, total trans (g)": "0.019",
+                      "Fatty acids, total trans-monoenoic (g)": "0.013",
+                      "Fatty acids, total trans-polyenoic (g)": "0.006",
+                      "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "1.0906",
+                      "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.0005",
+                      "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "0.011",
+                      "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 22:4 (g)": "0.0065",
+                      "Fiber, total dietary (g)": "1.0075",
+                      "Fluoride, F (g)": "10.084",
+                      "Folate, DFE (g)": "33.715",
+                      "Folate, food (g)": "33.715",
+                      "Folate, total (g)": "33.715",
+                      "Folic acid (g)": "0.0",
+                      "Fructose (g)": "0.0",
+                      "Galactose (g)": "0.0",
+                      "Glucose (dextrose) (g)": "0.185",
+                      "Glutamic acid (g)": "1.4426",
+                      "Glycine (g)": "0.2773",
+                      "Histidine (g)": "0.2328",
+                      "Hydroxyproline (g)": "0.0",
+                      "Iron, Fe (mg)": "1.2836",
+                      "Isoleucine (g)": "0.5092",
+                      "Lactose (g)": "0.0",
+                      "Leucine (g)": "0.8256",
+                      "Lutein + zeaxanthin (g)": "251.5",
+                      "Lycopene (g)": "0.0",
+                      "Lysine (g)": "0.6841",
+                      "Magnesium, Mg (mg)": "13.818",
+                      "Maltose (g)": "0.0",
+                      "Manganese, Mn (mg)": "0.0589",
+                      "Menaquinone-4 (g)": "0.0",
+                      "Methionine (g)": "0.2615",
+                      "Niacin (mg)": "0.2162",
+                      "Pantothenic acid (mg)": "1.144",
+                      "Phenylalanine (g)": "0.4796",
+                      "Phosphorus, P (mg)": "181.224",
+                      "Phytosterols (mg)": "0.0",
+                      "Potassium, K (mg)": "169.152",
+                      "Proline (g)": "0.5352",
+                      "Protein (g)": "9.8048",
+                      "Retinol (g)": "2364.755",
+                      "Riboflavin (mg)": "0.4093",
+                      "Selenium, Se (g)": "20.555",
+                      "Serine (g)": "0.6421",
+                      "Sodium, Na (mg)": "171.036",
+                      "Starch (g)": "0.0",
+                      "Stigmasterol (mg)": "0.0",
+                      "Sucrose (g)": "299.4",
+                      "Sugars, total (g)": "302.4769",
+                      "Theobromine (mg)": "0.0",
+                      "Thiamin (mg)": "0.0379",
+                      "Threonine (g)": "0.4074",
+                      "Tocopherol, beta (mg)": "0.005",
+                      "Tocopherol, delta (mg)": "0.03",
+                      "Tocopherol, gamma (mg)": "0.25",
+                      "Tocotrienol, alpha (mg)": "0.03",
+                      "Tocotrienol, beta (mg)": "0.0",
+                      "Tocotrienol, delta (mg)": "0.0",
+                      "Tocotrienol, gamma (mg)": "0.005",
+                      "Total lipid (fat) (g)": "281.2516",
+                      "Tryptophan (g)": "0.1244",
+                      "Tyrosine (g)": "0.3891",
+                      "Valine (g)": "0.6231",
+                      "Vitamin A, IU (IU)": "8779.095",
+                      "Vitamin A, RAE (g)": "2409.02",
+                      "Vitamin B-12 (g)": "1.0239",
+                      "Vitamin B-12, added (g)": "0.0",
+                      "Vitamin B-6 (mg)": "0.0974",
+                      "Vitamin C, total ascorbic acid (mg)": "0.0",
+                      "Vitamin D (D2 + D3) (g)": "1.0",
+                      "Vitamin D (IU)": "41.0",
+                      "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                      "Vitamin D3 (cholecalciferol) (g)": "1.0",
+                      "Vitamin E (alpha-tocopherol) (mg)": "8.4246",
+                      "Vitamin E, added (mg)": "0.0",
+                      "Vitamin K (phylloquinone) (g)": "23.985",
+                      "Water (g)": "114.9149",
+                      "Zinc, Zn (mg)": "0.9906",
+                      "Utensils": "oven||bowl||plate||oven||oven",
+                      "Processes": "preheat||stir||shape||refrigerate||divide||wrap||refrigerate||place||brush||roll||refrigerate||cook||note||preheat||cut||place||top||cut||place||sprinkle||place||bake||remove||cool",
+                      "Calories": "38.0",
+                      "total_time": "0",
+                      "Continent": "European",
+                      "Region": "Scandinavian",
+                      "Sub_region": "Danish",
+                      "id": "643e64d0f71e838f002dfd09"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/continents": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Continents",
+        "description": "This API endpoint makes an HTTP GET request to retrieve recipes based on the specified continent. The request includes a searchText parameter for filtering recipes by continent, and a pageSize parameter to limit the number of results per page. The response contains a success message, a payload object with recipe data, and various nutritional information for each recipe. The recipe data includes details such as index, ID, cook time, prep time, title, URL, servings, source, image URL etc.",
+        "operationId": "getRecipeByContinents",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Name of the Continent",
+            "enum": [
+              "African",
+              "Asian",
+              "Australasian",
+              "European",
+              "Latin American",
+              "North American"
+            ],
+            "type": "string",
+            "required": true,
+            "default": "African"
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Name of the Region",
+            "enum": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland ",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ],
+            "required": false,
+            "type": "string",
+            "default": "Australian"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Continents fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_id": "5111",
+                      "Calories": "315.0",
+                      "cook_time": "35",
+                      "prep_time": "15",
+                      "servings": "4",
+                      "Recipe_title": "Nikujaga (Japanese-style meat and potatoes)",
+                      "total_time": "50",
+                      "url": "http://allrecipes.com/recipe/144299/nikujaga-japanese-style-meat-and-potatoes/",
+                      "Region": "Japanese",
+                      "Sub_region": "Japanese",
+                      "Continent": "Asian",
+                      "Source": "AllRecipes",
+                      "img_url": "https://images.media-allrecipes.com/userphotos/560x315/6067173.jpg",
+                      "Carbohydrate, by difference (g)": "30.6844",
+                      "Energy (kcal)": "415.6485",
+                      "Protein (g)": "31.1799",
+                      "Total lipid (fat) (g)": "20.1981",
+                      "Utensils": "saucepan||skillet",
+                      "Processes": "put||cover||boil||remove||heat||drain||set||heat||heat||cook||add||cook||stir||stir||simmer||reduce||heat||scatter||simmer||evaporated||top||serve",
+                      "vegan": "0.0",
+                      "pescetarian": "0.0",
+                      "ovo_vegetarian": "0.0",
+                      "lacto_vegetarian": "0.0",
+                      "ovo_lacto_vegetarian": "0.0",
+                      "id": "64057223a13d0d2d3589172e"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/recipe": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Search in recipe's table or by recipe title",
+        "description": "This endpoint performs an HTTP GET request to retrieve recipe search results from the Foodoscope API. The request includes parameters for searchText, page, and pageSize to filter and paginate the results. The response returns a status code of 200 and a JSON object with a success message, a payload containing an array of recipe data, and a totalCount field indicating the total number of recipes available.",
+        "operationId": "SearchinRecipeTable",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Recipe Title or matching keyword",
+            "type": "string",
+            "required": false
+          },
+          {
+            "name": "region",
+            "in": "query",
+            "description": "Name of the Region",
+            "enum": [
+              "Australian",
+              "Belgian",
+              "Canadian",
+              "Caribbean",
+              "Central American",
+              "Chinese and Mongolian",
+              "Deutschland ",
+              "Eastern European",
+              "French",
+              "Greek",
+              "Indian Subcontinent",
+              "Irish",
+              "Italian",
+              "Japanese",
+              "Korean",
+              "Mexican",
+              "Middle Eastern",
+              "Northern Africa",
+              "Rest Africa",
+              "Scandinavian",
+              "South American",
+              "Southeast Asian",
+              "Spanish and Portuguese",
+              "Thai",
+              "UK",
+              "US"
+            ],
+            "required": false,
+            "type": "string",
+            "default": "Australian"
+          },
+          {
+            "name": "subRegion",
+            "in": "query",
+            "description": "Name of the Subregion",
+            "enum": [
+              "Angolan",
+              "Argentine",
+              "Australian",
+              "Austrian",
+              "Bangladeshi",
+              "Belgian",
+              "Brazilian",
+              "Cambodian",
+              "Canadian",
+              "Chilean",
+              "Chinese",
+              "Colombian",
+              "Costa Rican",
+              "Cuban",
+              "Czech",
+              "Danish",
+              "Dutch",
+              "Ecuadorean",
+              "Egyptian",
+              "English",
+              "Ethiopian",
+              "Filipino",
+              "Finnish",
+              "French",
+              "German",
+              "Greek",
+              "Guatemalan",
+              "Honduran",
+              "Hungarian",
+              "Icelandic",
+              "Indian",
+              "Indonesian",
+              "Iraqi",
+              "Irish",
+              "Israeli",
+              "Italian",
+              "Jamaican",
+              "Japanese",
+              "Korean",
+              "Laotian",
+              "Lebanese",
+              "Libyan",
+              "Malaysian",
+              "Mexican",
+              "Mongolian",
+              "Moroccan",
+              "Namibian",
+              "Nepalese",
+              "New Zealander",
+              "Nigerian",
+              "Norwegian",
+              "Pakistani",
+              "Palestinian",
+              "Peruvian",
+              "Polish",
+              "Portuguese",
+              "Puerto Rican",
+              "Rest Caribbean",
+              "Rest Eastern European",
+              "Rest Middle Eastern",
+              "Russian",
+              "Saudi Arabian",
+              "Scottish",
+              "Somalian",
+              "Spanish",
+              "Sudanese",
+              "Swedish",
+              "Swiss",
+              "Thai",
+              "Turkish",
+              "UK",
+              "US",
+              "Venezuelan",
+              "Vietnamese",
+              "Welsh"
+            ],
+            "required": false,
+            "type": "string",
+            "default": "Angolan"
+          },
+          {
+            "name": "searchTerm",
+            "in": "query",
+            "description": "searchTerm",
+            "required": false,
+            "type": "string",
+            "default": ""
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "",
+            "required": true,
+            "type": "integer",
+            "default": 0,
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_id": "66460",
+                      "Calories": "1062.9",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "servings": "1 batch",
+                      "Recipe_title": "Vegetable <em class=\"hlt1\">Idli</em>",
+                      "total_time": "60",
+                      "url": "http://www.geniuskitchen.com/recipe/vegetable-idli-49713",
+                      "Region": "Indian Subcontinent",
+                      "Sub_region": "Indian",
+                      "Continent": "Asian",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://geniuskitchen.sndimg.com/gk/img/gk-shareGraphic.png",
+                      "Carbohydrate, by difference (g)": "26328.2495",
+                      "Energy (kcal)": "139702.088",
+                      "Protein (g)": "5319.7831",
+                      "Total lipid (fat) (g)": "1183.4007",
+                      "Utensils": "pan",
+                      "Processes": "heat||add||add||add||add||add||add||mix||pour||stand||steam||serve",
+                      "vegan": "0.0",
+                      "pescetarian": "0.0",
+                      "ovo_vegetarian": "0.0",
+                      "lacto_vegetarian": "0.0",
+                      "ovo_lacto_vegetarian": "0.0",
+                      "id": "6405726fa13d0d2d358997bd"
+                    }
+                  ],
+                  "totalCount": 4
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/ingredients": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by searching ingredients used",
+        "description": "This API endpoint allows users to search for ingredients in the Foodoscope database. By making an HTTP GET request to the specified URL, users can search for recipes based on ingredients and set the pageSize for the number of results to be returned.",
+        "operationId": "getRecipeByingredients",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Ingredients Used",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Ingredients fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "IngID": "111",
+                      "ingredient": "mint",
+                      "frequency": "1971",
+                      "generic_name": "Mint",
+                      "wikilink": "https://en.wikipedia.org/wiki/Mentha",
+                      "wikiimage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mint_Plant.jpg/220px-Mint_Plant.jpg",
+                      "Dietrx_Category": "Herb",
+                      "Flavor_DB_Link": "Mint~https://cosylab.iiitd.edu.in/flavordb/entity_details?id=262",
+                      "flavordb_id": "262",
+                      "Diet_rx_link": "pineapple mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A38860||lemon mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A190902||field mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A292239||beefsteak mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A48386",
+                      "id": "640f11cba80bf2bc741cf204"
+                    },
+                    {
+                      "IngID": "161",
+                      "ingredient": "mint leaf",
+                      "frequency": "1237",
+                      "generic_name": "Mint",
+                      "wikilink": "https://en.wikipedia.org/wiki/Mentha",
+                      "wikiimage": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Mint_Plant.jpg/220px-Mint_Plant.jpg",
+                      "Dietrx_Category": "Herb",
+                      "Flavor_DB_Link": "Mint~https://cosylab.iiitd.edu.in/flavordb/entity_details?id=262",
+                      "flavordb_id": "262",
+                      "Diet_rx_link": "pineapple mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A38860||lemon mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A190902||field mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A292239||beefsteak mint~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A48386",
+                      "id": "640f11cba80bf2bc741cf235"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Ingredient supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/categories": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Category",
+        "description": "This API endpoint allows users to search for categories in the Foodoscope database. By making an HTTP GET request to the specified URL, users can search for recipes based on ingredients(eg Fruit, Dairy etc) and set the pageSize for the number of results to be returned.",
+        "operationId": "getRecipeByCategory",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Category",
+            "enum": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Spice",
+              "Vegetable",
+              "Vegetable Fruit",
+              "Vegetable Tuber",
+              "dish"
+            ],
+            "required": true,
+            "type": "string",
+            "default": "Additive"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Categories fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "IngID": "78",
+                      "ingredient": "sesame oil",
+                      "frequency": "2930",
+                      "generic_name": "Sesame Oil",
+                      "wikilink": "https://en.wikipedia.org/wiki/Sesame_oil",
+                      "wikiimage": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/SesameSeedOil.png/220px-SesameSeedOil.png",
+                      "Dietrx_Category": "Essential Oil",
+                      "Flavor_DB_Link": "Sesame~https://cosylab.iiitd.edu.in/flavordb/entity_details?id=299",
+                      "flavordb_id": "299",
+                      "Diet_rx_link": "sesame~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A4182",
+                      "id": "640f11cba80bf2bc741cf1e4"
+                    },
+                    {
+                      "IngID": "105",
+                      "ingredient": "avocado",
+                      "frequency": "2213",
+                      "generic_name": "Avocado",
+                      "wikilink": "https://en.wikipedia.org/wiki/Avocado#Culinary_uses",
+                      "wikiimage": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Persea_americana_fruit_2.JPG/440px-Persea_americana_fruit_2.JPG",
+                      "Dietrx_Category": "Essential Oil",
+                      "Flavor_DB_Link": "Avocado~https://cosylab.iiitd.edu.in/flavordb/entity_details?id=165",
+                      "flavordb_id": "165",
+                      "Diet_rx_link": "avocado~https://cosylab.iiitd.edu.in/dietrx/get_food?food_id=Plant+ID%3A3435",
+                      "id": "640f11cba80bf2bc741cf1fe"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Category supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/processes": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Cooking Processes",
+        "description": "This API endpoint makes an HTTP GET request to retrieve recipes based on processes (eg bake, fry etc) and page size. The response will be in JSON format and will include fields such as Recipe_index, Recipe_id, cook_time, prep_time, Recipe_title, url, servings, Source, img_url, and a wide range of nutritional information for each recipe.",
+        "operationId": "getRecipeByProcess",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Process",
+            "enum": [
+              "absorbed",
+              "add",
+              "arrange",
+              "assemble",
+              "bake",
+              "barbecue",
+              "baste",
+              "beat",
+              "blanch",
+              "blend",
+              "blitz",
+              "blot",
+              "boil",
+              "braise",
+              "break",
+              "broil",
+              "brush",
+              "bubble",
+              "bubbling",
+              "burn",
+              "butter",
+              "caramelize",
+              "caramelized",
+              "carve",
+              "char",
+              "charred",
+              "check",
+              "chill",
+              "chop",
+              "clean",
+              "coat",
+              "combine",
+              "condensed",
+              "cook",
+              "cool",
+              "cover",
+              "cream",
+              "crimp",
+              "crockpot",
+              "crumble",
+              "crush",
+              "curdle",
+              "cut",
+              "dash",
+              "decorate",
+              "deflate",
+              "defrost",
+              "deglaze",
+              "devein",
+              "dice",
+              "dip",
+              "dissolve",
+              "distribute",
+              "divide",
+              "dollop",
+              "drain",
+              "dredge",
+              "dress",
+              "dressing",
+              "drip",
+              "dripping",
+              "drizzle",
+              "drop",
+              "dry",
+              "dump",
+              "dust",
+              "evaporate",
+              "evaporated",
+              "fill",
+              "flake",
+              "flatten",
+              "flavoring",
+              "flip",
+              "floured",
+              "foam",
+              "foil",
+              "fold",
+              "freezing",
+              "frost",
+              "fry",
+              "garnish",
+              "glaze",
+              "grate",
+              "grease",
+              "griddle",
+              "grind",
+              "handle",
+              "heat",
+              "hold",
+              "ice",
+              "immerse",
+              "insert",
+              "invert",
+              "knead",
+              "ladle",
+              "lard",
+              "marinade",
+              "marinate",
+              "mash",
+              "massage",
+              "measure",
+              "meld",
+              "melt",
+              "mince",
+              "minced",
+              "mix",
+              "moist",
+              "moisten",
+              "mould",
+              "mound",
+              "move",
+              "muddle",
+              "note",
+              "open",
+              "overcook",
+              "overmix",
+              "pack",
+              "pan-fry",
+              "parboil",
+              "pat",
+              "peel",
+              "pick",
+              "pierce",
+              "place",
+              "poach",
+              "poke",
+              "pop",
+              "pour",
+              "powdered",
+              "pre-heat",
+              "preheat",
+              "prepare",
+              "presentation",
+              "press",
+              "pressure",
+              "prick",
+              "process",
+              "pull",
+              "punch",
+              "puree",
+              "push",
+              "put",
+              "raise",
+              "reduce",
+              "refrigerate",
+              "reheat",
+              "remove",
+              "repeat",
+              "replace",
+              "reserve",
+              "rest",
+              "rinse",
+              "rise",
+              "rising",
+              "roast",
+              "roll",
+              "rotate",
+              "roux",
+              "rub",
+              "saute",
+              "save",
+              "scald",
+              "scatter",
+              "scoop",
+              "scorching",
+              "scramble",
+              "scrape",
+              "scrub",
+              "seal",
+              "sear",
+              "season",
+              "seasoning",
+              "select",
+              "separate",
+              "serve",
+              "set",
+              "settle",
+              "shake",
+              "shape",
+              "shred",
+              "sieve",
+              "sift",
+              "simmer",
+              "sit",
+              "sizzle",
+              "skim",
+              "skin",
+              "slash",
+              "slather",
+              "slice",
+              "slit",
+              "smash",
+              "smear",
+              "smoke",
+              "smoking",
+              "smooth",
+              "snap",
+              "soak",
+              "soften",
+              "sort",
+              "splash",
+              "split",
+              "splutter",
+              "spray",
+              "spread",
+              "sprinkle",
+              "sprout",
+              "square",
+              "squash",
+              "squeeze",
+              "stack",
+              "stand",
+              "start",
+              "steam",
+              "steep",
+              "sterilize",
+              "stew",
+              "stir",
+              "stir-fry",
+              "stirring",
+              "stop",
+              "store",
+              "strain",
+              "stream",
+              "stretch",
+              "strip",
+              "stuff",
+              "style",
+              "submerge",
+              "sweat",
+              "sweeten",
+              "swirl",
+              "take",
+              "taste",
+              "tear",
+              "test",
+              "thaw",
+              "thicken",
+              "thread",
+              "throw",
+              "tie",
+              "tilt",
+              "toast",
+              "top",
+              "toss",
+              "touch",
+              "transfer",
+              "trim",
+              "tuck",
+              "turn",
+              "twist",
+              "uncover",
+              "uncovered",
+              "unfold",
+              "unmold",
+              "unroll",
+              "unwrap",
+              "wait",
+              "warm",
+              "wash",
+              "wet",
+              "whip",
+              "whirl",
+              "whisk",
+              "wilt",
+              "wipe",
+              "wok",
+              "wrap",
+              "yield",
+              "zest"
+            ],
+            "required": true,
+            "type": "string",
+            "default": "absorbed"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Processes fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_index": "70087",
+                      "Recipe_id": "101108",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "Recipe_title": "Danish Banana Bread",
+                      "url": "http://www.geniuskitchen.com/recipe/danish-banana-bread-387245",
+                      "servings": "1 loaf",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://geniuskitchen.sndimg.com/gk/img/gk-shareGraphic.png",
+                      "Adjusted Protein (g)": "0.0",
+                      "Alanine (g)": "2.6025",
+                      "Alcohol, ethyl (g)": "0.7224",
+                      "Arginine (g)": "3.4503",
+                      "Ash (g)": "13.5285",
+                      "Aspartic acid (g)": "4.5308",
+                      "Beta-sitosterol (mg)": "0.0",
+                      "Betaine (mg)": "132.01",
+                      "Caffeine (mg)": "0.0",
+                      "Calcium, Ca (mg)": "363.2235",
+                      "Campesterol (mg)": "0.0",
+                      "Carbohydrate, by difference (g)": "839.6624",
+                      "Carotene, alpha (g)": "112.5",
+                      "Carotene, beta (g)": "521.65",
+                      "Cholesterol (mg)": "896.8",
+                      "Choline, total (mg)": "459.889",
+                      "Copper, Cu (mg)": "1.5959",
+                      "Cryptoxanthin, beta (g)": "9.0",
+                      "Cystine (g)": "1.0673",
+                      "Dihydrophylloquinone (g)": "0.1",
+                      "Energy (kJ)": "34841.485",
+                      "Energy (kcal)": "8328.558",
+                      "Fatty acids, total monounsaturated (g)": "138.8244",
+                      "Fatty acids, total polyunsaturated (g)": "219.8064",
+                      "Fatty acids, total polyunsaturated 15:0 (g)": "0.008",
+                      "Fatty acids, total polyunsaturated 16:1 c (g)": "0.198",
+                      "Fatty acids, total polyunsaturated 16:1 t (g)": "0.003",
+                      "Fatty acids, total polyunsaturated 17:0 (g)": "0.022",
+                      "Fatty acids, total polyunsaturated 17:1 (g)": "0.012",
+                      "Fatty acids, total polyunsaturated 18:1 c (g)": "3.388",
+                      "Fatty acids, total polyunsaturated 18:1 t (g)": "0.023",
+                      "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "0.012",
+                      "Fatty acids, total polyunsaturated 18:2 i (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "1.531",
+                      "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "0.012",
+                      "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.012",
+                      "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.018",
+                      "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "0.023",
+                      "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:0 (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0",
+                      "Fatty acids, total saturated (g)": "162.027",
+                      "Fatty acids, total saturated 10:0 (g)": "5.1253",
+                      "Fatty acids, total saturated 12:0 (g)": "5.7347",
+                      "Fatty acids, total saturated 14:0 (g)": "20.5715",
+                      "Fatty acids, total saturated 14:1 (g)": "0.007",
+                      "Fatty acids, total saturated 16:0 (g)": "80.7817",
+                      "Fatty acids, total saturated 16:1 undifferentiated (g)": "5.1525",
+                      "Fatty acids, total saturated 18:0 (g)": "32.1865",
+                      "Fatty acids, total saturated 18:1 undifferentiated (g)": "128.9407",
+                      "Fatty acids, total saturated 18:2 undifferentiated (g)": "182.0638",
+                      "Fatty acids, total saturated 18:3 undifferentiated (g)": "37.4353",
+                      "Fatty acids, total saturated 18:4 (g)": "0.0",
+                      "Fatty acids, total saturated 20:0 (g)": "0.003",
+                      "Fatty acids, total saturated 20:1 (g)": "1.353",
+                      "Fatty acids, total saturated 20:4 undifferentiated (g)": "0.188",
+                      "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.0",
+                      "Fatty acids, total saturated 22:0 (g)": "0.004",
+                      "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0",
+                      "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.007",
+                      "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.058",
+                      "Fatty acids, total saturated 4:0 (g)": "6.6173",
+                      "Fatty acids, total saturated 6:0 (g)": "3.9155",
+                      "Fatty acids, total saturated 8:0 (g)": "2.2836",
+                      "Fatty acids, total trans (g)": "0.038",
+                      "Fatty acids, total trans-monoenoic (g)": "0.026",
+                      "Fatty acids, total trans-polyenoic (g)": "0.012",
+                      "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "0.036",
+                      "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.001",
+                      "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "0.022",
+                      "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 22:4 (g)": "0.013",
+                      "Fiber, total dietary (g)": "36.928",
+                      "Fluoride, F (g)": "11.0",
+                      "Folate, DFE (g)": "227.88",
+                      "Folate, food (g)": "227.88",
+                      "Folate, total (g)": "227.88",
+                      "Folic acid (g)": "0.0",
+                      "Fructose (g)": "24.357",
+                      "Galactose (g)": "0.0",
+                      "Glucose (dextrose) (g)": "25.75",
+                      "Glutamic acid (g)": "12.8682",
+                      "Glycine (g)": "2.2723",
+                      "Histidine (g)": "1.6676",
+                      "Hydroxyproline (g)": "0.0",
+                      "Iron, Fe (mg)": "12.0337",
+                      "Isoleucine (g)": "2.2076",
+                      "Lactose (g)": "0.0",
+                      "Leucine (g)": "4.2204",
+                      "Lutein + zeaxanthin (g)": "998.0",
+                      "Lycopene (g)": "0.0",
+                      "Lysine (g)": "2.3189",
+                      "Magnesium, Mg (mg)": "485.9845",
+                      "Maltose (g)": "0.045",
+                      "Manganese, Mn (mg)": "11.8412",
+                      "Menaquinone-4 (g)": "0.0",
+                      "Methionine (g)": "1.182",
+                      "Niacin (mg)": "18.3965",
+                      "Pantothenic acid (mg)": "6.374",
+                      "Phenylalanine (g)": "2.9081",
+                      "Phosphorus, P (mg)": "1188.716",
+                      "Phytosterols (mg)": "647.98",
+                      "Potassium, K (mg)": "2903.668",
+                      "Proline (g)": "5.0873",
+                      "Protein (g)": "56.2914",
+                      "Retinol (g)": "1849.2",
+                      "Riboflavin (mg)": "1.1843",
+                      "Selenium, Se (g)": "186.0854",
+                      "Serine (g)": "3.0324",
+                      "Sodium, Na (mg)": "2735.8815",
+                      "Starch (g)": "128.196",
+                      "Stigmasterol (mg)": "0.0",
+                      "Sucrose (g)": "419.035",
+                      "Sugars, total (g)": "469.737",
+                      "Theobromine (mg)": "0.0",
+                      "Thiamin (mg)": "1.4144",
+                      "Threonine (g)": "1.8669",
+                      "Tocopherol, beta (mg)": "0.424",
+                      "Tocopherol, delta (mg)": "0.105",
+                      "Tocopherol, gamma (mg)": "4.028",
+                      "Tocotrienol, alpha (mg)": "0.87",
+                      "Tocotrienol, beta (mg)": "0.0",
+                      "Tocotrienol, delta (mg)": "0.0",
+                      "Tocotrienol, gamma (mg)": "0.064",
+                      "Total lipid (fat) (g)": "549.8627",
+                      "Tryptophan (g)": "0.6995",
+                      "Tyrosine (g)": "1.8074",
+                      "Valine (g)": "2.9485",
+                      "Vitamin A, IU (IU)": "7135.65",
+                      "Vitamin A, RAE (g)": "1895.5",
+                      "Vitamin B-12 (g)": "0.9105",
+                      "Vitamin B-12, added (g)": "0.0",
+                      "Vitamin B-6 (mg)": "3.6824",
+                      "Vitamin C, total ascorbic acid (mg)": "39.36",
+                      "Vitamin D (D2 + D3) (g)": "2.0",
+                      "Vitamin D (IU)": "82.0",
+                      "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                      "Vitamin D3 (cholecalciferol) (g)": "2.0",
+                      "Vitamin E (alpha-tocopherol) (mg)": "10.0867",
+                      "Vitamin E, added (mg)": "0.0",
+                      "Vitamin K (phylloquinone) (g)": "72.65",
+                      "Water (g)": "495.0608",
+                      "Zinc, Zn (mg)": "8.7245",
+                      "Utensils": "oven||pan",
+                      "Processes": "mix||bake||bake",
+                      "Calories": "6527.6",
+                      "total_time": "70",
+                      "Continent": "European",
+                      "Region": "Scandinavian",
+                      "Sub_region": "Danish",
+                      "id": "643e6529f71e838f002ef725"
+                    },
+                    {
+                      "Recipe_index": "25124",
+                      "Recipe_id": "56145",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "Recipe_title": "Mandarin Meatloaf",
+                      "url": "http://www.geniuskitchen.com/recipe/mandarin-meatloaf-11771",
+                      "servings": "12",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://geniuskitchen.sndimg.com/gk/img/gk-shareGraphic.png",
+                      "Adjusted Protein (g)": "0.0",
+                      "Alanine (g)": "0.589",
+                      "Alcohol, ethyl (g)": "0.0",
+                      "Arginine (g)": "0.8736",
+                      "Ash (g)": "30.965",
+                      "Aspartic acid (g)": "1.2604",
+                      "Beta-sitosterol (mg)": "0.0",
+                      "Betaine (mg)": "91.9782",
+                      "Caffeine (mg)": "0.0",
+                      "Calcium, Ca (mg)": "655.0382",
+                      "Campesterol (mg)": "0.0",
+                      "Carbohydrate, by difference (g)": "15.2719",
+                      "Carotene, alpha (g)": "0.069",
+                      "Carotene, beta (g)": "2.8825",
+                      "Cholesterol (mg)": "946.7885",
+                      "Choline, total (mg)": "1035.6639",
+                      "Copper, Cu (mg)": "1.6854",
+                      "Cryptoxanthin, beta (g)": "4.6438",
+                      "Cystine (g)": "0.2203",
+                      "Dihydrophylloquinone (g)": "0.05",
+                      "Energy (kJ)": "9638.2441",
+                      "Energy (kcal)": "2305.1224",
+                      "Fatty acids, total monounsaturated (g)": "45.7994",
+                      "Fatty acids, total polyunsaturated (g)": "6.6509",
+                      "Fatty acids, total polyunsaturated 15:0 (g)": "0.7116",
+                      "Fatty acids, total polyunsaturated 16:1 c (g)": "0.099",
+                      "Fatty acids, total polyunsaturated 16:1 t (g)": "0.0015",
+                      "Fatty acids, total polyunsaturated 17:0 (g)": "1.3446",
+                      "Fatty acids, total polyunsaturated 17:1 (g)": "0.006",
+                      "Fatty acids, total polyunsaturated 18:1 c (g)": "35.7006",
+                      "Fatty acids, total polyunsaturated 18:1 t (g)": "5.5907",
+                      "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "0.9948",
+                      "Fatty acids, total polyunsaturated 18:2 i (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "2.4075",
+                      "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "1.2398",
+                      "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.006",
+                      "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.0184",
+                      "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "0.0215",
+                      "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:0 (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0001",
+                      "Fatty acids, total saturated (g)": "50.5698",
+                      "Fatty acids, total saturated 10:0 (g)": "0.0486",
+                      "Fatty acids, total saturated 12:0 (g)": "0.0821",
+                      "Fatty acids, total saturated 14:0 (g)": "3.159",
+                      "Fatty acids, total saturated 14:1 (g)": "0.6749",
+                      "Fatty acids, total saturated 16:0 (g)": "26.472",
+                      "Fatty acids, total saturated 16:1 undifferentiated (g)": "3.3083",
+                      "Fatty acids, total saturated 18:0 (g)": "18.519",
+                      "Fatty acids, total saturated 18:1 undifferentiated (g)": "41.6462",
+                      "Fatty acids, total saturated 18:2 undifferentiated (g)": "4.9427",
+                      "Fatty acids, total saturated 18:3 undifferentiated (g)": "0.7595",
+                      "Fatty acids, total saturated 18:4 (g)": "0.0181",
+                      "Fatty acids, total saturated 20:0 (g)": "0.1739",
+                      "Fatty acids, total saturated 20:1 (g)": "0.1496",
+                      "Fatty acids, total saturated 20:4 undifferentiated (g)": "0.4092",
+                      "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.1003",
+                      "Fatty acids, total saturated 22:0 (g)": "0.0296",
+                      "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0",
+                      "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.1962",
+                      "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.1599",
+                      "Fatty acids, total saturated 4:0 (g)": "0.002",
+                      "Fatty acids, total saturated 6:0 (g)": "0.0001",
+                      "Fatty acids, total saturated 8:0 (g)": "0.0117",
+                      "Fatty acids, total trans (g)": "6.832",
+                      "Fatty acids, total trans-monoenoic (g)": "5.5922",
+                      "Fatty acids, total trans-polyenoic (g)": "1.2398",
+                      "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0181",
+                      "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "0.6632",
+                      "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.0005",
+                      "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "0.011",
+                      "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 22:4 (g)": "0.0065",
+                      "Fiber, total dietary (g)": "2.665",
+                      "Fluoride, F (g)": "1.9566",
+                      "Folate, DFE (g)": "168.0823",
+                      "Folate, food (g)": "168.0823",
+                      "Folate, total (g)": "168.0823",
+                      "Folic acid (g)": "0.0",
+                      "Fructose (g)": "1.4251",
+                      "Galactose (g)": "0.0009",
+                      "Glucose (dextrose) (g)": "2.5457",
+                      "Glutamic acid (g)": "2.1917",
+                      "Glycine (g)": "0.4434",
+                      "Histidine (g)": "0.2858",
+                      "Hydroxyproline (g)": "0.0",
+                      "Iron, Fe (mg)": "25.7801",
+                      "Isoleucine (g)": "0.5621",
+                      "Lactose (g)": "0.0",
+                      "Leucine (g)": "0.9299",
+                      "Lutein + zeaxanthin (g)": "258.5105",
+                      "Lycopene (g)": "0.115",
+                      "Lysine (g)": "0.7551",
+                      "Magnesium, Mg (mg)": "318.0503",
+                      "Maltose (g)": "0.0",
+                      "Manganese, Mn (mg)": "0.9841",
+                      "Menaquinone-4 (g)": "0.0",
+                      "Methionine (g)": "0.2563",
+                      "Niacin (mg)": "49.6555",
+                      "Pantothenic acid (mg)": "6.336",
+                      "Phenylalanine (g)": "0.6032",
+                      "Phosphorus, P (mg)": "2545.6257",
+                      "Phytosterols (mg)": "17.153",
+                      "Potassium, K (mg)": "4067.146",
+                      "Proline (g)": "0.6126",
+                      "Protein (g)": "267.7109",
+                      "Retinol (g)": "199.0",
+                      "Riboflavin (mg)": "2.3587",
+                      "Selenium, Se (g)": "212.0778",
+                      "Serine (g)": "0.7662",
+                      "Sodium, Na (mg)": "4464.8522",
+                      "Starch (g)": "0.0",
+                      "Stigmasterol (mg)": "0.0",
+                      "Sucrose (g)": "1.1847",
+                      "Sugars, total (g)": "5.1454",
+                      "Theobromine (mg)": "0.0",
+                      "Thiamin (mg)": "1.0194",
+                      "Threonine (g)": "0.4811",
+                      "Tocopherol, beta (mg)": "0.005",
+                      "Tocopherol, delta (mg)": "0.03",
+                      "Tocopherol, gamma (mg)": "0.2877",
+                      "Tocotrienol, alpha (mg)": "0.0789",
+                      "Tocotrienol, beta (mg)": "0.0",
+                      "Tocotrienol, delta (mg)": "0.0",
+                      "Tocotrienol, gamma (mg)": "0.005",
+                      "Total lipid (fat) (g)": "122.7265",
+                      "Tryptophan (g)": "0.1623",
+                      "Tyrosine (g)": "0.4302",
+                      "Valine (g)": "0.6772",
+                      "Vitamin A, IU (IU)": "672.0119",
+                      "Vitamin A, RAE (g)": "199.1552",
+                      "Vitamin B-12 (g)": "22.2833",
+                      "Vitamin B-12, added (g)": "0.0",
+                      "Vitamin B-6 (mg)": "4.0352",
+                      "Vitamin C, total ascorbic acid (mg)": "8.1586",
+                      "Vitamin D (D2 + D3) (g)": "1.0",
+                      "Vitamin D (IU)": "41.0",
+                      "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                      "Vitamin D3 (cholecalciferol) (g)": "1.0",
+                      "Vitamin E (alpha-tocopherol) (mg)": "5.7219",
+                      "Vitamin E, added (mg)": "0.0",
+                      "Vitamin K (phylloquinone) (g)": "11.9132",
+                      "Water (g)": "1102.0028",
+                      "Zinc, Zn (mg)": "46.6834",
+                      "Processes": "mix||bake||bake",
+                      "Calories": "200.7",
+                      "total_time": "135",
+                      "Continent": "Asian",
+                      "Region": "Chinese and Mongolian",
+                      "Sub_region": "Chinese",
+                      "id": "643e64ebf71e838f002e47a4"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Process Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/utensils": {
+      "get": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Gets a recipe by Utensil",
+        "description": "This endpoint makes an HTTP GET request to retrieve recipes based on the utensils provided in the query parameter. The response contains an array of recipe data including details such as cook time, prep time, servings, nutritional information, and more.",
+        "operationId": "getRecipeByUtensil",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "searchText",
+            "in": "query",
+            "description": "Utensil",
+            "enum": [
+              "basin",
+              "basket",
+              "beater",
+              "blade",
+              "blender",
+              "board",
+              "boiler",
+              "bottle",
+              "bowl",
+              "box",
+              "casserole",
+              "container",
+              "cooker",
+              "corer",
+              "crock",
+              "crockpot",
+              "cup",
+              "cutter",
+              "disc",
+              "dish",
+              "foil",
+              "fork",
+              "fryer",
+              "frying-pan",
+              "frypan",
+              "grinder",
+              "jar",
+              "jug",
+              "kettle",
+              "knife",
+              "ladle",
+              "marzipan",
+              "masher",
+              "microwave",
+              "mixer",
+              "mug",
+              "oven",
+              "paddle",
+              "pan",
+              "peeler",
+              "pestle",
+              "plate",
+              "platter",
+              "pot",
+              "processer",
+              "processor",
+              "ramekin",
+              "sauceboat",
+              "saucepan",
+              "saucepot",
+              "saucer",
+              "saucpan",
+              "scoop",
+              "shaker",
+              "sheet",
+              "shell",
+              "sieve",
+              "skewer",
+              "skillet",
+              "spatula",
+              "spoon",
+              "steamer",
+              "stockpot",
+              "strainer",
+              "suacepan",
+              "tablespoon",
+              "teaspoon",
+              "tray",
+              "whisk"
+            ],
+            "required": true,
+            "type": "string",
+            "default": "basin"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of records to return",
+            "required": true,
+            "type": "integer",
+            "default": 10,
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Utensils fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_index": "86048",
+                      "Recipe_id": "117069",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "Recipe_title": "French Steak",
+                      "url": "http://www.geniuskitchen.com/recipe/french-steak-413206",
+                      "servings": "6",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://geniuskitchen.sndimg.com/gk/img/gk-shareGraphic.png",
+                      "Adjusted Protein (g)": "0.0",
+                      "Alanine (g)": "11.7307",
+                      "Alcohol, ethyl (g)": "0.0",
+                      "Arginine (g)": "13.9223",
+                      "Ash (g)": "15.8818",
+                      "Aspartic acid (g)": "19.4781",
+                      "Beta-sitosterol (mg)": "0.0",
+                      "Betaine (mg)": "59.7286",
+                      "Caffeine (mg)": "0.0",
+                      "Calcium, Ca (mg)": "403.6677",
+                      "Campesterol (mg)": "0.0",
+                      "Carbohydrate, by difference (g)": "43.8372",
+                      "Carotene, alpha (g)": "0.0912",
+                      "Carotene, beta (g)": "35.2279",
+                      "Cholesterol (mg)": "639.0513",
+                      "Choline, total (mg)": "701.1267",
+                      "Copper, Cu (mg)": "1.1663",
+                      "Cryptoxanthin, beta (g)": "1.3919",
+                      "Cystine (g)": "2.3744",
+                      "Dihydrophylloquinone (g)": "0.0",
+                      "Energy (kJ)": "7458.257",
+                      "Energy (kcal)": "1782.4631",
+                      "Fatty acids, total monounsaturated (g)": "36.1376",
+                      "Fatty acids, total polyunsaturated (g)": "13.3665",
+                      "Fatty acids, total polyunsaturated 15:0 (g)": "0.1967",
+                      "Fatty acids, total polyunsaturated 16:1 c (g)": "0.3381",
+                      "Fatty acids, total polyunsaturated 16:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 17:0 (g)": "0.2088",
+                      "Fatty acids, total polyunsaturated 17:1 (g)": "0.0249",
+                      "Fatty acids, total polyunsaturated 18:1 c (g)": "17.947",
+                      "Fatty acids, total polyunsaturated 18:1 t (g)": "0.911",
+                      "Fatty acids, total polyunsaturated 18:2 CLAs (g)": "0.0932",
+                      "Fatty acids, total polyunsaturated 18:2 i (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:2 n-6 c,c (g)": "4.3298",
+                      "Fatty acids, total polyunsaturated 18:2 t not further defined (g)": "0.1495",
+                      "Fatty acids, total polyunsaturated 18:2 t,t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 18:3 n-6 c,c,c (g)": "0.0069",
+                      "Fatty acids, total polyunsaturated 20:2 n-6 c,c (g)": "0.1361",
+                      "Fatty acids, total polyunsaturated 20:3 undifferentiated (g)": "0.0222",
+                      "Fatty acids, total polyunsaturated 22:1 c (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 22:1 t (g)": "0.0",
+                      "Fatty acids, total polyunsaturated 24:0 (g)": "0.0069",
+                      "Fatty acids, total polyunsaturated 24:1 c (g)": "0.0012",
+                      "Fatty acids, total saturated (g)": "26.7045",
+                      "Fatty acids, total saturated 10:0 (g)": "0.4349",
+                      "Fatty acids, total saturated 12:0 (g)": "0.5143",
+                      "Fatty acids, total saturated 14:0 (g)": "2.3137",
+                      "Fatty acids, total saturated 14:1 (g)": "0.1541",
+                      "Fatty acids, total saturated 16:0 (g)": "15.9552",
+                      "Fatty acids, total saturated 16:1 undifferentiated (g)": "1.5722",
+                      "Fatty acids, total saturated 18:0 (g)": "6.4311",
+                      "Fatty acids, total saturated 18:1 undifferentiated (g)": "34.0839",
+                      "Fatty acids, total saturated 18:2 undifferentiated (g)": "12.1697",
+                      "Fatty acids, total saturated 18:3 undifferentiated (g)": "0.4291",
+                      "Fatty acids, total saturated 18:4 (g)": "0.0",
+                      "Fatty acids, total saturated 20:0 (g)": "0.087",
+                      "Fatty acids, total saturated 20:1 (g)": "0.295",
+                      "Fatty acids, total saturated 20:4 undifferentiated (g)": "0.5637",
+                      "Fatty acids, total saturated 20:5 n-3 (EPA) (g)": "0.0069",
+                      "Fatty acids, total saturated 22:0 (g)": "0.03",
+                      "Fatty acids, total saturated 22:1 undifferentiated (g)": "0.0",
+                      "Fatty acids, total saturated 22:5 n-3 (DPA) (g)": "0.0126",
+                      "Fatty acids, total saturated 22:6 n-3 (DHA) (g)": "0.0012",
+                      "Fatty acids, total saturated 4:0 (g)": "0.0356",
+                      "Fatty acids, total saturated 6:0 (g)": "0.2334",
+                      "Fatty acids, total saturated 8:0 (g)": "0.167",
+                      "Fatty acids, total trans (g)": "1.0605",
+                      "Fatty acids, total trans-monoenoic (g)": "0.911",
+                      "Fatty acids, total trans-polyenoic (g)": "0.1495",
+                      "Fatty acids, total trans-polyenoic 13:0 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 15:1 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 18:1-11 t (18:1t n-7) (g)": "0.1817",
+                      "Fatty acids, total trans-polyenoic 18:3 n-3 c,c,c (ALA) (g)": "0.1965",
+                      "Fatty acids, total trans-polyenoic 18:3i (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 20:3 n-3 (g)": "0.0012",
+                      "Fatty acids, total trans-polyenoic 20:3 n-6 (g)": "0.0207",
+                      "Fatty acids, total trans-polyenoic 20:4 n-6 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 21:5 (g)": "0.0",
+                      "Fatty acids, total trans-polyenoic 22:4 (g)": "0.0012",
+                      "Fiber, total dietary (g)": "8.0681",
+                      "Fluoride, F (g)": "72.9983",
+                      "Folate, DFE (g)": "108.5009",
+                      "Folate, food (g)": "108.5009",
+                      "Folate, total (g)": "108.5009",
+                      "Folic acid (g)": "0.0",
+                      "Fructose (g)": "3.8707",
+                      "Galactose (g)": "0.0004",
+                      "Glucose (dextrose) (g)": "5.9266",
+                      "Glutamic acid (g)": "32.826",
+                      "Glycine (g)": "9.4186",
+                      "Histidine (g)": "8.2968",
+                      "Hydroxyproline (g)": "0.68",
+                      "Iron, Fe (mg)": "10.0191",
+                      "Isoleucine (g)": "9.7771",
+                      "Lactose (g)": "3.9215",
+                      "Leucine (g)": "17.0429",
+                      "Lutein + zeaxanthin (g)": "21.1052",
+                      "Lycopene (g)": "0.0575",
+                      "Lysine (g)": "18.078",
+                      "Magnesium, Mg (mg)": "280.4674",
+                      "Maltose (g)": "0.0",
+                      "Manganese, Mn (mg)": "1.0878",
+                      "Menaquinone-4 (g)": "6.9",
+                      "Methionine (g)": "5.6563",
+                      "Niacin (mg)": "68.5858",
+                      "Pantothenic acid (mg)": "8.4771",
+                      "Phenylalanine (g)": "8.7152",
+                      "Phosphorus, P (mg)": "2325.2465",
+                      "Phytosterols (mg)": "75.0995",
+                      "Potassium, K (mg)": "4229.265",
+                      "Proline (g)": "8.603",
+                      "Protein (g)": "211.0402",
+                      "Retinol (g)": "139.2067",
+                      "Riboflavin (mg)": "4.3327",
+                      "Selenium, Se (g)": "236.4104",
+                      "Serine (g)": "8.7977",
+                      "Sodium, Na (mg)": "1972.018",
+                      "Starch (g)": "0.0",
+                      "Stigmasterol (mg)": "0.0",
+                      "Sucrose (g)": "2.9754",
+                      "Sugars, total (g)": "17.2629",
+                      "Theobromine (mg)": "0.0",
+                      "Thiamin (mg)": "5.3227",
+                      "Threonine (g)": "9.0993",
+                      "Tocopherol, beta (mg)": "0.0148",
+                      "Tocopherol, delta (mg)": "0.0",
+                      "Tocopherol, gamma (mg)": "0.4759",
+                      "Tocotrienol, alpha (mg)": "0.1454",
+                      "Tocotrienol, beta (mg)": "0.0",
+                      "Tocotrienol, delta (mg)": "0.0",
+                      "Tocotrienol, gamma (mg)": "0.0",
+                      "Total lipid (fat) (g)": "81.7712",
+                      "Tryptophan (g)": "2.5538",
+                      "Tyrosine (g)": "8.2275",
+                      "Valine (g)": "10.5326",
+                      "Vitamin A, IU (IU)": "546.4693",
+                      "Vitamin A, RAE (g)": "143.8609",
+                      "Vitamin B-12 (g)": "6.2122",
+                      "Vitamin B-12, added (g)": "0.0",
+                      "Vitamin B-6 (mg)": "5.5354",
+                      "Vitamin C, total ascorbic acid (mg)": "24.9077",
+                      "Vitamin D (D2 + D3) (g)": "0.0",
+                      "Vitamin D (IU)": "0.0",
+                      "Vitamin D2 (ergocalciferol) (g)": "0.0",
+                      "Vitamin D3 (cholecalciferol) (g)": "0.0",
+                      "Vitamin E (alpha-tocopherol) (mg)": "3.1694",
+                      "Vitamin E, added (mg)": "0.0",
+                      "Vitamin K (phylloquinone) (g)": "11.6303",
+                      "Water (g)": "1278.0288",
+                      "Zinc, Zn (mg)": "31.2087",
+                      "Utensils": "pan||pan||pan||pan||pan||pan||pan||pan||pan||pan",
+                      "Processes": "remove||add||stir||stirring||cover||simmer||stir||stir||heat||boil||cool||place||remove||place||remove||place||heat||heat||boil",
+                      "Calories": "428.2",
+                      "total_time": "135",
+                      "Continent": "European",
+                      "Region": "French",
+                      "Sub_region": "French",
+                      "id": "643e653ff71e838f002f3572"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid Information supplied"
+          },
+          "404": {
+            "description": "Recipe not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/recipesAdvanced": {
+      "post": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Advanced recipe search with multiple filters",
+        "description": "Allows advanced searching of recipes based on multiple criteria including ingredients, nutritional information, and more. The response is an array of all the recipies which match with the criteria",
+        "operationId": "postRecipesAdvancedSearch",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "advancedSearch",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "continent": {
+                  "type": "string",
+                  "default": ""
+                },
+                "region": {
+                  "type": "string",
+                  "default": ""
+                },
+                "subRegion": {
+                  "type": "string",
+                  "default": ""
+                },
+                "recipeTitle": {
+                  "type": "string",
+                  "default": ""
+                },
+                "ingredientUsed": {
+                  "type": "string",
+                  "default": ""
+                },
+                "ingredientNotUsed": {
+                  "type": "string",
+                  "default": ""
+                },
+                "cookingProcess": {
+                  "type": "string",
+                  "default": ""
+                },
+                "utensil": {
+                  "type": "string",
+                  "default": ""
+                },
+                "energyMin": {
+                  "type": "integer"
+                },
+                "energyMax": {
+                  "type": "integer"
+                },
+                "carbohydratesMin": {
+                  "type": "integer"
+                },
+                "carbohydratesMax": {
+                  "type": "integer"
+                },
+                "fatMin": {
+                  "type": "integer"
+                },
+                "fatMax": {
+                  "type": "integer"
+                },
+                "proteinMin": {
+                  "type": "integer"
+                },
+                "proteinMax": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "Recipe_id": "66242",
+                      "Calories": "453.4",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "servings": "4",
+                      "Recipe_title": "Dry Chicken Chilli Fry",
+                      "total_time": "40",
+                      "url": "http://www.geniuskitchen.com/recipe/dry-chicken-chilli-fry-186957",
+                      "Region": "Indian Subcontinent",
+                      "Sub_region": "Indian",
+                      "Continent": "Asian",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/18/69/57/picRUx87e.jpg",
+                      "Carbohydrate, by difference (g)": "267.0835",
+                      "Energy (kcal)": "5791.7347",
+                      "Protein (g)": "98.3714",
+                      "Total lipid (fat) (g)": "481.1796",
+                      "Utensils": "pan",
+                      "Processes": "mix||fry||add||fry||cook||fry",
+                      "vegan": "0.0",
+                      "pescetarian": "0.0",
+                      "ovo_vegetarian": "0.0",
+                      "lacto_vegetarian": "0.0",
+                      "ovo_lacto_vegetarian": "0.0",
+                      "id": "6405726fa13d0d2d358996e3"
+                    }
+                  ],
+                  "totalCount": 9159
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/recipesByNutrition": {
+      "post": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Search recipes by nutritional values",
+        "description": "Allows filtering of recipes based on nutritional values such as energy, carbohydrates, fat, and protein. Note: If you are providing a max value for energy, you must provide a min value for energy too. Similar for other pairs of min-max values.",
+        "operationId": "postRecipesByNutrition",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "nutritionFilters",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "energyMin": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "energyMax": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "carbohydratesMin": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "carbohydratesMax": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "fatMin": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "fatMax": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "proteinMin": {
+                  "type": "integer",
+                  "default": 0
+                },
+                "proteinMax": {
+                  "type": "integer",
+                  "default": 0
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation, returns recipes matching the nutritional criteria.",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "_id": "640572c5a13d0d2d358a1a97",
+                      "Recipe_id": "99989",
+                      "Calories": "1374.9",
+                      "cook_time": "0",
+                      "prep_time": "0",
+                      "servings": "4-6 serving",
+                      "Recipe_title": "Forgotten Stew",
+                      "total_time": "195",
+                      "url": "http://www.geniuskitchen.com/recipe/forgotten-stew-302289",
+                      "Region": "South American",
+                      "Sub_region": "Argentine",
+                      "Continent": "Latin American",
+                      "Source": "Geniuskitchen",
+                      "img_url": "https://img.sndimg.com/food/image/upload/w_555,h_416,c_fit,fl_progressive,q_95/v1/img/recipes/30/22/89/pic7JHWNR.jpg",
+                      "Carbohydrate, by difference (g)": "216.0293",
+                      "Energy (kcal)": "1627.1684",
+                      "Protein (g)": "128.5281",
+                      "Total lipid (fat) (g)": "30.16",
+                      "Utensils": "oven",
+                      "Processes": "place||stir||cover||serve",
+                      "vegan": "0.0",
+                      "pescetarian": "0.0",
+                      "ovo_vegetarian": "0.0",
+                      "lacto_vegetarian": "0.0",
+                      "ovo_lacto_vegetarian": "0.0"
+                    }
+                  ],
+                  "totalCount": 118083
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/recipe-search/recipesByIngredient": {
+      "post": {
+        "tags": [
+          "recipe"
+        ],
+        "summary": "Search recipes by ingredients",
+        "description": "Allows searching for recipes by specifying ingredients used or not used.",
+        "operationId": "postRecipesByIngredient",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "ingredientFilters",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "ingredientUsed": {
+                  "type": "string",
+                  "default": ""
+                },
+                "ingredientNotUsed": {
+                  "type": "string",
+                  "default": ""
+                }
+              }
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "Number of items per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation, returns recipes that match the ingredient criteria.",
+            "examples": {
+              "application/json": {
+                "success": "true",
+                "message": "Recipes fetched successfully.",
+                "payload": {
+                  "data": [
+                    {
+                      "_id": "6405722ea13d0d2d35892a3f",
+                      "Recipe_id": "9998",
+                      "Calories": "297.0",
+                      "cook_time": "2",
+                      "prep_time": "30",
+                      "servings": "24",
+                      "Recipe_title": "Bugnes Moelleuses (French Doughnuts)",
+                      "total_time": "152",
+                      "url": "http://allrecipes.com/recipe/258339/bugnes-moelleuses-french-doughnuts/",
+                      "Region": "French",
+                      "Sub_region": "French",
+                      "Continent": "European",
+                      "Source": "AllRecipes",
+                      "img_url": "https://images.media-allrecipes.com/userphotos/560x315/6179757.jpg",
+                      "Carbohydrate, by difference (g)": "153.2757",
+                      "Energy (kcal)": "13284.7217",
+                      "Protein (g)": "85.2608",
+                      "Total lipid (fat) (g)": "1432.5745",
+                      "Utensils": "bowl||cup||tablespoon||bowl||saucepan||platter",
+                      "Processes": "mix||stand||combine||add||knead||cover||rise||cut||brush||heat||cook||drain",
+                      "vegan": "0.0",
+                      "pescetarian": "0.0",
+                      "ovo_vegetarian": "0.0",
+                      "lacto_vegetarian": "0.0",
+                      "ovo_lacto_vegetarian": "0.0"
+                    }
+                  ],
+                  "totalCount": 96222
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid request parameters"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "For accessing the API, a valid JWT token must be passed in all queries in the 'Authorization' header. The token must be prefixed by the word 'Bearer' followed by a space. The token is generated by the API. Here is an example of how the Authorization header should appear: Bearer <API_KEY>"
+    }
+  }
+}

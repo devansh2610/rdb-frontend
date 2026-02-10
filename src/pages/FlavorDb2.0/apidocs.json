@@ -1,0 +1,1725 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "FlavorDB API Endpoint Playground",
+    "description": "API for accessing molecule and flavor information",
+    "contact": {
+      "name": "FlavorDB Team",
+      "email": "ganesh.bagler+foodoscope@gmail.com"
+    }
+  },
+  "host": "api.foodoscope.com",
+  "basePath": "/",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "flavordb/properties/taste-threshold": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Taste Threshold",
+        "description": "Get Flavor Compound by Taste Thresholds",
+        "parameters": [
+          {
+            "name": "values",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "fruity", "green", "sweet", "waxy", "woody", "10 ppm", "floral", "creamy", "20 ppm", "fatty", "spicy", "citrus", "tropical", "30 ppm", "berry", "5 ppm", "fresh", "herbal", "nutty", "vegetative", "apple", "brown", "slight", "musty", "sweet fruity", "50 ppm", "cooling", "pineapple", "25 ppm", "oily"
+            ],
+            "description": "Select one or more taste threshold values.",
+            "x-example": "fruity"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/synthesis": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Synthesis",
+        "description": "Get Flavor Compound by Synthesis Methods",
+        "parameters": [
+          {
+            "name": "values",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "acid", "alcohol", "esterification", "sodium", "methyl", "ethyl", "chloride", "oxidation", "acetic", "heating", "distillation", "corresponding", "condensation", "reduction", "hydrogenation", "oil", "acetate", "direct", "h2so4", "butyl", "catalyst", "hcl", "anhydride", "acetic acid", "concentrated", "direct esterification", "reacting", "benzene", "methanol", "ester"
+            ],
+            "description": "Select one or more synthesis keywords."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-tradeAssociationGuidelines": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Trade Association Guidelines",
+        "description": "Get Trade Association Guidelines",
+        "parameters": [
+          {
+            "name": "guideline",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "0.390 mg", "4.338 mg", "0.051 mg", "0.001 mg", "0.209 mg", "0.003 mg", "0.033 mg", "0.008 mg", "0.293 mg", "0.021 mg", "1.471 mg", "0.005 mg", "0.014 mg", "0.017 mg", "0.046730 mg", "0.221 mg", "0.155 mg", "0.932 mg", "0.052 mg", "0.013 mg", "0.004 mg", "1.494 mg", "0.330 mg", "1.457 mg", "4.709 mg", "3.785 mg", "0.002 mg", "1.841 mg", "1.514 mg", "0.252 mg"
+            ],
+            "description": "Select one or more trade association guideline values."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-naturalOccurrence": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Natural Occurrence",
+        "description": "Get Natural Occurrence Information for a Flavor Compound",
+        "parameters": [
+          {
+            "name": "occurrence",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "Dandelion", "Fagus species", "Found in Siam benzoin", "Natural", "Not found in nature", "Prepared from wood", "Reported found as a constituent in coffee", "Reported found in Bantu beer", "Reportedly present in sherry", "Reportedly present in popcorn", "Reportedly present in onion", "Reportedly present in coriander", "Reportedly present in cider", "Reported present in peanut (roasted)", "Reported present in beer", "Reported not found in nature", "Reported in Ceylon citronella oil", "Reported found in yeast extract", "Reported found in white truffle", "Reported found in violet leaves", "Reported found in tomato", "Reported found in strawberry", "Reported found in skim milk", "Reported found in rum", "Reported found in rose oil", "Reported found in raw and roasted peanut", "Reported found in purple passion fruit", "Reported found in pork liver", "Reported found in pepper", "Reported found in peppermint oil"
+            ],
+            "description": "Select one or more natural occurrences."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/properties/by-nas-range": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Nas No",
+        "description": "Get Flavor Compound by National Academy of Sciences Number",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Minimum NAS number.",
+                        "x-example": "100"
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum NAS number.",
+                        "x-example": "500"
+                    }
+                ],
+                "x-statistics": {
+                    "min": 21,
+                    "max": 8811,
+                    "field": "NAS_No"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/properties/by-jecfa-range": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Jecfa No",
+        "description": "Get Flavor Compound by JECFA Number",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Minimum JECFA number.",
+                        "x-example": "1"
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum JECFA number.",
+                        "x-example": "100"
+                    }
+                ],
+                "x-statistics": {
+                    "min": 1,
+                    "max": 1897,
+                    "field": "JECFA_No"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-iofi-categorisation": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Iofi Categorisation",
+        "description": "Get IOFI Categorization for a Flavor Compound",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "Artificial", "Artificial, Natural Identical", "Artificial, Nature Identical", "Artificial/Nature Identical", "Natural", "Natural Identical", "Natural:", "NaturalNatural", "Nature Identical", "Nature identical", "Not Nature Identical"
+            ],
+            "description": "Select one or more IOFI categories.",
+            "x-example": "Natural"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/properties/by-flNo-range": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+                "alias": "Properties By Fl No",
+        "description": "Get Flavor Compound by FLAVIS Number",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Minimum FL number."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum FL number."
+                    }
+                ],
+            "x-statistics": {
+              "min": 1.001,
+              "max": 56.0,
+              "field": "FL_No"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/properties/by-fema-range": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Fema No",
+        "description": "Get Flavor Compound by FEMA Number",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum FEMA number."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum FEMA number."
+                    }
+                ],
+            "x-statistics": {
+              "min": 2001,
+                    "max": 4905,
+              "field": "FEMA_No"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-einecs": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Einecs No",
+        "description": "Get Flavor Compound by EINECS Number",
+        "parameters": [
+          {
+            "name": "einecs_no",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "232-519-5", "203-310-6", "200-836-8", "264-948-9", "264-154-2", "235-839-3", "248-817-3", "231-327-9", "200-473-5", "202-815-9"],
+            "description": "Select one or more EINECS numbers or related keywords."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-description": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Description",
+        "description": "Get Molecule Description for a Flavor Compound",
+        "parameters": [
+          {
+            "name": "desc",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "sweet", "aroma", "fruity", "flavor", "leaves", "liquid", "plant", "flowers", "green", "colorless", "reminiscent", "bitter", "herbaceous", "distillation", "floral", "slightly", "pungent", "steam", "grows", "dried", "yellow", "fresh", "aromatic", "spicy", "tree", "strong", "fatty", "white", "seeds", "cultivated"
+            ],
+            "description": "Select one or more description keywords."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/properties/by-coe-range": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Coe No",
+        "description": "Get Flavor Compound by Council of Europe Number",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Minimum CoE number."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum CoE number."
+                    }
+                ],
+            "x-statistics": {
+              "min": 2,
+                    "max": 2100,
+              "field": "CoE_No"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-coe-approval": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Coe Approval",
+        "description": "Get Council of Europe Approval Status for a Flavor Compound",
+        "parameters": [
+          {
+            "name": "coe_approval",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "beverages", "5 ppm", "10 ppm", "candy", "1 ppm", "baked", "baked goods", "goods", "20 ppm", "soft", "soft candy", "Approved", "dairy", "frozen", "frozen dairy", "gelatins", "puddings", "gelatins puddings", "category", "2 ppm", "products", "30 ppm", "use", "3 ppm", "meat", "meat products", "15 ppm", "10", "50 ppm", "40 ppm"
+            ],
+            "description": "Select one or more CoE approval keywords."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/properties/by-aromaThresholdValues": {
+      "get": {
+        "tags": [
+          "Property Controller"
+        ],
+        "alias": "Properties By Aroma Threshold Values",
+        "description": "Get Aroma Threshold Values for a Flavor Compound",
+        "parameters": [
+          {
+            "name": "threshold",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "100 ppb", "400 ppb", "1 ppm", "25 ppb", "10 ppm", "50 ppb", "140 ppb", "500 ppb", "5 ppb", "3 ppb", "7 ppb", "0.2 ppb", "2 ppm", "10 ppb", "4 ppb", "19 ppb", "1.2 ppm", "80 ppb", "300 ppb", "800 ppb", "4 ppm", "60 ppb", "30 ppb", "150 ppb", "200 ppb", "20 ppb", "1 ppb", "250 ppb", "90 ppb", "0.01 ppb"
+            ],
+            "description": "Select one or more aroma threshold values."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/FnProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-surfaceArea-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+        "alias": "Properties By Surface Area",
+        "description": "Find Flavor Compounds by Surface Area",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum surface area value."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum surface area value."
+                    }
+                ],
+            "x-statistics": {
+              "min": 24.63,
+                    "max": 1000,
+              "field": "surface_area"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-rotatableBonds-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+                "alias": "Properties By Rotatable Bonds",
+        "description": "Find Flavor Compounds by Rotatable Bond Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum number of rotatable bonds."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of rotatable bonds."
+                    }
+                ],
+            "x-statistics": {
+              "min": 0,
+              "max": 40,
+                    "field": "numRotatableBonds"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-numberOfAtoms-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+        "alias": "Properties By Number Of Atoms",
+        "description": "Find Flavor Compounds by Atom Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum number of atoms."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of atoms."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 1,
+                    "max": 150,
+                    "field": "numberOfAtoms"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-numRings-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+        "alias": "Properties By Num Rings",
+        "description": "Find Flavor Compounds by Ring Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum number of rings."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of rings."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 0,
+                    "max": 10,
+                    "field": "numRings"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-energy-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+        "alias": "Properties By Energy",
+        "description": "Find Flavor Compounds by Energy",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum energy value."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum energy value."
+                    }
+                ],
+                "x-statistics": {
+                    "min": -20,
+                    "max": 200,
+                    "field": "energy"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-aromaticRings-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+                "alias": "Properties By Aromatic Rings",
+        "description": "Find Flavor Compounds by Aromatic Ring Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum number of aromatic rings."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of aromatic rings."
+                    }
+                ],
+            "x-statistics": {
+              "min": 0,
+              "max": 10,
+                    "field": "numberOfAromaticRings"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-aromaticBonds-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+                "alias": "Properties By Aromatic Bonds",
+        "description": "Find Flavor Compounds by Aromatic Bond Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum number of aromatic bonds."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum number of aromatic bonds."
+                    }
+                ],
+            "x-statistics": {
+              "min": 0,
+              "max": 60,
+                    "field": "numberOfAromaticBonds"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-alogp-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+        "alias": "Properties By Alogp",
+        "description": "Find Flavor Compounds by Fat-Solubility",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum AlogP value."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum AlogP value."
+                    }
+                ],
+                "x-statistics": {
+                    "min": -10,
+                    "max": 10,
+                    "field": "alogp"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/more_properties/by-pubchemId-range": {
+      "get": {
+        "tags": [
+                    "More Property Controller"
+        ],
+                "alias": "Properties By PubChem ID",
+                "description": "Find Flavor Compounds by PubChem ID",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Minimum PubChem ID."
+                    },
+                    {
+                        "name": "max",
+            "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum PubChem ID."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 1,
+                    "max": 100000000,
+                    "field": "pubchemId"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/MoreProperty"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/filter-by-weight-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+                "alias": "Molecules By Weight Range",
+                "description": "Filter Flavor Compounds by Weight Range",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum molecular weight value."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum molecular weight value."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 4,
+                    "max": 1000,
+                    "field": "molecularWeight"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/molecules_data/filter-by-type": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Type",
+        "description": "Filter Flavor Compounds by their Type",
+        "parameters": [
+          {
+            "name": "type",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+              "natural",
+              "synthetic"
+            ],
+            "description": "Select molecule type."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/filter-by-hbd-count-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+                "alias": "Molecules by Hbd Count",
+        "description": "Filter Flavor Compounds by H-Bond Donor Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum Hydrogen Bond Donor count."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum Hydrogen Bond Donor count."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 0,
+                    "max": 20,
+                    "field": "hbdCount"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/filter-by-hba-count-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+                "alias": "Molecules by Hba Count",
+        "description": "Filter Flavor Compounds by H-Bond Acceptor Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum Hydrogen Bond Acceptor count."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum Hydrogen Bond Acceptor count."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 0,
+                    "max": 20,
+                    "field": "hbaCount"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/by-topologicalPolarSurfaceArea-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+                "alias": "Molecules By Polar Surface Area",
+        "description": "Find Flavor Compounds by Polar Surface Area",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum Topological Polar Surface Area."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum Topological Polar Surface Area."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 0,
+                    "max": 500,
+                    "field": "topologicalPolarSurfaceArea"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/by-pubchemId-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Pubchem Id",
+        "description": "Find Flavor Compound by PubChem ID",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum PubChem ID."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum PubChem ID."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 4,
+                    "max": 100000000,
+                    "field": "pubchemId"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/by-monoisotopicMass-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Monoisotopic Mass",
+        "description": "Find Flavor Compounds by Monoisotopic Mass",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "number",
+            "format": "double",
+                        "description": "Minimum Monoisotopic Mass."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "number",
+                        "format": "double",
+                        "description": "Maximum Monoisotopic Mass."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 4,
+                    "max": 1000,
+                    "field": "monoisotopicMass"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+        "flavordb/molecules_data/by-heavyAtomCount-range": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Heavy Atom Count",
+        "description": "Find Flavor Compounds by Heavy Atom Count",
+        "parameters": [
+          {
+                        "name": "min",
+            "in": "query",
+            "type": "integer",
+            "format": "int32",
+                        "description": "Minimum Heavy Atom Count."
+                    },
+                    {
+                        "name": "max",
+                        "in": "query",
+                        "type": "integer",
+                        "format": "int32",
+                        "description": "Maximum Heavy Atom Count."
+                    }
+                ],
+                "x-statistics": {
+                    "min": 1,
+                    "max": 100,
+                    "field": "heavyAtomCount"
+                },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/molecules_data/by-functionalGroups": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Functional Groups",
+        "description": "Find Flavor Comound by its Functional Group",
+        "parameters": [
+          {
+            "name": "functional_groups",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "alkene", "aromatic compound", "acetal", "isothiocyanate", "thioether", "heterocyclic compound", "enol ether", "carbonitrile", "hydroperoxide", "sulfone", "nitrite", "alkyne", "thioacetal", "thiourea", "co2 derivative (general)", "sulfoxide", "nitroso compound", "n-oxide", "guanidine", "enol", "imine", "oxime", "azo compound", "anion"
+            ],
+            "description": "Select one or more functional groups."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/molecules_data/by-flavorProfile": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Flavor Profile",
+        "description": "Find Flavor Comound by General Flavor Profile",
+        "parameters": [
+          {
+            "name": "flavor_profile",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "sweet-like", "sweet", "bitter", "odorless", "fruity", "bland", "alkane", "minty", "sulfurous", "musky", "green", "meaty", "pungent", "sulfury", "fruit", "nutty", "woody", "roasted", "fatty", "herbal", "ammoniacal", "fishy", "camphor", "caramellic", "earthy", "sweetbitter", "floral", "blackcurrant", "dill", "spicy"
+            ],
+            "description": "Select one or more flavor profiles."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/molecules_data/by-femaFlavorProfile": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+        "alias": "Molecules By Fema Flavor Profile",
+        "description": "Get FEMA Flavor Profile for a Flavor Comound",
+        "parameters": [
+          {
+            "name": "fema_flavor_profile",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "fruit", "savory", "floral", "green", "spice", "dairy", "mint, cool", "nuts", "heat", "savory, umami", "mouthfeel", "herb", "balsamic", "honey", "grapefruit", "flower", "peach", "lemon", "fruity", "sulfur", "garlic", "phenol", "oil", "fruit, rose", "onion", "cucumber", "fat", "pineapple", "fish", "cocoa", "imparts a cooling sensation"
+            ],
+            "description": "Select one or more FEMA flavor profiles."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/molecules_data/by-commonName": {
+      "get": {
+        "tags": [
+          "Molecule Controller"
+        ],
+                "alias": "Molecules By Common Name",
+        "description": "Find Flavour Comound by its Common Name",
+        "parameters": [
+          {
+            "name": "common_name",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "stevioside", "hesperidin", "neohesperidin", "galactinol", "eriocitrin", "neoeriocitrin", "rubusoside", "cellobiose", "maltotriose", "maltose", "glycyrrhizin", "lactulose", "glycyrrhizic acid", "neodiosmin", "melibiose", "isomaltose", "pectolinarin", "diammonium glycyrrhizinate", "osladin", "37063-35-7", "2''-o-beta-l-galactopyranosylorientin", "neokestose", "phytol", "mannobiose", "68445-41-0", "dehydrosoyasaponin i", "2'-monophosphoadenosine-5'-diphosphate", "xylosucrose", "betavulgaroside iv", "2'-adenylic acid"
+            ],
+            "description": "Select one or more common names."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Molecule"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/entities/by-natural-source": {
+      "get": {
+        "tags": [
+          "Entity Controller"
+        ],
+        "alias": "Entities By Natural Source Name",
+        "description": "Get Food by their Natural Source",
+        "parameters": [
+          {
+            "name": "natural_source_name",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "cattle", "poacceae", "citrus", "grape", "prunus", "maize", "vaccinium", "ribes", "solanum", "theobroma", "crustacean", "rubus", "wheat", "sheep", "mollusca", "fish", "allium", "glycine", "brassica oleracea", "vigna", "oncorhynchus", "vitis vinifera", "salvia", "apple", "corn", "camellia sinensis", "flatfish", "vitis", "cinnamomum", "cucurbitaceae"
+            ],
+            "description": "Select one or more natural source names."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Entity"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/entities/by-name-and-category": {
+      "get": {
+        "tags": [
+          "Entity Controller"
+        ],
+        "alias": "Entities By Name And Category",
+        "description": "Get Ingredient by Name and Category",
+        "parameters": [
+          {
+            "name": "entity_alias",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "enum": [
+                            "grass", "beer", "orange", "papaya", "beans", "egg", "bakery", "bread", "bread-rye", "bread-wheaten", "bread-white", "bread-wholewheat", "wort", "arrack", "brandy", "brandy-anise", "brandy-apple", "brandy-armagnac", "brandy-blackberry", "brandy-cherry", "brandy-cognac", "brandy-papaya", "brandy-pear", "brandy-plum", "brandy-raspberry", "brandy-weinbrand", "gin", "rum", "whisky", "whisky-bourbon"
+            ],
+            "x-enum-values": [
+                            "essentialoil", "beverage-alcoholic", "fruit", "fruit", "nutseed-legume", "animalproduct", "bakery", "bakery", "bakery", "bakery", "bakery", "bakery", "beverage", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic", "beverage-alcoholic"
+                        ],
+                        "description": "Select an entity alias."
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "essentialoil",
+              "beverage-alcoholic",
+              "fruit",
+              "nutseed-legume",
+              "animalproduct",
+              "bakery",
+              "beverage"
+            ],
+                        "description": "Category of the ingredient."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Entity"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/entities/by-entity-alias-readable": {
+      "get": {
+        "tags": [
+          "Entity Controller"
+        ],
+                "alias": "Entities By Readable Name",
+                "description": "Get Ingredient by Readable Name",
+        "parameters": [
+          {
+            "name": "entity_alias_readable",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "grass", "orange", "beer", "lemon", "lime", "papaya", "beans", "peanut", "mustard", "egg", "bakery", "bread", "bread-rye", "bread-wheaten", "bread-white", "bread-wholewheat", "wort", "arrack", "brandy", "brandy-anise", "brandy-apple", "brandy-armagnac", "brandy-blackberry", "brandy-cherry", "brandy-cognac", "brandy-papaya", "brandy-pear", "brandy-plum", "brandy-raspberry", "brandy-weinbrand"
+            ],
+            "description": "Select one or more readable entity aliases."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Entity"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "flavordb/food/by-alias": {
+      "get": {
+        "tags": [
+                    "Food Pairing Controller"
+        ],
+                "alias": "Flavor Pairings by Ingredient",
+                "description": "Get Flavor Pairings by Ingredient Name",
+        "parameters": [
+          {
+            "name": "food_pair",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "collectionFormat": "multi",
+            "x-enum-values": [
+                            "Mango", "Orange", "bakery products", "bread", "beer", "brandy", "apple brandy", "blackberry brandy", "japenese whisky", "cherry brandy", "raspberry brandy", "gin", "wholewheat bread", "apple", "Arabica coffee", "green tea", "sweetcorn", "cider", "roibos tea", "Oats", "Rice", "Corn", "Oats", "Popcorn", "barley", "Malt", "Sake", "Coffee", "Wort", "wine"
+                        ],
+                        "description": "Select ingredient to get top 10 ingredients that share the most molecules."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+                            "$ref": "#/definitions/Entity"
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    }
+  },
+    "definitions": {
+      "FnProperty": {
+        "type": "object",
+        "properties": {
+                "id": { "type": "string" },
+                "name": { "type": "string" },
+                "botanicalName": { "type": "string" },
+                "botanicalFamily": { "type": "string" },
+                "synonyms": { "type": "string" },
+                "casNo": { "type": "string" },
+                "flNo": { "type": "string" },
+                "femaNo": { "type": "number", "format": "double" },
+                "nasNo": { "type": "string" },
+                "coeNo": { "type": "string" },
+                "coeApproval": { "type": "string" },
+                "einecsNo": { "type": "string" },
+                "fda": { "type": "string" },
+                "femaGras": { "type": "string" },
+                "jecfaNo": { "type": "string" },
+                "jecfaStatus": { "type": "string" },
+                "additives": { "type": "string" },
+                "ifraCategory": { "type": "string" },
+                "reachNo": { "type": "string" },
+                "scentRefLibrary": { "type": "string" },
+                "fct": { "type": "string" },
+                "notes": { "type": "string" },
+                "derivatives": { "type": "string" },
+                "derivativeNames": { "type": "string" },
+                "note": { "type": "string" },
+                "foreignNames": { "type": "string" },
+                "essentialOilComposition": { "type": "string" },
+                "genusSpecies": { "type": "string" },
+                "composition": { "type": "string" },
+                "insNo": { "type": "string" },
+                "animalFamily": { "type": "string" },
+                "physicalChemicalCharacteristics": { "type": "string" },
+                "naturalOccurrence": { "type": "string" },
+                "tradeAssociationGuidelines": { "type": "string" },
+                "aromaThresholdValues": { "type": "string" },
+                "description": { "type": "string" },
+                "iofiCategorisation": { "type": "string" }
+        }
+      },
+      "MoreProperty": {
+        "type": "object",
+        "properties": {
+                "id": { "type": "string" },
+                "pubchemId": { "type": "integer", "format": "int32" },
+                "numberOfAtoms": { "type": "integer", "format": "int32" },
+                "molecularFormula": { "type": "string" },
+                "molecularComposition": { "type": "string" },
+                "molecularWeight": { "type": "number", "format": "double" },
+                "molecularMass": { "type": "number", "format": "double" },
+                "energy": { "type": "number", "format": "double" },
+                "alogp": { "type": "number", "format": "double" },
+                "logd": { "type": "number", "format": "double" },
+                "molecularSolubility": { "type": "number", "format": "double" },
+                "pka": { "type": "string" },
+                "numberOfAromaticBonds": { "type": "integer", "format": "int32" },
+                "numberOfAromaticRings": { "type": "integer", "format": "int32" },
+                "hbaCount": { "type": "integer", "format": "int32" },
+                "hbdCount": { "type": "integer", "format": "int32" },
+                "numberOfHAcceptor": { "type": "integer", "format": "int32" },
+                "numberOfHAcceptorLipinski": { "type": "integer", "format": "int32" },
+                "numberOfHDonor": { "type": "integer", "format": "int32" },
+                "numberOfHDonorLipinski": { "type": "integer", "format": "int32" },
+                "numberOfHBonds": { "type": "integer", "format": "int32" },
+                "numRings": { "type": "integer", "format": "int32" },
+                "numRotatableBonds": { "type": "integer", "format": "int32" },
+                "surfaceArea": { "type": "number", "format": "double" },
+                "molecularSasa": { "type": "number", "format": "double" },
+                "radiusOfGyration": { "type": "number", "format": "double" },
+                "molecular3dSasa": { "type": "number", "format": "double" }
+        }
+      },
+      "Molecule": {
+        "type": "object",
+        "properties": {
+                "id": { "type": "string" },
+                "pubchemId": { "type": "integer", "format": "int32" },
+                "iupacName": { "type": "string" },
+                "commonName": { "type": "string" },
+                "smile": { "type": "string" },
+                "molecularWeight": { "type": "number", "format": "double" },
+                "hbdCount": { "type": "integer", "format": "int32" },
+                "hbaCount": { "type": "integer", "format": "int32" },
+                "numRotatableBonds": { "type": "integer", "format": "int32" },
+                "complexity": { "type": "number", "format": "double" },
+                "topologicalPolarSurfaceArea": { "type": "number", "format": "double" },
+                "monoisotopicMass": { "type": "number", "format": "double" },
+                "exactMass": { "type": "number", "format": "double" },
+                "xlogp": { "type": "number", "format": "double" },
+                "charge": { "type": "integer", "format": "int32" },
+                "heavyAtomCount": { "type": "integer", "format": "int32" },
+                "atomStereoCount": { "type": "integer", "format": "int32" },
+                "definedAtomStereoCenterCount": { "type": "integer", "format": "int32" },
+                "undefinedAtomStereoCenterCount": { "type": "integer", "format": "int32" },
+                "bondStereoCount": { "type": "integer", "format": "int32" },
+                "definedBondStereoCenterCount": { "type": "integer", "format": "int32" },
+                "undefinedBondStereoCenterCount": { "type": "integer", "format": "int32" },
+                "isotopeAtomCount": { "type": "integer", "format": "int32" },
+                "covalentlyBondedUnitCount": { "type": "integer", "format": "int32" },
+                "casId": { "type": "string" },
+                "femaNumber": { "type": "string" },
+                "femaFlavorProfile": { "type": "string" },
+                "odor": { "type": "string" },
+                "taste": { "type": "string" },
+                "functionalGroups": { "type": "string" },
+                "inchi": { "type": "string" },
+                "volume3d": { "type": "number", "format": "double" },
+                "foodDbFlavorProfile": { "type": "string" },
+                "superSweet": { "type": "string" },
+                "bitter": { "type": "number", "format": "double" },
+                "superSweetDbId": { "type": "number", "format": "double" },
+                "bitterDbId": { "type": "number", "format": "double" },
+                "foodDbId": { "type": "string" },
+                "flavorNetId": { "type": "integer", "format": "int32" },
+                "fenoroliAndOs": { "type": "integer", "format": "int32" },
+                "natural": { "type": "integer", "format": "int32" },
+                "unknownNatural": { "type": "integer", "format": "int32" },
+                "synthetic": { "type": "integer", "format": "int32" },
+                "flavorProfile": { "type": "string" }
+        }
+      },
+      "Entity": {
+        "type": "object",
+        "properties": {
+                "id": { "type": "string" },
+                "entityId": { "type": "integer", "format": "int32" },
+                "category": { "type": "string" },
+                "categoryReadable": { "type": "string" },
+                "entityAlias": { "type": "string" },
+                "entityAliasBasket": { "type": "string" },
+                "entityAliasReadable": { "type": "string" },
+                "entityAliasSynonyms": { "type": "string" },
+                "entityAliasUrl": { "type": "string" },
+                "naturalSourceName": { "type": "string" },
+                "naturalSourceUrl": { "type": "string" }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header",
+      "description": "To access the API, provide a valid JWT token in the 'Authorization' header. The 'Bearer' prefix is automatically added, so you only need to enter the token itself. The token is generated by the API.\n\nExample value: <API_KEY>"
+    }
+  }
+}

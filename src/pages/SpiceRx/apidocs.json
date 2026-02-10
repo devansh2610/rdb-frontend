@@ -1,0 +1,392 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "SpiceRx API Endpoint Playground",
+    "description": "Phytochemical-disease associations, spice-disease relationships, and chemical property data for spices and medicinal plants",
+    "contact": {
+      "email": "example@example.co.in"
+    }
+  },
+  "host": "api.foodoscope.com",
+  "basePath": "/spicerx",
+  "tags": [
+    {
+      "name": "Spice-Disease Associations",
+      "description": "Endpoints for retrieving spice-disease relationship data"
+    },
+    {
+      "name": "Chemical-Disease Associations",
+      "description": "Endpoints for retrieving chemical-disease relationship data"
+    },
+    {
+      "name": "Phytochemicals",
+      "description": "Endpoints for retrieving phytochemical information"
+    },
+    {
+      "name": "Diseases",
+      "description": "Endpoints for retrieving disease information"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/search_plants": {
+      "get": {
+        "alias": "Search plants by taxonomy ID",
+        "tags": [
+          "Spice-Disease Associations"
+        ],
+        "summary": "Search plants by taxonomy ID",
+        "description": "This endpoint returns all positive and negative associations of diseases linked with a spice and the phytochemicals linked with each disease. It also contains phytochemicals directly linked with the spice. Response fields include: display_name (name of spice), disease_id (Disease ID linked with the spice), associations_positive (Positive associations linked with a disease ID), associations_negative (Negative associations linked with a disease ID), linked_phytochemicals (Phytochemicals linked with a disease ID), phytochemicals (Phytochemicals associated with the spice).",
+        "operationId": "searchPlants",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The taxonomy ID of the spice",
+            "default": "136217"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Plant not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/chemical_details": {
+      "get": {
+        "alias": "Get chemical details",
+        "tags": [
+          "Phytochemicals"
+        ],
+        "summary": "Get chemical details by MeSH ID",
+        "description": "This endpoint returns detailed chemical information based on the chemical MeSH ID. Response includes: Chemical ID (MeSH ID), PubChem CID, Canonical SMILES, Isomeric SMILES, Common name, IUPAC name, InChI (Digital signature), Num_Atoms, Molecular_Formula, Molecular_Weight, Molecular_Mass, ALogP (Lipophilicity), Molecular_Solubility (mol/L), pKa, Num_AromaticBonds, Num_AromaticRings, HBA_Count, HBD_Count, Num_H_Acceptors, Num_H_Donors, Num_Rings, Num_RotatableBonds, Molecular_SurfaceArea, ADMET properties (Solubility, BBB Level, Hepatotoxicity, Absorption, Plasma Protein Binding), and fingerprint data.",
+        "operationId": "getChemicalDetails",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The MeSH ID of the chemical. The MeSH ID (Medical Subject Headings) is a unique identifier for chemicals in biomedical databases.",
+            "default": "MESH:C058895"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Chemical not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/get_disease": {
+      "get": {
+        "alias": "Get disease associations",
+        "tags": [
+          "Diseases"
+        ],
+        "summary": "Get all spices and phytochemicals associated with a disease",
+        "description": "This endpoint returns all spices that have associations with a given disease and all phytochemicals directly linked with the disease. Response includes: plant (spice metadata like common name, TAX ID), associations_positive (positive associations between disease and spice), associations_negative (negative associations), linked_phytochemicals (linking phytochemicals in the association), phytochemicals (phytochemicals directly linked with the disease), and disease details (Disease ID, Title, Category, Sub-category, TreeNums).",
+        "operationId": "getDisease",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The MeSH ID of the disease",
+            "default": "MESH:D003920"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Disease not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/search_diseases": {
+      "get": {
+        "alias": "Search diseases",
+        "tags": [
+          "Diseases"
+        ],
+        "summary": "Search diseases by various parameters",
+        "description": "Search for diseases based on different parameters like category, sub-category, title, and MeSH ID. Response contains: disease (Disease ID, Disease Title, Disease Category, Disease Sub-category, TreeNums - hierarchical classification code indicating where the disease sits in medical taxonomy), and num_associations (number of associations with the disease).",
+        "operationId": "searchDiseases",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "title",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The name of the disease"
+          },
+          {
+            "name": "category",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The category the disease belongs to"
+          },
+          {
+            "name": "sub_category",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The sub-category the disease belongs to"
+          },
+          {
+            "name": "mesh_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The MeSH ID of the disease",
+            "default": "MESH:D006937"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "No diseases found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/cd_associations": {
+      "get": {
+        "alias": "Get chemical-disease associations",
+        "tags": [
+          "Chemical-Disease Associations"
+        ],
+        "summary": "Get chemical-disease associations",
+        "description": "This endpoint returns all details about relationships between a disease and phytochemical and their associations. Response includes: associations (journal details with PMID, Journal, Title, Year, Chemical ID, Disease ID), disease (Disease ID, Disease Title, Disease Category, Disease Sub-category, TreeNums), and chemical (detailed chemical properties including molecular data, ADMET predictions, and fingerprints).",
+        "operationId": "getCDAssociations",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The MeSH ID of the chemical and disease (format: MESH:CXXXXXX-MESH:DXXXXXX)",
+            "default": "MESH:C058895-MESH:D000647"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Association not found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    },
+    "/chemicals": {
+      "get": {
+        "alias": "Search phytochemicals",
+        "tags": [
+          "Phytochemicals"
+        ],
+        "summary": "Get phytochemicals by properties",
+        "description": "This endpoint returns details about phytochemicals based on chemical properties. Response includes comprehensive chemical information: Chemical ID (MeSH ID), PubChem CID, Canonical SMILES, Isomeric SMILES, Common name, IUPAC name, InChI, Num_Atoms, Molecular_Formula, Molecular_Weight, Molecular_Mass, ALogP (lipophilicity), Molecular_Solubility, pKa, aromatic bonds/rings counts, HBA/HBD counts, ring counts, rotatable bonds, Molecular_SurfaceArea, and full ADMET data (Solubility, BBB penetration, Hepatotoxicity, Absorption, Plasma Protein Binding predictions with applicability domains).",
+        "operationId": "getChemicals",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "common_name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The common name of the phytochemical",
+            "default": "curcumin"
+          },
+          {
+            "name": "iupac_name",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The IUPAC name of the phytochemical"
+          },
+          {
+            "name": "pubchem_id",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The PubChem CID of the phytochemical"
+          },
+          {
+            "name": "molecular_weight_from",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Lower value of the molecular weight range to query from"
+          },
+          {
+            "name": "molecular_weight_to",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Upper value of the molecular weight range to query from"
+          },
+          {
+            "name": "hbd_count",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The number of hydrogen bond donors"
+          },
+          {
+            "name": "hba_count",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The number of hydrogen bond acceptors"
+          },
+          {
+            "name": "alogp",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The lipophilicity of the phytochemical (ability to pass from octanol to water)"
+          },
+          {
+            "name": "smile",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The canonical SMILES of the phytochemical - a unique, standardized text representation of a chemical structure"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "Page number",
+            "default": "1"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation"
+          },
+          "400": {
+            "description": "Invalid parameters"
+          },
+          "404": {
+            "description": "No chemicals found"
+          }
+        },
+        "security": [
+          {
+            "Authorization": []
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  }
+}
