@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiSpec from './apidocs.json';
 import ApiSidebar from '../../components/Playground/ApiSidebar';
-import ApiEndpoint from '../../components/Playground/ApiEndpoint';
+import ApiEndpoint from './RecipeApiEndpoint'; 
 import ApiIntro from '../../components/Playground/ApiIntro';
 import ApiSearchBar from '../../components/Playground/ApiSearchBar';
 import CodeExamples from '../../components/Playground/CodeExamples';
@@ -15,11 +15,7 @@ import {
   faBars,
   faTimes,
   faCode,
-  faTerminal,
-  faSyncAlt,
-  faSearch,
-  faX,
-  faEllipsisVertical
+  faSearch
 } from '@fortawesome/free-solid-svg-icons';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -47,7 +43,7 @@ const ApiDocsPage = () => {
   const [filteredEndpoints, setFilteredEndpoints] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
-  const [mobileActiveTab, setMobileActiveTab] = useState('docs'); // 'sidebar', 'docs', 'code'
+  const [mobileActiveTab, setMobileActiveTab] = useState('docs'); 
   const [apiKey, setApiKey] = useState('');
   const [apiResponse, setApiResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -116,13 +112,8 @@ const ApiDocsPage = () => {
 
   // Enforce light theme
   useEffect(() => {
-    // Store the current theme state
     const wasDark = document.documentElement.classList.contains('dark');
-
-    // Force remove dark mode
     document.documentElement.classList.remove('dark');
-
-    // Cleanup: Restore theme state when leaving the page
     return () => {
       if (wasDark) {
         document.documentElement.classList.add('dark');
@@ -159,7 +150,6 @@ const ApiDocsPage = () => {
       const selectedElement = document.getElementById(`endpoint-${path}-${method}`);
       if (selectedElement) {
         selectedElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
         selectedElement.classList.add('bg-indigo-100');
         selectedElement.classList.add('border-indigo-500');
         selectedElement.classList.add('border');
@@ -207,12 +197,21 @@ const ApiDocsPage = () => {
 
       let url = `${apiSpec.schemes[0]}://${apiSpec.host}${apiSpec.basePath}${path}`;
 
+      // Check if this is the meal plan endpoint which needs special body construction
+      const isMealPlan = path.includes('meal-plan') && method.toLowerCase() === 'post';
+
       endpointDetails.parameters.filter(p => p.in === 'path').forEach(param => {
         url = url.replace(`{${param.name}}`, values[param.name] || '');
       });
 
       const queryParams = endpointDetails.parameters
-        .filter(p => p.in === 'query' && values[p.name])
+        .filter(p => {
+            // For meal plan, do NOT add these specific fields to the query string
+            if (isMealPlan && ['diet_type', 'days', 'minCalories', 'maxCalories', 'exclude_ingredients'].includes(p.name)) {
+                return false;
+            }
+            return p.in === 'query' && values[p.name];
+        })
         .map(p => `${p.name}=${encodeURIComponent(values[p.name])}`)
         .join('&');
 
@@ -231,18 +230,45 @@ const ApiDocsPage = () => {
         options.headers['Authorization'] = `Bearer ${apiKey}`;
       }
 
-      const bodyParam = endpointDetails.parameters.find(p => p.in === 'body');
-      if (bodyParam && values[bodyParam.name]) {
-        try {
-          options.body = JSON.stringify(JSON.parse(values[bodyParam.name]));
-        } catch (e) {
-          setApiResponse({
-            status: 'error',
-            data: 'Invalid JSON in request body'
-          });
-          setIsLoading(false);
-          return;
-        }
+      // Special handling for constructing the Meal Plan body from UI inputs
+      if (isMealPlan) {
+         // Construct the body explicitly to match backend expectations exactly
+         const requestBody = {
+            diet_type: values.diet_type, 
+            calories_per_day: { 
+                min: Number(values.minCalories) || 0, 
+                max: Number(values.maxCalories) || 2000 
+            },
+            days: Number(values.days) || 1
+         };
+         
+         // FIX: Send exclude_ingredients as a STRING, not an Array.
+         // If values.exclude_ingredients is "water, flour", we send "water, flour"
+         // This prevents backend .split() crashes.
+         if (values.exclude_ingredients && typeof values.exclude_ingredients === 'string' && values.exclude_ingredients.trim() !== '') {
+             requestBody.exclude_ingredients = values.exclude_ingredients;
+         } else {
+             // If empty, standard practice is to omit or send empty string/array. 
+             // Based on your success with "nothing selected", we will omit this key entirely if empty.
+         }
+
+         options.body = JSON.stringify(requestBody);
+         console.log("Sending Meal Plan Request:", requestBody); 
+      } else {
+          // Standard body handling for other endpoints
+          const bodyParam = endpointDetails.parameters.find(p => p.in === 'body');
+          if (bodyParam && values[bodyParam.name]) {
+            try {
+              options.body = JSON.stringify(JSON.parse(values[bodyParam.name]));
+            } catch (e) {
+              setApiResponse({
+                status: 'error',
+                data: 'Invalid JSON in request body'
+              });
+              setIsLoading(false);
+              return;
+            }
+          }
       }
 
       try {
@@ -292,7 +318,6 @@ const ApiDocsPage = () => {
       <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 pt-16">
         <div className="bg-white dark:bg-gray-800 shadow-sm py-3 md:py-4 px-4 md:px-6 flex flex-col">
           <div className="flex justify-between items-center gap-3">
-            {/* Mobile sidebar toggle */}
             <button
               onClick={toggleSidebar}
               className="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
@@ -318,7 +343,6 @@ const ApiDocsPage = () => {
             </div>
           </div>
 
-          {/* Mobile tabs */}
           <div className="flex md:hidden mt-3 border-t border-gray-200 dark:border-gray-700 pt-3 gap-1">
             <button
               onClick={() => setMobileActiveTab('docs')}
@@ -343,7 +367,6 @@ const ApiDocsPage = () => {
         </div>
 
         <div className="flex flex-col flex-1 overflow-hidden relative">
-          {/* Mobile Sidebar Overlay */}
           <AnimatePresence>
             {sidebarOpen && (
               <>
@@ -452,7 +475,7 @@ const ApiDocsPage = () => {
                     autoFocus
                   />
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <FontAwesomeIcon icon={faSearch} className="text-gray-500 dark:text-gray-400" />
+                    <FontAwesomeIcon icon={faSearch} className="text-gray-500 dark:text-gray-400 text-sm" />
                   </div>
                   {searchQuery && (
                     <button
@@ -484,4 +507,4 @@ const ApiDocsPage = () => {
   );
 };
 
-export default ApiDocsPage; 
+export default ApiDocsPage;

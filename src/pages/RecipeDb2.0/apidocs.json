@@ -35,13 +35,13 @@
           {
             "name": "page",
             "in": "query",
-            "type": "string",
+            "type": "integer",
             "description": "Filter by page number."
           },
           {
             "name": "limit",
             "in": "query",
-            "type": "string",
+            "type": "integer",
             "description": "Number of recipes to be shown per page."
           }
         ],
@@ -218,13 +218,13 @@
           {
             "name": "page",
             "in": "query",
-            "type": "string",
+            "type": "integer",
             "description": "Filter by page number."
           },
           {
             "name": "limit",
             "in": "query",
-            "type": "string",
+            "type": "intger",
             "description": "Number of recipes to be shown per page."
           }
         ],
@@ -254,13 +254,13 @@
           {
             "name": "page",
             "in": "query",
-            "type": "string",
+            "type": "integer",
             "description": "Filter by page number."
           },
           {
             "name": "limit",
             "in": "query",
-            "type": "string",
+            "type": "integer",
             "description": "Number of recipes to be shown per page."
           }
         ],
@@ -435,7 +435,8 @@
           {
             "name": "max",
             "in": "query",
-            "type": "number"
+            "type": "number",
+            "description": "Filter by time range (in minutes)."
           },
           {
             "name": "continent",
@@ -543,9 +544,10 @@
             "description": "Filter by page number."
           },
           {
-            "name": "limit",
+            "name": "page_size",
             "in": "query",
             "type": "integer",
+            "default": 10,
             "description": "Number of recipes to be shown per page."
           }
         ],
@@ -657,6 +659,7 @@
             "name": "minCalories",
             "in": "query",
             "type": "string",
+            "default": 0,
             "description": "Filter by calories range.",
             "x-statistics": {
               "min": 0,
@@ -671,6 +674,7 @@
             "name": "maxCalories",
             "in": "query",
             "type": "string",
+            "default": 612854.6,
             "description": "Filter by calories range.",
             "x-statistics": {
               "min": 0,
@@ -869,12 +873,14 @@
             "name": "minCarbs",
             "in": "query",
             "type": "string",
+            "default": 0,
             "description": "Range for Carbohydrates (g)"
           },
           {
             "name": "maxCarbs",
             "in": "query",
             "type": "string",
+            "default": 252062.68,
             "description": "Range for Carbohydrates (g)"
           },
           {
@@ -943,121 +949,95 @@
           "POST Method"
         ],
         "description": "Generates a personalized meal plan for a specified duration based on diet and calories.",
-        "requestBody": {
-          "description": "",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "diet_type": {
-                    "type": "string",
-                    "example": "any",
-                    "x-enum-values": [
-                      "vegan",
-                      "pescetarian",
-                      "ovo_vegetarian",
-                      "lacto_vegetarian",
-                      "ovo_lacto_vegetarian"
-                    ],
-                    "description": "Desired diet type"
-                  },
-                  "calories_per_day": {
-                    "type": "object",
-                    "example": {},
-                    "x-statistics": {
-                      "min": 0,
-                      "max": 612854.6,
-                      "mean": 473.77048601407483,
-                      "stdDev": 2177.807815939577,
-                      "field": "Calories per day"
-                    },
-                    "properties": {
-                      "min": {
-                        "type": "number"
-                      },
-                      "max": {
-                        "type": "number"
-                      }
-                    },
-                    "required": [
-                      "min",
-                      "max"
-                    ],
-                    "description": "Daily calorie range"
-                  },
-                  "days": {
-                    "type": "integer",
-                    "example": 7,
-                    "description": "Number of days for the meal plan"
-                  },
-                  "exclude_ingredients": {
-                    "type": "array",
-                    "collectionFormat": "multi",
-                    "items": {
-                      "type": "string"
-                    },
-                    "x-enum-values": [
-                      "water",
-                      "cinnamon",
-                      "breadcrumb",
-                      "flour tortilla",
-                      "lemon juice",
-                      "lime juice",
-                      "white wine",
-                      "red wine",
-                      "flour",
-                      "purpose flour",
-                      "soy sauce",
-                      "Tomato sauce",
-                      "butter",
-                      "milk",
-                      "vegetable broth",
-                      "cream mushroom soup",
-                      "sesame oil",
-                      "avocado",
-                      "steak",
-                      "salmon fillet",
-                      "broccoli",
-                      "artichoke heart",
-                      "lemon",
-                      "orange juice",
-                      "mushroom",
-                      "button mushroom",
-                      "garlic clove",
-                      "garlic",
-                      "vanilla",
-                      "black bean",
-                      "cornstarch",
-                      "corn",
-                      "egg",
-                      "beef",
-                      "almond",
-                      "walnut",
-                      "bay leaf",
-                      "black olive",
-                      "olive oil",
-                      "vegetable oil",
-                      "shallot",
-                      "shrimp",
-                      "black pepper",
-                      "pepper",
-                      "onion",
-                      "tomato"
-                    ],
-                    "description": "Ingredients to exclude from the meal plan"
-                  }
-                },
-                "required": [
-                  "diet_type",
-                  "calories_per_day",
-                  "days"
-                ]
-              }
+        "parameters": [
+          {
+            "name": "diet_type",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "single",
+            "description": "Desired diet type.",
+            "x-enum-values": [
+              "vegan",
+              "pescetarian",
+              "ovo_vegetarian",
+              "lacto_vegetarian",
+              "ovo_lacto_vegetarian"
+            ]
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "type": "integer",
+            "required": true,
+            "description": "Number of days for the meal plan (e.g. 7)."
+          },
+          {
+            "name": "calories_per_day",
+            "in": "query",
+            "type": "number",
+            "required": true,
+            "description": "Calories to be consumed per day.",
+            "x-statistics": {
+               "min": 0,
+               "max": 612854.6
             }
+          },
+          {
+            "name": "exclude_ingredients",
+            "in": "query",
+            "type": "string",
+            "collectionFormat": "multi",
+            "description": "Ingredients to exclude from the meal plan.",
+            "x-enum-values": [
+              "water",
+              "cinnamon",
+              "breadcrumb",
+              "flour tortilla",
+              "lemon juice",
+              "lime juice",
+              "white wine",
+              "red wine",
+              "flour",
+              "purpose flour",
+              "soy sauce",
+              "Tomato sauce",
+              "butter",
+              "milk",
+              "vegetable broth",
+              "cream mushroom soup",
+              "sesame oil",
+              "avocado",
+              "steak",
+              "salmon fillet",
+              "broccoli",
+              "artichoke heart",
+              "lemon",
+              "orange juice",
+              "mushroom",
+              "button mushroom",
+              "garlic clove",
+              "garlic",
+              "vanilla",
+              "black bean",
+              "cornstarch",
+              "corn",
+              "egg",
+              "beef",
+              "almond",
+              "walnut",
+              "bay leaf",
+              "black olive",
+              "olive oil",
+              "vegetable oil",
+              "shallot",
+              "shrimp",
+              "black pepper",
+              "pepper",
+              "onion",
+              "tomato"
+            ]
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -1093,6 +1073,7 @@
             "required": true,
             "collectionFormat": "single",
             "description": "Filter by flavor category.",
+            "type": "string",
             "x-enum-values": [
               "Beverage",
               "Vegetable-Bulb",
@@ -1128,7 +1109,6 @@
             "name": "page",
             "in": "query",
             "type": "string",
-            "required": true,
             "description": "Enter the page number.",
             "default": 1
           },
@@ -1136,7 +1116,6 @@
             "name": "limit",
             "in": "query",
             "type": "string",
-            "required": true,
             "description": "Number of recipes to be shown per page.",
             "default": 10
           }
@@ -1211,7 +1190,6 @@
             "name": "page",
             "in": "query",
             "type": "string",
-            "required": true,
             "description": "Enter the page number.",
             "default": 1
           },
@@ -1219,7 +1197,6 @@
             "name": "limit",
             "in": "query",
             "type": "string",
-            "required": true,
             "description": "Number of recipes to be shown per page.",
             "default": 10
           }
@@ -1492,12 +1469,14 @@
             "name": "minEnergy",
             "in": "query",
             "type": "string",
+            "default": 0,
             "description": "Filter by energy range (in kcal)."
           },
           {
             "name": "maxEnergy",
             "in": "query",
             "type": "string",
+            "default": 3440456.64,
             "description": "Filter by energy range (in kcal)."
           },
           {
@@ -1987,26 +1966,30 @@
             "name": "min",
             "in": "query",
             "type": "string",
+            "default": 0,
             "description": "Filter by Protein content range (g)."
           },
           {
             "name": "max",
             "in": "query",
             "type": "string",
+            "default": 178134.3738,
             "description": "Filter by Protein content range (g)."
           },
           {
             "name": "page",
             "in": "query",
             "type": "string",
-            "required": true,
+            "required": false,
+            "default": "1",
             "description": "Enter the page number."
           },
           {
             "name": "limit",
             "in": "query",
             "type": "string",
-            "required": true,
+            "required": false,
+            "default": "10",
             "description": "Number of recipes to be shown per page."
           }
         ],
@@ -2050,7 +2033,41 @@
             "name": "excludeDietrxCategories",
             "in": "query",
             "type": "string",
-            "description": "Select DietRx Categories to exclude."
+            "collectionFormat": "multi",
+            "description": "Select DietRx Categories to exclude.",
+            "x-enum-values": [
+              "Additive",
+              "Additive-Salt",
+              "Additive-Sugar",
+              "Additive-Vinegar",
+              "Additive-Yeast",
+              "Bakery",
+              "Berry",
+              "Beverage",
+              "Beverage Caffeinated",
+              "Beverage-Alcoholic",
+              "Cereal",
+              "Condiment",
+              "Dairy",
+              "Dish",
+              "Essential Oil",
+              "Fish",
+              "Flower",
+              "Fruit",
+              "Fungi",
+              "Fungus",
+              "Gourd",
+              "Herb",
+              "Legume",
+              "Maize",
+              "Meat",
+              "Nuts and Seeds",
+              "Plant",
+              "Plant Derivative",
+              "Seafood",
+              "Seed",
+              "Vegetable"
+            ]
           },
           {
             "name": "page",
